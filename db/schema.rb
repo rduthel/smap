@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180226164145) do
+ActiveRecord::Schema.define(version: 20180226173005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,12 +25,12 @@ ActiveRecord::Schema.define(version: 20180226164145) do
     t.string "address"
     t.string "zip_code"
     t.string "city"
-    t.bigint "driver_id"
     t.string "driving_license"
     t.string "identity_card"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["driver_id"], name: "index_additional_drivers_on_driver_id"
+    t.bigint "driver_profile_id"
+    t.index ["driver_profile_id"], name: "index_additional_drivers_on_driver_profile_id"
   end
 
   create_table "addresses", force: :cascade do |t|
@@ -38,10 +38,10 @@ ActiveRecord::Schema.define(version: 20180226164145) do
     t.string "address"
     t.string "zip_code"
     t.string "city"
-    t.bigint "driver_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["driver_id"], name: "index_addresses_on_driver_id"
+    t.bigint "driver_profile_id"
+    t.index ["driver_profile_id"], name: "index_addresses_on_driver_profile_id"
   end
 
   create_table "cars", force: :cascade do |t|
@@ -60,7 +60,7 @@ ActiveRecord::Schema.define(version: 20180226164145) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "drivers", force: :cascade do |t|
+  create_table "driver_profiles", force: :cascade do |t|
     t.string "title"
     t.string "first_name"
     t.string "last_name"
@@ -73,9 +73,11 @@ ActiveRecord::Schema.define(version: 20180226164145) do
     t.bigint "car_id"
     t.string "driving_license"
     t.string "identity_card"
+    t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_drivers_on_car_id"
+    t.index ["car_id"], name: "index_driver_profiles_on_car_id"
+    t.index ["user_id"], name: "index_driver_profiles_on_user_id"
   end
 
   create_table "ratings", force: :cascade do |t|
@@ -115,9 +117,10 @@ ActiveRecord::Schema.define(version: 20180226164145) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "additional_drivers", "drivers"
-  add_foreign_key "addresses", "drivers"
-  add_foreign_key "drivers", "cars"
+  add_foreign_key "additional_drivers", "driver_profiles"
+  add_foreign_key "addresses", "driver_profiles"
+  add_foreign_key "driver_profiles", "cars"
+  add_foreign_key "driver_profiles", "users"
   add_foreign_key "ratings", "cars"
   add_foreign_key "slots", "addresses"
   add_foreign_key "slots", "cars"
