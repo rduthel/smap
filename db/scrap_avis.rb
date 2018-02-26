@@ -8,6 +8,9 @@ html_prestige = Nokogiri::HTML(page_avis_prestige)
 # html_tourism  = Nokogiri::HTML(page_avis_tourism)
 
 html_prestige.search('.content-51b').each do |element|
-  element.search('h2').each { |e| p e.text.split(':').last.strip }                  # nom de la voiture
-  element.search('.changeFontSize').each { |e| p e.text.split("\s\s").first.strip } # description
+  # element.search('h2').each { |e| p e.text.split(':').last.strip }                  # nom de la voiture
+  # element.search('.changeFontSize').each { |e| p e.text.split("\s\s").first.strip } # description
+  element.search('tr').each do |tr|
+    p tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
+  end
 end
