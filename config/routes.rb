@@ -4,6 +4,6 @@ Rails.application.routes.draw do
 
   resources :cars, only: [:index, :show, :estimation, :subscription]
 
-  get "/profil" to: "users#profil"
+  get "/profil", to: "users#profil"
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
