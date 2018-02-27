@@ -1,54 +1,77 @@
 require 'open-uri'
 require 'nokogiri'
 
-page_avis_prestige = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/prestige/france').read
-# page_avis_tourism  = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
+page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
+html_tourism = Nokogiri::HTML(page_avis_tourism)
 
-html_prestige = Nokogiri::HTML(page_avis_prestige)
-# html_tourism  = Nokogiri::HTML(page_avis_tourism)
+cars = []
 
-places    = []
-mecanique = []
-voitures  = []
+html_tourism.search('.content-51b').each_with_index do |element, _index_car|
+  car = {}
+  element.search('.changeFontSize').each do |element_car|
+    element_car.search('strong').each do |f|
+      text_element = f.text
+      text_element.gsub!('Modèle', '')
+      text_element.gsub!('ou similaire', '')
 
-html_prestige.search('.content-51b').each_with_index do |element, index_voiture|
-  voiture = {}
-  element.search('h2').each do |e|
-    formatted = e.text.split(':').last.strip.split(/[[:space:]]/)
-    voiture[:brand] = formatted.first
+      tab = text_element.split(/[[:space:]]/).reject { |w| w == '' }
 
-    formatted.delete_at(0)
-    voiture[:model] = formatted.join(' ')
-  end
+      next if tab.first.nil?
 
-  element.search('.changeFontSize').each do |e|
-    voiture[:description] = e.text.split("\s\s").first.strip
-  end
-
-  element.search('tr').each_with_index do |tr, index|
-    res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
-      r.gsub(/\A[[:space:]]+/, '') == ''
+      if tab.first == 'Alfa'
+        car[:brand] = 'Alfa Roméo'
+        car[:model] = 'Giulia'
+      else
+        car[:brand] = tab.first
+        tab.delete_at(0)
+        car[:model] = tab.join(' ')
+      end
     end
+    # formatted   = e.text.split(':').last.strip.split(/[[:space:]]/)
+    # car[:brand] = formatted.first
+    #
+    # formatted.delete_at(0)
+    # car[:model] = formatted.join(' ')
 
-    index.even? ? places << res : mecanique << res
+    # group = e.text.split(':').first.strip[7]
 
-    next if mecanique[index_voiture].nil?
+    # if group == 'B'
+    #   car[:category] = 'Berline'
+    # elsif group ==
+    #
+    # end
 
-    places_e    = places[index_voiture]
-    mecanique_e = mecanique[index_voiture]
-
-    voiture[:seat]         = places_e[0][0].to_i
-    voiture[:lugage]       = places_e[1][0].to_i
-    voiture[:car_door]     = places_e[2][0].to_i
-    voiture[:transmission] = mecanique_e[0]
-    voiture[:energy]       = mecanique_e[1]
+    # citadine
+    # compacte
+    # berline
+    # SUV
+    # utilitaire
   end
 
-  voitures << voiture
+  #   element.search('.changeFontSize').each do |e|
+  #     car[:description] = e.text.split("\s\s").first.strip
+  #   end
+  #
+  #   element.search('tr').each_with_index do |tr, index|
+  #     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
+  #       r.gsub(/\A[[:space:]]+/, '') == ''
+  #     end
+  #
+  #     index.even? ? places << res : mecha << res
+  #
+  #     next if mecha[index_car].nil?
+  #
+  #     places_e           = places[index_car]
+  #     mecanique_e        = mecha[index_car]
+  #
+  #     car[:seat]         = places_e[0][0].to_i
+  #     car[:lugage]       = places_e[1][0].to_i
+  #     car[:car_door]     = places_e[2][0].to_i
+  #     car[:transmission] = mecanique_e[0]
+  #     car[:energy]       = mecanique_e[1]
+  #   end
+  #
+  cars << car
 end
 
-2.times do
-  voitures.delete_at(-1)
-end
-
-puts voitures
+puts cars
