@@ -1,8 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-Car.destroy_all
-
 page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
 html_tourism = Nokogiri::HTML(page_avis_tourism)
 
@@ -80,18 +78,4 @@ html_tourism.search('.content-51b').each do |element|
 end
 
 cars.delete({})
-
-puts "Création des 'cars'..."
-cars.each_index do |i|
-  Car.create(
-    brand:           cars[i][:brand],
-    model:           cars[i][:model],
-    category:        cars[i][:category],
-    description:     cars[i][:description],
-    seat:            cars[i][:seat],
-    lugage:          cars[i][:lugage],
-    car_door:        cars[i][:car_door],
-    energy:          cars[i][:energy],
-    transmission:    cars[i][:transmission]
-  )
-end
+puts cars
