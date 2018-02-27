@@ -7,7 +7,7 @@ class DriverProfilesController < ApplicationController
   end
 
   def edit
-    @driver_profile.email = current_user.email
+
   end
 
   def update
