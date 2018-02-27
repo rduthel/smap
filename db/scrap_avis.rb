@@ -27,6 +27,10 @@ html_tourism.search('.content-51b').each_with_index do |element, _index_car|
         car[:model] = tab.join(' ')
       end
     end
+
+    description = element_car.text.strip.split("\s\s")[1]
+    car[:description] = description unless description.nil?
+
     # formatted   = e.text.split(':').last.strip.split(/[[:space:]]/)
     # car[:brand] = formatted.first
     #
@@ -74,4 +78,5 @@ html_tourism.search('.content-51b').each_with_index do |element, _index_car|
   cars << car
 end
 
+cars.delete({})
 puts cars
