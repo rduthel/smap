@@ -48,7 +48,7 @@ html_tourism.search('.content-51b').each_with_index do |element, _index_car|
     when 'N'           then category = 'Utilitaire'
     end
 
-    car[:category] = category
+    car[:category] = category unless category.nil?
   end
 
   element.search('tr').each_with_index do |tr, index|
