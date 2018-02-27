@@ -8,7 +8,7 @@ places = []
 mecha  = []
 cars   = []
 
-html_tourism.search('.content-51b').each_with_index do |element, index_car|
+html_tourism.search('.content-51b').each_with_index do |element, _index_car|
   car = {}
   element.search('.changeFontSize').each do |element_car|
     element_car.search('strong').each do |f|
@@ -32,26 +32,23 @@ html_tourism.search('.content-51b').each_with_index do |element, index_car|
 
     description = element_car.text.strip.split("\s\s")[1]
     car[:description] = description unless description.nil?
+  end
 
-    # formatted   = e.text.split(':').last.strip.split(/[[:space:]]/)
-    # car[:brand] = formatted.first
-    #
-    # formatted.delete_at(0)
-    # car[:model] = formatted.join(' ')
+  element.search('h2').each do |h2|
+    formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
+    category_letter = formatted unless formatted[-1] == 's'
+    category = nil
 
-    # group = e.text.split(':').first.strip[7]
+    case category_letter
+    when 'A', 'B', 'I' then category = 'Citadine'
+    when 'C', 'J', 'L' then category = 'Compacte'
+    when 'D', 'F', 'M' then category = 'Berline'
+    when 'H', 'K', 'O' then category = 'Monospace'
+    when 'E'           then category = 'SUV'
+    when 'N'           then category = 'Utilitaire'
+    end
 
-    # if group == 'B'
-    #   car[:category] = 'Berline'
-    # elsif group ==
-    #
-    # end
-
-    # citadine
-    # compacte
-    # berline
-    # SUV
-    # utilitaire
+    car[:category] = category
   end
 
   element.search('tr').each_with_index do |tr, index|
