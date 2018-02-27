@@ -3,5 +3,8 @@ class DriverProfile < ApplicationRecord
   belongs_to :user
   has_many :additional_drivers
   has_many :addresses
+  mount_uploader :photo, PhotoUploader
+  mount_uploader :driving_license, PhotoUploader
+  mount_uploader :identity_card, PhotoUploader
 end
 
