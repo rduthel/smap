@@ -14,7 +14,7 @@ voitures  = []
 html_prestige.search('.content-51b').each_with_index do |element, index_voiture|
   voiture = {}
   element.search('h2').each do |e|
-    voiture[:marque] = e.text.split(':').last.split(/[[:space:]]/)[1]
+    voiture[:brand] = e.text.split(':').last.split(/[[:space:]]/)[1]
   end
   element.search('.changeFontSize').each { |e| voiture[:description] = e.text.split("\s\s").first.strip }
   element.search('tr').each_with_index do |tr, index|
@@ -22,12 +22,12 @@ html_prestige.search('.content-51b').each_with_index do |element, index_voiture|
     index.even? ? places << res : mecanique << res
 
     next if mecanique[index_voiture].nil?
-    voiture[:places]       = places[index_voiture][0][0].to_i
-    voiture[:bagages]      = places[index_voiture][1][0].to_i
-    voiture[:portes]       = places[index_voiture][2][0].to_i
+    voiture[:seat]         = places[index_voiture][0][0].to_i
+    voiture[:lugage]       = places[index_voiture][1][0].to_i
+    voiture[:car_door]     = places[index_voiture][2][0].to_i
 
     voiture[:transmission] = mecanique[index_voiture][0]
-    voiture[:energie]      = mecanique[index_voiture][1]
+    voiture[:energy]       = mecanique[index_voiture][1]
   end
 
   voitures << voiture
