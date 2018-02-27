@@ -14,12 +14,12 @@ voitures  = []
 html_prestige.search('.content-51b').each do |element|
   voiture = {}
   element.search('h2').each { |e| voiture[:nom] = e.text.split(':').last.strip }                  # nom de la voiture
+  element.search('.changeFontSize').each { |e| voiture[:description] = e.text.split("\s\s").first.strip } # description
   voitures << voiture
-  # element.search('.changeFontSize').each { |e| p e.text.split("\s\s").first.strip } # description
   # element.search('tr').each_with_index do |tr, index|
   #   res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
   #   index.even? ? places << res : mecanique << res
   # end
 end
 
-p voitures
+p voitures.first
