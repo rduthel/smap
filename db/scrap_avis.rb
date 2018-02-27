@@ -31,7 +31,10 @@ html_tourism.search('.content-51b').each do |element|
     end
 
     description = element_car.text.strip.split("\s\s")[1]
-    car[:description] = description unless description.nil?
+
+    next if description.nil?
+    description.gsub!('Avis', 'SMAP')
+    car[:description] = description
   end
 
   element.search('h2').each do |h2|
