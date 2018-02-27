@@ -8,7 +8,7 @@ places = []
 mecha  = []
 cars   = []
 
-html_tourism.search('.content-51b').each_with_index do |element, _index_car|
+html_tourism.search('.content-51b').each do |element|
   car = {}
   element.search('.changeFontSize').each do |element_car|
     element_car.search('strong').each do |f|
