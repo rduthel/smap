@@ -10,9 +10,9 @@ places = []
 mecha  = []
 cars   = []
 
-html_tourism.search('.content-51b').each do |element|
+html_tourism.search('.content-51b').each do |content|
   car = {}
-  element.search('.changeFontSize').each do |element_car|
+  content.search('.changeFontSize').each do |element_car|
     element_car.search('strong').each do |f|
       text_element = f.text
       text_element.gsub!('Modèle', '')
@@ -40,7 +40,7 @@ html_tourism.search('.content-51b').each do |element|
     car[:description] = description
   end
 
-  element.search('h2').each do |h2|
+  content.search('h2').each do |h2|
     formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
     category_letter = formatted unless formatted[-1] == 's'
     category = nil
@@ -57,7 +57,7 @@ html_tourism.search('.content-51b').each do |element|
     car[:category] = category unless category.nil?
   end
 
-  element.search('tr').each_with_index do |tr, index|
+  content.search('tr').each_with_index do |tr, index|
     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
       r.gsub(/\A[[:space:]]+/, '') == ''
     end
@@ -76,6 +76,10 @@ html_tourism.search('.content-51b').each do |element|
     car[:energy]       = mecha_tr[1]
   end
 
+  content.search('.responsive-image').each do |image|
+    car[:photo] = image['data-small']
+  end
+
   cars << car
 end
 
@@ -92,6 +96,7 @@ cars.each_index do |i|
     lugage:          cars[i][:lugage],
     car_door:        cars[i][:car_door],
     energy:          cars[i][:energy],
-    transmission:    cars[i][:transmission]
+    transmission:    cars[i][:transmission],
+    photo:           cars[i][:photo]
   )
 end
