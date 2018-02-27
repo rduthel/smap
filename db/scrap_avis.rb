@@ -11,15 +11,26 @@ places    = []
 mecanique = []
 voitures  = []
 
-html_prestige.search('.content-51b').each do |element|
+html_prestige.search('.content-51b').each_with_index do |element, index_voiture|
   voiture = {}
-  element.search('h2').each { |e| voiture[:nom] = e.text.split(':').last.strip }                  # nom de la voiture
-  element.search('.changeFontSize').each { |e| voiture[:description] = e.text.split("\s\s").first.strip } # description
+  element.search('h2').each { |e| voiture[:nom] = e.text.split(':').last.strip }
+  element.search('.changeFontSize').each { |e| voiture[:description] = e.text.split("\s\s").first.strip }
+  element.search('tr').each_with_index do |tr, index|
+    res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
+    index.even? ? places << res : mecanique << res
+
+    next if mecanique[index_voiture].nil?
+    voiture[:places]       = places[index_voiture][0][0].to_i
+    voiture[:bagages]      = places[index_voiture][1][0].to_i
+    voiture[:portes]       = places[index_voiture][2][0].to_i
+
+    voiture[:transmission] = mecanique[index_voiture][0]
+    voiture[:energie]      = mecanique[index_voiture][1]
+  end
+
   voitures << voiture
-  # element.search('tr').each_with_index do |tr, index|
-  #   res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
-  #   index.even? ? places << res : mecanique << res
-  # end
 end
 
-p voitures.first
+2.times do
+  voitures.delete_at(-1)
+end
