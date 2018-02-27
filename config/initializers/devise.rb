@@ -250,8 +250,8 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
-    scope: 'email',
-    info_fields: 'email, first_name, last_name',
+    scope: 'email,public_profile,user_birthday,user_location',
+    info_fields: 'email, first_name, last_name, gender, birthday, address',
     image_size: 'square',  # 50x50, guaranteed ratio
     secure_image_url: true
 
