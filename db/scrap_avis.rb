@@ -13,7 +13,9 @@ voitures  = []
 
 html_prestige.search('.content-51b').each_with_index do |element, index_voiture|
   voiture = {}
-  element.search('h2').each { |e| voiture[:nom] = e.text.split(':').last.strip }
+  element.search('h2').each do |e|
+    voiture[:marque] = e.text.split(':').last.split(/[[:space:]]/)[1]
+  end
   element.search('.changeFontSize').each { |e| voiture[:description] = e.text.split("\s\s").first.strip }
   element.search('tr').each_with_index do |tr, index|
     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
@@ -34,3 +36,5 @@ end
 2.times do
   voitures.delete_at(-1)
 end
+
+puts voitures.first
