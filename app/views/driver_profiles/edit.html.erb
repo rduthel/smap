@@ -1,0 +1,16 @@
+<%= simple_form_for @driver_profile, url:profil_path do |f| %>
+  <%= f.input :title %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :email %>
+  <%= f.input :address %>
+  <%= f.input :zip_code %>
+  <%= f.input :city %>
+  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year] %>
+  <%= f.input :telephone_number %>
+  <%= f.input :driving_license %>
+  <%= f.input :identity_card %>
+  <%= f.button :submit %>
+
+  <%= link_to "Change your password",  edit_user_registration_path  %>
+<% end %>

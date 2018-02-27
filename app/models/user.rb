@@ -5,4 +5,13 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_one :driver_profile
+
+  after_create :add_driver_profile
+
+
+  private
+
+  def add_driver_profile
+    self.create_driver_profile
+  end
 end
