@@ -1,6 +1,8 @@
 require 'open-uri'
 require 'nokogiri'
 
+puts "Destruction des 'cars' et des 'ratings'..."
+Rating.destroy_all
 Car.destroy_all
 
 page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
@@ -85,6 +87,8 @@ end
 
 cars.delete({})
 
+############ SEEDING... ############
+
 puts "Création des 'cars'..."
 cars.each_index do |i|
   Car.create(
@@ -98,5 +102,19 @@ cars.each_index do |i|
     energy:          cars[i][:energy],
     transmission:    cars[i][:transmission],
     photo:           cars[i][:photo]
+  )
+end
+
+puts "Création des 'ratings'..."
+50.times do
+  chars = []
+  chars << Faker::Seinfeld.character
+  chars << Faker::SiliconValley.character
+  chars << Faker::TheFreshPrinceOfBelAir.character
+
+  Rating.create(
+    user:  chars.sample,
+    rate: rand(1..5),
+    car: Car.find(rand(Car.first.id..Car.last.id))
   )
 end
