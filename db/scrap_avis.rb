@@ -9,14 +9,17 @@ html_prestige = Nokogiri::HTML(page_avis_prestige)
 
 places    = []
 mecanique = []
+voitures  = []
 
 html_prestige.search('.content-51b').each do |element|
-  # element.search('h2').each { |e| p e.text.split(':').last.strip }                  # nom de la voiture
+  voiture = {}
+  element.search('h2').each { |e| voiture[:nom] = e.text.split(':').last.strip }                  # nom de la voiture
+  voitures << voiture
   # element.search('.changeFontSize').each { |e| p e.text.split("\s\s").first.strip } # description
-  element.search('tr').each_with_index do |tr, index|
-    res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
-    index.even? ? places << res : mecanique << res
-  end
+  # element.search('tr').each_with_index do |tr, index|
+  #   res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject { |f| f.gsub(/\A[[:space:]]+/, '') == '' }
+  #   index.even? ? places << res : mecanique << res
+  # end
 end
 
-p places
+p voitures
