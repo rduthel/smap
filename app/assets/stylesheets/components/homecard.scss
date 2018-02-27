@@ -1,0 +1,44 @@
+.homecard {
+  height: 190px;
+  width: 220px;
+  padding: 0px 50px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  background-size: cover !important;
+  background-position: center;
+  color: white;
+  position: relative;
+}
+
+.homecard-category {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  font-size: 15px;
+  text-transform: uppercase;
+}
+.homecard-description {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+.homecard-description h2 {
+  font-size: 24px;
+}
+.homecard-description p {
+  font-size: 14px;
+  opacity: 0.7;
+  font-weight: lighter;
+}
+.homecard-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  z-index: 2;
+  background: black;
+  opacity: 0;
+}
+.homecard-link:hover {
+  opacity: 0.1;
+}
