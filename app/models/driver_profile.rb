@@ -6,5 +6,7 @@ class DriverProfile < ApplicationRecord
   mount_uploader :photo, PhotoUploader
   mount_uploader :driving_license, PhotoUploader
   mount_uploader :identity_card, PhotoUploader
+
+  delegate :email, to: :user
 end
 

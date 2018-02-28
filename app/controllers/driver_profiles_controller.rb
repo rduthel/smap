@@ -7,7 +7,7 @@ class DriverProfilesController < ApplicationController
   end
 
   def edit
-    @driver_profile.email = current_user.email
+
   end
 
   def update
@@ -22,6 +22,6 @@ class DriverProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:driver_profile).permit(:title, :first_name, :last_name, :email, :address, :zip_code, :city, :birthdate, :telephone_number, :driving_license, :identity_card, :photo)
+    params.require(:driver_profile).permit(:title, :first_name, :last_name, :address, :zip_code, :city, :birthdate, :telephone_number, :driving_license, :identity_card, :photo)
   end
 end

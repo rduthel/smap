@@ -10,6 +10,8 @@ gem 'rails', '5.1.5'
 gem 'redis'
 gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
+gem 'omniauth-facebook'
+gem 'awesome_print'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
