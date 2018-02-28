@@ -1,0 +1,30 @@
+.banner {
+  color: black;
+  text-align: center;
+  height: 50vh;
+  padding: 50px;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.banner h1 {
+  font-size: 30px;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+  opacity: 0.6;
+  font-family: 'Montserrat';
+  text-align: right;
+}
+
+.banner p {
+  font-size: 25px;
+  font-weight: lighter;
+  color: #333644;
+  margin-bottom: 30px;
+}
+
