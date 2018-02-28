@@ -87,6 +87,14 @@ end
 
 cars.delete({})
 
+def price_by_category(category)
+  case category
+  when 'Citadine'                       then 800
+  when 'Compacte'                       then 1_200
+  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
+  end
+end
+
 ############ SEEDING... ############
 
 puts "Création des 'cars'..."
@@ -101,6 +109,7 @@ cars.each_index do |i|
     car_door:        cars[i][:car_door],
     energy:          cars[i][:energy],
     transmission:    cars[i][:transmission],
+    monthly_price:   price_by_category(cars[i][:category]),
     photo:           cars[i][:photo]
   )
 end
