@@ -13,8 +13,8 @@
       <!-- Avatar with dropdown menu -->
       <div class="navbar-smap-item">
         <div class="dropdown">
-              <% if current_user && current_user.avatar_photo != nil  %>
-            <%= image_tag current_user.avatar_photo, class:"avatar dropdown-toggle", id:"navbar-smap-menu", data: { toggle: 'dropdown' } %>
+              <% if current_user && current_user.driver_profile.photo != nil  %>
+            <%= image_tag current_user.driver_profile.photo, class:"avatar dropdown-toggle", id:"navbar-smap-menu", data: { toggle: 'dropdown' } %>
             <% else %>
             <%= image_tag ("profil.png"), class:"avatar dropdown-toggle", id:"navbar-smap-menu", data: { toggle: 'dropdown' } %>
             <% end %>
