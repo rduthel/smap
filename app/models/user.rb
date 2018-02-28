@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   def self.find_for_facebook_oauth(auth)
     p "---------------"
-    p auth
+    ap auth
     p"----------------"
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email)
@@ -29,6 +29,13 @@ class User < ApplicationRecord
       driver_profile_params = auth.info.slice(:first_name, :last_name)
       driver_profile_params[:remote_photo_url] = auth.info.image
       driver_profile_params.merge!(user: user)
+      p "--------------"
+      p auth.info.location
+      p date = auth.extra.raw_info.birthday
+      p "----"
+      p Date.strptime(date, '%m/%d/%Y')
+      p auth.extra.raw_info.gender
+      p "--------------"
       driver_profile_params = driver_profile_params.to_h
       DriverProfile.create(driver_profile_params)
     end
