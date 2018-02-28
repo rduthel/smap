@@ -1,0 +1,130 @@
+// .card {
+//   background-size: cover;
+//   background-position: center;
+//   height: 150px;
+//   border-radius: 1px;
+//   margin: 15px 10px;
+//   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-around;
+//   font-size: 25px;
+//   color: white;
+//   font-weight: bolder;
+//   text-shadow: 0 0 10px rgba(0,0,0,0.7);
+// }
+
+
+.card{
+  min-width: 300px;
+  flex: 1 1 auto;
+  opacity: 0.9;
+  margin: 20px;
+  box-shadow: 4px 4px 15px -1px gray;
+  transition: all 0.3s ease;
+  color: white;
+    a {
+      text-decoration: none;
+      color: white;
+    }
+    &:hover {
+      opacity: 1;
+    }
+}
+
+// .card:hover {
+//   margin-top: -1px;
+// }
+
+.card-body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: repeat-x;
+  height: 220px;
+  position: relative;
+  display: block;
+}
+
+.card-category {
+  position: absolute;
+  width: 100%;
+  top: 8px;
+  left: 10px;
+  h3 {
+    line-height: 0px;
+    margin-top: 14px;
+
+  }
+}
+
+.card-avatar {
+  position: absolute;
+  bottom: 60px;
+  right: 15px;
+  border: 2px solid rgb(229, 181, 25);
+}
+
+.card-desc {
+  position: absolute;
+  bottom: 0px;
+  left:10px;
+  width: 100%;
+  padding-bottom: 2px;
+}
+
+.card-footer {
+  // padding: 12px;
+  border-top: 1.5px solid rgb(229, 181, 25);
+  color: #999999;
+  background-color:white;
+  height: 100px;
+  position: relative;
+  p {
+    margin: 0;
+    padding-top: 2px;
+  }
+}
+
+.card-date {
+  font-size: 12px;
+}
+
+.card-icon-list {
+  display:flex;
+  justify-content: space-around;
+  align-content: flex-start;
+  height: 60%;
+
+}
+
+.card-list {
+  list-style: none;
+  display: block;
+  margin: 0;
+  h4 {
+    box-sizing: border-box;
+    font-size: 15px;
+  };
+  i {
+  color: rgb(229, 181, 25);
+  }
+}
+.card-link {
+
+  &:hover {
+  text-decoration: none;
+  color: white;
+  opacity: 0.4;
+  padding: 5px;
+  }
+}
+
+.card-link a:hover {
+  opacity: 1;
+}
+
+.material-icons-li {
+  display:flex;
+  align-items:center;
+}
+
