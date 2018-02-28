@@ -1,2 +1,12 @@
-<h1>Cars#show</h1>
-<p>Find me in app/views/cars/show.html.erb</p>
+<div class="container">
+  <h1><%= @car.brand %> <%= @car.model %></h1>
+  <img src="<%= @car.photo %>" alt="">
+  <p><%= @car.description %></p>
+
+  <p><%= @car.energy %></p>
+  <p><%= @car.seat %> places</p>
+  <p><%= @car.lugage %> bagages</p>
+  <p><%= @car.transmission %></p>
+  <p><%= @car.car_door %> portes</p>
+
+</div>

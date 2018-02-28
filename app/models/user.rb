@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_one :driver_profile, dependent: :destroy
 
   devise :omniauthable, omniauth_providers: [:facebook]
+  after_create :add_driver_profile
 
   def self.find_for_facebook_oauth(auth)
     user_params = auth.slice(:provider, :uid)
@@ -33,6 +34,12 @@ class User < ApplicationRecord
       ap DriverProfile.create(driver_profile_params)
     end
 
-    return user
+    user
+  end
+
+  private
+
+  def add_driver_profile
+    self.create_driver_profile
   end
 end
