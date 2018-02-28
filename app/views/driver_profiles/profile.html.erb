@@ -2,7 +2,7 @@
 
 
 <h4><%= @driver_profile.title %> <%= @driver_profile.first_name %> <%= @driver_profile.last_name %></h4>
-<%= cl_image_tag @driver_profile.photo, height: 50, width: 50, crop: :fit %>
+<%= cl_image_tag @driver_profile.photo, height: 100, width: 100, crop: :fit %>
 
 <h5>E-mail : <%= @driver_profile.email %></h5>
 <h5>Adresse : <%= @driver_profile.address %> <%= @driver_profile.city %> <%= @driver_profile.zip_code %></h5>

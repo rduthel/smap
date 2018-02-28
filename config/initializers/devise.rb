@@ -252,7 +252,7 @@ Devise.setup do |config|
   config.omniauth :facebook, ENV["FB_ID"], ENV["FB_SECRET"],
     scope: 'email,public_profile,user_birthday,user_location',
     info_fields: 'email, first_name, last_name, gender, birthday, location',
-    image_size: 'square',  # 50x50, guaranteed ratio
+    image_size: 'normal',  # 50x50, guaranteed ratio
     secure_image_url: true
 
   # ==> OmniAuth

@@ -9,9 +9,6 @@ class User < ApplicationRecord
   devise :omniauthable, omniauth_providers: [:facebook]
 
   def self.find_for_facebook_oauth(auth)
-    p "---------------"
-    ap auth
-    p"----------------"
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email)
     user_params[:token] = auth.credentials.token
@@ -28,16 +25,12 @@ class User < ApplicationRecord
       user.save
       driver_profile_params = auth.info.slice(:first_name, :last_name)
       driver_profile_params[:remote_photo_url] = auth.info.image
+      driver_profile_params[:birthdate] = Date.strptime(auth.extra.raw_info.birthday, '%m/%d/%Y')
+      driver_profile_params[:city] = auth.info.location.split(',')[0]
+      driver_profile_params[:title] = auth.extra.raw_info.gender == "male" ? "Mr" : "Mme"
       driver_profile_params.merge!(user: user)
-      p "--------------"
-      p auth.info.location
-      p date = auth.extra.raw_info.birthday
-      p "----"
-      p Date.strptime(date, '%m/%d/%Y')
-      p auth.extra.raw_info.gender
-      p "--------------"
       driver_profile_params = driver_profile_params.to_h
-      DriverProfile.create(driver_profile_params)
+      ap DriverProfile.create(driver_profile_params)
     end
 
     return user
