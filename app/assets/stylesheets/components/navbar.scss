@@ -8,6 +8,9 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  font-family: 'Raleway';
+  font-weight: normal;
+  color: black;
 }
 
 /* Logo */
@@ -17,8 +20,8 @@
 
 /* User Avatar */
 .navbar-smap .avatar {
-  height: 40px;
-  width: 4px;
+  height: 35px;
+  width: 35px;
   border-radius: 50%;
 }
 
@@ -33,12 +36,14 @@
 .navbar-smap-item {
   cursor: pointer;
   padding: 0 20px;
+  font-family: 'Raleway';
+  font-weight: normal;
 }
 
 /* Navbar link */
 .navbar-smap-link {
   color: #616668;
-  font-size: 14px;
+  font-size: 15px;
 }
 .navbar-smap-link:hover {
   color: #da552f;
