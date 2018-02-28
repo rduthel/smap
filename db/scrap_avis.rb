@@ -1,10 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-puts "Destruction des 'cars' et des 'ratings'..."
-Rating.destroy_all
-Car.destroy_all
-
 page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
 html_tourism = Nokogiri::HTML(page_avis_tourism)
 
@@ -12,9 +8,9 @@ places = []
 mecha  = []
 cars   = []
 
-html_tourism.search('.content-51b').each do |content|
+html_tourism.search('.content-51b').each do |element|
   car = {}
-  content.search('.changeFontSize').each do |element_car|
+  element.search('.changeFontSize').each do |element_car|
     element_car.search('strong').each do |f|
       text_element = f.text
       text_element.gsub!('Modèle', '')
@@ -42,7 +38,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:description] = description
   end
 
-  content.search('h2').each do |h2|
+  element.search('h2').each do |h2|
     formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
     category_letter = formatted unless formatted[-1] == 's'
     category = nil
@@ -59,7 +55,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:category] = category unless category.nil?
   end
 
-  content.search('tr').each_with_index do |tr, index|
+  element.search('tr').each_with_index do |tr, index|
     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
       r.gsub(/\A[[:space:]]+/, '') == ''
     end
@@ -78,43 +74,8 @@ html_tourism.search('.content-51b').each do |content|
     car[:energy]       = mecha_tr[1]
   end
 
-  content.search('.responsive-image').each do |image|
-    car[:photo] = image['data-small']
-  end
-
   cars << car
 end
 
 cars.delete({})
-
-############ SEEDING... ############
-
-puts "Création des 'cars'..."
-cars.each_index do |i|
-  Car.create(
-    brand:           cars[i][:brand],
-    model:           cars[i][:model],
-    category:        cars[i][:category],
-    description:     cars[i][:description],
-    seat:            cars[i][:seat],
-    lugage:          cars[i][:lugage],
-    car_door:        cars[i][:car_door],
-    energy:          cars[i][:energy],
-    transmission:    cars[i][:transmission],
-    photo:           cars[i][:photo]
-  )
-end
-
-puts "Création des 'ratings'..."
-50.times do
-  chars = []
-  chars << Faker::Seinfeld.character
-  chars << Faker::SiliconValley.character
-  chars << Faker::TheFreshPrinceOfBelAir.character
-
-  Rating.create(
-    user:  chars.sample,
-    rate: rand(1..5),
-    car: Car.find(rand(Car.first.id..Car.last.id))
-  )
-end
+puts cars
