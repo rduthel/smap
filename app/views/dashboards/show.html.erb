@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Tableau de bord</h1>
+
+  <div class="tab">
+    <div class="car-tab">
+      <h5>Ma voiture : <%= @car.brand %>  <%= @car.model %>
+        <% a = [] %>
+        <% @car.ratings.each do |rate| %>
+          <% a << rate.rate %>
+        <% end %>
+        <%= a.instance_eval { reduce(:+) / size.to_f } %>
+      </h5>
+    </div>
+  </div>
+
+</div>
