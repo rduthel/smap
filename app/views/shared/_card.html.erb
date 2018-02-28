@@ -1,0 +1,28 @@
+<% url = (cl_image_path car.photo) %>
+<div class="card text-center">
+  <%= link_to car_path(car), class: "card-body", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{url}')" do %>
+  <div class="card-category text-center">
+    <h3><%= car.brand %> <%= car.model %></h3>
+  </div>
+  <div class="card-desc">
+   <%= car.monthly_price %>
+  </div>
+  <% end %>
+    <div class="card-footer">
+        <p><%= car.category %> </p>
+      <div class="card-icon-list">
+        <div class="card-list">
+          <h4 class="material-icons-li"><i class="fas fa-users"></i> &nbsp; <%= car.seat %> Places</h4>
+          <h4 class="material-icons-li"><i class="tiny material-icons">local_gas_station</i> &nbsp; <%= car.energy %></h4>
+        </div>
+        <div class="card-list">
+          <h4 class="material-icons-li"><i class="fas fa-cogs"></i> &nbsp; <%= car.transmission %></h4>
+          <h4 class="material-icons-li"><i class="fas fa-car"></i> &nbsp; <%= car.car_door %> Portes</h4>
+        </div>
+        <div class="card-list">
+          <h4><i class="fas fa-cogs"></i> &nbsp; <%= car.lugage %> Bagages</h4>
+          <h4></h4>
+        </div>
+      </div>
+    </div>
+</div>
