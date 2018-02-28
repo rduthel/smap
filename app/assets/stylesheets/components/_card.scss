@@ -39,6 +39,7 @@
 .card-body {
   background-size: cover;
   background-position: center;
+  background-repeat: repeat-x;
   height: 220px;
   position: relative;
   display: block;
@@ -47,7 +48,7 @@
 .card-category {
   position: absolute;
   width: 100%;
-  top: 0px;
+  top: 8px;
   left: 10px;
   h3 {
     line-height: 0px;
@@ -91,7 +92,7 @@
 .card-icon-list {
   display:flex;
   justify-content: space-around;
-  align-items: center;
+  align-content: flex-start;
   height: 60%;
 
 }
@@ -126,3 +127,4 @@
   display:flex;
   align-items:center;
 }
+
