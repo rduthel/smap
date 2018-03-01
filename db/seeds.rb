@@ -84,6 +84,10 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     end
   end
 
+  content.search('.responsive-image').each do |image|
+    car[:photo] = image['data-large-retina']
+  end
+
   cars << car
 end
 
@@ -155,7 +159,7 @@ html_tourism.search('.content-51b').each do |content|
   end
 
   content.search('.responsive-image').each do |image|
-    car[:photo] = image['data-small']
+    car[:photo] = image['data-large-retina']
   end
 
   cars << car
@@ -181,35 +185,35 @@ CONCESSIONNAIRES = [
 ############ SEEDING... ############
 
 puts "Creating #{cars.length} cars..."
-cars.each_index do |i|
+cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if cars[i][:description] == '' || cars[i][:seat].zero?
+  next if car[:description] == '' || car[:seat].zero?
   Car.create(
-    brand:                   cars[i][:brand],
-    model:                   cars[i][:model],
-    category:                cars[i][:category],
-    description:             cars[i][:description],
-    seat:                    cars[i][:seat],
-    lugage:                  cars[i][:lugage],
-    car_door:                cars[i][:car_door],
-    energy:                  cars[i][:energy],
-    transmission:            cars[i][:transmission],
-    monthly_price:           price_by_category(cars[i][:category]),
+    brand:                   car[:brand],
+    model:                   car[:model],
+    category:                car[:category],
+    description:             car[:description],
+    seat:                    car[:seat],
+    lugage:                  car[:lugage],
+    car_door:                car[:car_door],
+    energy:                  car[:energy],
+    transmission:            car[:transmission],
+    monthly_price:           price_by_category(car[:category]),
     concessionnaire_name:    concessionnaire[:name],
     concessionnaire_address: concessionnaire[:address],
-    photo:                   cars[i][:photo]
+    photo:                   car[:photo]
   )
 end
 
 rating_number = 50
 puts "Creating #{rating_number} ratings..."
-rating_number.times do
-  chars = []
-  chars << Faker::Seinfeld.character
-  chars << Faker::SiliconValley.character
-  chars << Faker::TheFreshPrinceOfBelAir.character
+chars = []
+chars << Faker::Seinfeld.character
+chars << Faker::SiliconValley.character
+chars << Faker::TheFreshPrinceOfBelAir.character
 
+rating_number.times do
   Rating.create(
     user:  chars.sample,
     rate:  rand(1..5),
