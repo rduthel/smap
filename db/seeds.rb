@@ -35,16 +35,6 @@ def brand_and_model(array, hash)
   end
 end
 
-def get_category_for_tourism(category_letter)
-  case category_letter
-  when 'A', 'B', 'I', 'J'      then 'Citadine'
-  when 'C', 'L'                then 'Compacte'
-  when 'D', 'H', 'K', 'O'      then 'Berline'
-  when 'E', 'F', 'G', 'M'      then 'SUV'
-  when 'N', 'P'                then 'Utilitaire'
-  end
-end
-
 def get_category_for_select(category_letter)
   case category_letter
   when 'A', 'B', 'I' then 'Citadine'
@@ -56,9 +46,13 @@ def get_category_for_select(category_letter)
   end
 end
 
-def brand_and_model_html_tourism(content)
-  content.search('.changeFontSize strong').each do |h2|
-    p h2.text
+def get_category_for_tourism(category_letter)
+  case category_letter
+  when 'A', 'B', 'I', 'J'      then 'Citadine'
+  when 'C', 'L'                then 'Compacte'
+  when 'D', 'H', 'K', 'O'      then 'Berline'
+  when 'E', 'F', 'G', 'M'      then 'SUV'
+  when 'N', 'P'                then 'Utilitaire'
   end
 end
 
@@ -67,6 +61,13 @@ def brand_and_model_html_select(content)
     p h2.text
   end
 end
+
+def brand_and_model_html_tourism(content)
+  content.search('.changeFontSize strong').each do |h2|
+    p h2.text
+  end
+end
+
 
 def create_car_from_html(html, type)
   puts "\n\n\n"
@@ -116,17 +117,8 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     brand_and_model(brand_model, car)
 
     category_letter = splitted.first[-2]
-
-    category = nil
-    case category_letter
-    when 'A', 'B', 'I', 'J'      then category = 'Citadine'
-    when 'C', 'L'                then category = 'Compacte'
-    when 'D', 'H', 'K', 'O'      then category = 'Berline'
-    when 'E', 'F', 'G', 'M'      then category = 'SUV'
-    when 'N', 'P'                then category = 'Utilitaire'
-    end
-
-    car[:category] = category unless category.nil?
+    category        = get_category_for_select(category_letter)
+    car[:category]  = category unless category.nil?
   end
 
   content.search('.changeFontSize').each do |e|
@@ -191,19 +183,10 @@ html_tourism.search('.content-51b').each do |content|
 
   content.search('h2').each do |h2|
     formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
+
     category_letter = formatted unless formatted[-1] == 's'
-
-    category = nil
-    case category_letter
-    when 'A', 'B', 'I' then category = 'Citadine'
-    when 'C', 'J', 'L' then category = 'Compacte'
-    when 'D', 'F', 'M' then category = 'Berline'
-    when 'H', 'K', 'O' then category = 'Monospace'
-    when 'E'           then category = 'SUV'
-    when 'N'           then category = 'Utilitaire'
-    end
-
-    car[:category] = category unless category.nil?
+    category        = get_category_for_tourism(category_letter)
+    car[:category]  = category unless category.nil?
   end
 
   content.search('tr').each_with_index do |tr, index|
