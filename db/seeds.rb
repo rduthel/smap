@@ -35,24 +35,32 @@ def brand_and_model(array, hash)
   end
 end
 
-def get_category_for_select(category_letter)
+def get_category(category_letter)
   case category_letter
   when 'A', 'B', 'I' then 'Citadine'
-  when 'C', 'J', 'L' then 'Compacte'
-  when 'D', 'F', 'M' then 'Berline'
-  when 'H', 'K', 'O' then 'Monospace'
+  when 'C', 'L'      then 'Compacte'
+  when 'D'           then 'Berline'
   when 'E'           then 'SUV'
   when 'N'           then 'Utilitaire'
   end
 end
 
+def get_category_for_select(category_letter)
+  case category_letter
+  when 'J'                then 'Citadine'
+  when 'D', 'H', 'K', 'O' then 'Berline'
+  when 'F', 'G', 'M'      then 'SUV'
+  when 'P'                then 'Utilitaire'
+  else get_category(category_letter)
+  end
+end
+
 def get_category_for_tourism(category_letter)
   case category_letter
-  when 'A', 'B', 'I', 'J'      then 'Citadine'
-  when 'C', 'L'                then 'Compacte'
-  when 'D', 'H', 'K', 'O'      then 'Berline'
-  when 'E', 'F', 'G', 'M'      then 'SUV'
-  when 'N', 'P'                then 'Utilitaire'
+  when 'J'           then 'Compacte'
+  when 'F', 'M'      then 'Berline'
+  when 'H', 'K', 'O' then 'Monospace'
+  else get_category(category_letter)
   end
 end
 
@@ -70,39 +78,33 @@ end
 
 
 def create_car_from_html(html, type)
-  puts "\n\n\n"
   # p send(get_category_method, 'J')
 
   get_category = :"get_category_#{type}"
   brand_and_model_html = :"brand_and_model_html_#{type}"
-  p get_category
-  p brand_and_model_html
+  # p get_category
+  # p brand_and_model_html
   # p get_category_method
   # p brand_and_model_html
-  p type
+  # p type
 
   # return
   html.search('.content-51b').each_with_index do |content, _index_car|
     car = {}
-    p send(brand_and_model_html, content)
     content.search('h2').each do |h2|
-      p h2.text
+      splitted        = h2.text.split(':')
+      brand_model     = splitted.last.strip.split(/[[:space:]]/)
+      brand_and_model(brand_model, car)
 
-    splitted        = h2.text.split(':')
-    brand_model     = splitted.last.strip.split(/[[:space:]]/)
-    brand_and_model(brand_model, car)
+      category_letter = splitted.first[-2]
 
-    category_letter = splitted.first[-2]
-
-    # car[:category] = send(get_category_method, category_letter)
+      # car[:category] = send(get_category_method, category_letter)
     end
-
-    p car
   end
 end
 
-html_tourism = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme')
 html_select  = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/select-series/france')
+html_tourism = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme')
 
 create_car_from_html(html_tourism, :tourism)
 create_car_from_html(html_select, :select)
