@@ -99,12 +99,15 @@ end
 
 CONCESSIONNAIRES = [
   {
+    name: 'Bergnaum-Rippin',
     address: '3, Rue du 3 Septembre 1944, Lyon'
   },
   {
+    name: 'Champlin Group',
     address: 'Allée Louise et Rose Faurite, Lyon'
   },
   {
+    name: 'Daniel Maggio',
     address: '98, Rue Bugeaud, Lyon'
   }
 ].freeze
@@ -113,18 +116,22 @@ CONCESSIONNAIRES = [
 
 puts "Création des 'cars'..."
 cars.each_index do |i|
+  concessionnaire = CONCESSIONNAIRES.sample
+
   Car.create(
-    brand:           cars[i][:brand],
-    model:           cars[i][:model],
-    category:        cars[i][:category],
-    description:     cars[i][:description],
-    seat:            cars[i][:seat],
-    lugage:          cars[i][:lugage],
-    car_door:        cars[i][:car_door],
-    energy:          cars[i][:energy],
-    transmission:    cars[i][:transmission],
-    monthly_price:   price_by_category(cars[i][:category]),
-    photo:           cars[i][:photo]
+    brand:                   cars[i][:brand],
+    model:                   cars[i][:model],
+    category:                cars[i][:category],
+    description:             cars[i][:description],
+    seat:                    cars[i][:seat],
+    lugage:                  cars[i][:lugage],
+    car_door:                cars[i][:car_door],
+    energy:                  cars[i][:energy],
+    transmission:            cars[i][:transmission],
+    monthly_price:           price_by_category(cars[i][:category]),
+    concessionnaire_name:    concessionnaire[:name],
+    concessionnaire_address: concessionnaire[:address],
+    photo:                   cars[i][:photo]
   )
 end
 
