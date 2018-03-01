@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 require 'nokogiri'
 
@@ -94,6 +96,18 @@ def price_by_category(category)
   when 'Monospace', 'SUV', 'Utilitaire' then 1_800
   end
 end
+
+CONCESSIONNAIRES = [
+  {
+    address: '3, Rue du 3 Septembre 1944, Lyon'
+  },
+  {
+    address: 'Allée Louise et Rose Faurite, Lyon'
+  },
+  {
+    address: '98, Rue Bugeaud, Lyon'
+  }
+].freeze
 
 ############ SEEDING... ############
 
