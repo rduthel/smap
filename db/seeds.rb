@@ -22,7 +22,7 @@ def brand_and_model(array, hash)
   end
 end
 
-puts 'Nettoyage de la base...'
+puts 'Cleaning DB...'
 Rating.destroy_all
 Car.destroy_all
 
@@ -180,7 +180,7 @@ CONCESSIONNAIRES = [
 
 ############ SEEDING... ############
 
-puts "Création des 'cars'..."
+puts "Creating #{cars.length} cars..."
 cars.each_index do |i|
   concessionnaire = CONCESSIONNAIRES.sample
 
@@ -202,8 +202,9 @@ cars.each_index do |i|
   )
 end
 
-puts "Création des 'ratings'..."
-50.times do
+rating_number = 50
+puts "Creating #{rating_number} ratings..."
+rating_number.times do
   chars = []
   chars << Faker::Seinfeld.character
   chars << Faker::SiliconValley.character
