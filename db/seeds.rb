@@ -3,6 +3,19 @@
 require 'open-uri'
 require 'nokogiri'
 
+puts 'Cleaning DB...'
+Rating.destroy_all
+Car.destroy_all
+
+places = []
+mecha  = []
+cars   = []
+
+def get_html(url)
+  page_avis = open(url).read
+  Nokogiri::HTML(page_avis)
+end
+
 def price_by_category(category)
   case category
   when 'Citadine'                       then 800
@@ -22,19 +35,78 @@ def brand_and_model(array, hash)
   end
 end
 
-puts 'Cleaning DB...'
-Rating.destroy_all
-Car.destroy_all
+def get_category_for_tourism(category_letter)
+  case category_letter
+  when 'A', 'B', 'I', 'J'      then 'Citadine'
+  when 'C', 'L'                then 'Compacte'
+  when 'D', 'H', 'K', 'O'      then 'Berline'
+  when 'E', 'F', 'G', 'M'      then 'SUV'
+  when 'N', 'P'                then 'Utilitaire'
+  end
+end
 
-page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme').read
-page_avis_select  = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/select-series/france').read
+def get_category_for_select(category_letter)
+  case category_letter
+  when 'A', 'B', 'I' then 'Citadine'
+  when 'C', 'J', 'L' then 'Compacte'
+  when 'D', 'F', 'M' then 'Berline'
+  when 'H', 'K', 'O' then 'Monospace'
+  when 'E'           then 'SUV'
+  when 'N'           then 'Utilitaire'
+  end
+end
 
-html_tourism = Nokogiri::HTML(page_avis_tourism)
-html_select  = Nokogiri::HTML(page_avis_select)
+def brand_and_model_html_tourism(content)
+  content.search('.changeFontSize strong').each do |h2|
+    p h2.text
+  end
+end
 
-places = []
-mecha  = []
-cars   = []
+def brand_and_model_html_select(content)
+  content.search('h2').each do |h2|
+    p h2.text
+  end
+end
+
+def create_car_from_html(html, type)
+  puts "\n\n\n"
+  # p send(get_category_method, 'J')
+
+  get_category = :"get_category_#{type}"
+  brand_and_model_html = :"brand_and_model_html_#{type}"
+  p get_category
+  p brand_and_model_html
+  # p get_category_method
+  # p brand_and_model_html
+  p type
+
+  # return
+  html.search('.content-51b').each_with_index do |content, _index_car|
+    car = {}
+    p send(brand_and_model_html, content)
+    content.search('h2').each do |h2|
+      p h2.text
+
+    splitted        = h2.text.split(':')
+    brand_model     = splitted.last.strip.split(/[[:space:]]/)
+    brand_and_model(brand_model, car)
+
+    category_letter = splitted.first[-2]
+
+    # car[:category] = send(get_category_method, category_letter)
+    end
+
+    p car
+  end
+end
+
+html_tourism = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme')
+html_select  = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/select-series/france')
+
+create_car_from_html(html_tourism, :tourism)
+create_car_from_html(html_select, :select)
+
+# exit
 
 html_select.search('.content-51b').each_with_index do |content, index_car|
   car = {}
@@ -208,6 +280,7 @@ end
 
 rating_number = 50
 puts "Creating #{rating_number} ratings..."
+
 chars = []
 chars << Faker::Seinfeld.character
 chars << Faker::SiliconValley.character
@@ -217,6 +290,6 @@ rating_number.times do
   Rating.create(
     user:  chars.sample,
     rate:  rand(1..5),
-    car: Car.find(rand(Car.first.id..Car.last.id))
+    car:   Car.find(rand(Car.first.id..Car.last.id))
   )
 end
