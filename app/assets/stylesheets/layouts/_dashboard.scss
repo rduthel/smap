@@ -117,8 +117,10 @@
   align-items: center;
   font-size: 30px;
   justify-content: space-around;
+  transition: all 0.4s ease;
   &:hover {
     text-decoration: none;
+    background-color: #eaeaea;
   }
 }
 
