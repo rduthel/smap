@@ -184,6 +184,7 @@ puts "Création des 'cars'..."
 cars.each_index do |i|
   concessionnaire = CONCESSIONNAIRES.sample
 
+  next if cars[i][:description] == '' || cars[i][:seat].zero?
   Car.create(
     brand:                   cars[i][:brand],
     model:                   cars[i][:model],
@@ -201,9 +202,6 @@ cars.each_index do |i|
   )
 end
 
-# Car.where(description: '').destroy_all
-# Car.where(seat: 0).destroy_all
-
 puts "Création des 'ratings'..."
 50.times do
   chars = []
@@ -214,6 +212,6 @@ puts "Création des 'ratings'..."
   Rating.create(
     user:  chars.sample,
     rate:  rand(1..5),
-    car:   Car.find(rand(Car.first.id..Car.last.id))
+    car: Car.find(rand(Car.first.id..Car.last.id))
   )
 end
