@@ -36,9 +36,9 @@ places = []
 mecha  = []
 cars   = []
 
-html_select.search('.content-51b').each_with_index do |element, index_car|
+html_select.search('.content-51b').each_with_index do |content, index_car|
   car = {}
-  element.search('h2').each do |h2|
+  content.search('h2').each do |h2|
     splitted        = h2.text.split(':')
     brand_model     = splitted.last.strip.split(/[[:space:]]/)
     brand_and_model(brand_model, car)
@@ -57,11 +57,11 @@ html_select.search('.content-51b').each_with_index do |element, index_car|
     car[:category] = category unless category.nil?
   end
 
-  element.search('.changeFontSize').each do |e|
+  content.search('.changeFontSize').each do |e|
     car[:description] = e.text.split("\s\s").first.strip
   end
 
-  element.search('tr').each_with_index do |tr, index|
+  content.search('tr').each_with_index do |tr, index|
     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
       r.gsub(/\A[[:space:]]+/, '') == ''
     end
@@ -70,21 +70,22 @@ html_select.search('.content-51b').each_with_index do |element, index_car|
 
     next if mecha[index_car].nil?
 
-    places_e = places[index_car]
-    mecha_e  = mecha[index_car]
+    places_tr = places[index_car]
+    mecha_tr  = mecha[index_car]
 
-    car[:seat]         = places_e[0][0].to_i
-    car[:lugage]       = places_e[1][0].to_i
-    car[:car_door]     = places_e[2][0].to_i
-    car[:transmission] = mecha_e[0]
-    car[:energy]       = mecha_e[1]
+    car[:seat]         = places_tr[0][0].to_i
+    car[:lugage]       = places_tr[1][0].to_i
+    car[:car_door]     = places_tr[2][0].to_i
+    car[:transmission] = mecha_tr[0]
+    if mecha_tr[1].include?('Mixte') || car[:energy] == 'Diesel'
+      car[:energy] = 'Essence'
+    elsif car[:category] == 'Utilitaire'
+      car[:energy] = 'Diesel'
+    end
   end
 
   cars << car
 end
-
-Car.where(description: '').destroy_all
-Car.where(seat: 0).destroy_all
 
 places = []
 mecha  = []
@@ -146,11 +147,11 @@ html_tourism.search('.content-51b').each do |content|
     car[:car_door]     = places_tr[4].to_i
     car[:transmission] = mecha_tr[0]
 
-    car[:energy] = if car[:category] == 'Utilitaire'
-                     'Diesel'
-                   else
-                     mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
-                   end
+    if mecha_tr[1].include?('Mixte') || car[:energy] == 'Diesel'
+      car[:energy] = 'Essence'
+    elsif car[:category] == 'Utilitaire'
+      car[:energy] = 'Diesel'
+    end
   end
 
   content.search('.responsive-image').each do |image|
@@ -162,55 +163,57 @@ end
 
 cars.delete({})
 
+CONCESSIONNAIRES = [
+  {
+    name: 'Bergnaum-Rippin',
+    address: '3, Rue du 3 Septembre 1944, Lyon'
+  },
+  {
+    name: 'Champlin Group',
+    address: 'Allée Louise et Rose Faurite, Lyon'
+  },
+  {
+    name: 'Daniel Maggio',
+    address: '98, Rue Bugeaud, Lyon'
+  }
+].freeze
 
-# CONCESSIONNAIRES = [
-#   {
-#     name: 'Bergnaum-Rippin',
-#     address: '3, Rue du 3 Septembre 1944, Lyon'
-#   },
-#   {
-#     name: 'Champlin Group',
-#     address: 'Allée Louise et Rose Faurite, Lyon'
-#   },
-#   {
-#     name: 'Daniel Maggio',
-#     address: '98, Rue Bugeaud, Lyon'
-#   }
-# ].freeze
-#
-# ############ SEEDING... ############
-#
-# puts "Création des 'cars'..."
-# cars.each_index do |i|
-#   concessionnaire = CONCESSIONNAIRES.sample
-#
-#   Car.create(
-#     brand:                   cars[i][:brand],
-#     model:                   cars[i][:model],
-#     category:                cars[i][:category],
-#     description:             cars[i][:description],
-#     seat:                    cars[i][:seat],
-#     lugage:                  cars[i][:lugage],
-#     car_door:                cars[i][:car_door],
-#     energy:                  cars[i][:energy],
-#     transmission:            cars[i][:transmission],
-#     monthly_price:           price_by_category(cars[i][:category]),
-#     concessionnaire_name:    concessionnaire[:name],
-#     concessionnaire_address: concessionnaire[:address],
-#     photo:                   cars[i][:photo]
-#   )
-# end
-#
-# puts "Création des 'ratings'..."
-# 50.times do
-#   chars = []
-#   chars << Faker::Seinfeld.character
-#   chars << Faker::SiliconValley.character
-#   chars << Faker::TheFreshPrinceOfBelAir.character
-#
-#   Rating.create(
-#     user:  chars.sample,
-#     rate: rand(1..5),
-#     car: Car.find(rand(Car.first.id..Car.last.id))
-#   )
-# end
+############ SEEDING... ############
+
+puts "Création des 'cars'..."
+cars.each_index do |i|
+  concessionnaire = CONCESSIONNAIRES.sample
+
+  Car.create(
+    brand:                   cars[i][:brand],
+    model:                   cars[i][:model],
+    category:                cars[i][:category],
+    description:             cars[i][:description],
+    seat:                    cars[i][:seat],
+    lugage:                  cars[i][:lugage],
+    car_door:                cars[i][:car_door],
+    energy:                  cars[i][:energy],
+    transmission:            cars[i][:transmission],
+    monthly_price:           price_by_category(cars[i][:category]),
+    concessionnaire_name:    concessionnaire[:name],
+    concessionnaire_address: concessionnaire[:address],
+    photo:                   cars[i][:photo]
+  )
+end
+
+# Car.where(description: '').destroy_all
+# Car.where(seat: 0).destroy_all
+
+puts "Création des 'ratings'..."
+50.times do
+  chars = []
+  chars << Faker::Seinfeld.character
+  chars << Faker::SiliconValley.character
+  chars << Faker::TheFreshPrinceOfBelAir.character
+
+  Rating.create(
+    user:  chars.sample,
+    rate:  rand(1..5),
+    car:   Car.find(rand(Car.first.id..Car.last.id))
+  )
+end
