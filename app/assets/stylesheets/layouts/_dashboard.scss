@@ -1,0 +1,128 @@
+.smap-color {
+  font-color: #F3CD2B;
+  color: #F3CD2B;
+}
+
+.tabs {
+  // background: #53443F;
+  display: flex;
+  border: 1px solid #eaeaea;
+  justify-content: space-around;
+  border-radius: 10px 10px 0 0;
+  border-bottom: none;
+}
+.tabs a {
+  color: #F3CD2B;
+}
+.tabs a:hover {
+  cursor: pointer;
+  text-decoration: none;
+  opacity: 0.8;
+}
+.tabs h3 {
+  font-size: 25px;
+  font-weight: bold;
+  margin: 0;
+}
+.tabs h2 {
+  font-size: 30px;
+  font-weight: bold;
+  margin: 0;
+}
+.tabs p {
+  opacity: 0.5;
+  margin-bottom: 0;
+}
+.tab {
+  background-color: #eaeaea;
+  text-align: center;
+  flex-grow: 1;
+}
+.tab:first-child {
+  border-radius: 10px 0 0 0;
+}
+.tab:last-child {
+  border-radius: 0 10px 0 0;
+}
+.tab.active {
+  background: white;
+  color: black;
+  border: 1px solid #eaeaea;
+  border-bottom: 4px solid #F3CD2B;
+}
+
+.dash {
+  height: 80vh;
+  border: 1px solid #eaeaea;
+  padding: 0 20px 0 20px;
+}
+
+.icon-list{
+  display:flex;
+  justify-content: space-around;
+  align-content: flex-start;
+  width: 100%;
+}
+
+.icons-li {
+  display:flex;
+  align-items:center;
+  font-size: 20px;
+}
+
+.car-dash {
+  display: flex;
+  align-items: center;
+}
+
+.car-avatar {
+  border-radius: 15px;
+}
+
+.avatar-main {
+  border-radius: 50%;
+  border: 3px solid #F3CD2B;
+}
+
+.avatar {
+  border-radius: 50%;
+}
+
+.principal {
+  h6 {
+  text-decoration: underline;
+  }
+  p {
+    font-size: 12px;
+    text-decoration: none;
+  }
+}
+
+.secondaire p {
+    font-size: 12px;
+    text-decoration: none;
+}
+.conducteurs {
+  display: flex;
+  align-items:center;
+  justify-content: space-between;
+}
+
+.add-driver {
+  height: 106px;
+  width: 106px;
+  border-radius: 50%;
+  border: 3px solid #F3CD2B;
+  display: flex;
+  align-items: center;
+  font-size: 30px;
+  justify-content: space-around;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
