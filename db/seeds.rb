@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'open-uri'
 require 'nokogiri'
 
@@ -75,7 +77,12 @@ html_tourism.search('.content-51b').each do |content|
     car[:lugage]       = places_tr[2].to_i
     car[:car_door]     = places_tr[4].to_i
     car[:transmission] = mecha_tr[0]
-    car[:energy]       = mecha_tr[1]
+
+    car[:energy] = if car[:category] == 'Utilitaire'
+                     'Diesel'
+                   else
+                     mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
+                   end
   end
 
   content.search('.responsive-image').each do |image|
@@ -87,21 +94,49 @@ end
 
 cars.delete({})
 
+def price_by_category(category)
+  case category
+  when 'Citadine'                       then 800
+  when 'Compacte'                       then 1_200
+  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
+  end
+end
+
+CONCESSIONNAIRES = [
+  {
+    name: 'Bergnaum-Rippin',
+    address: '3, Rue du 3 Septembre 1944, Lyon'
+  },
+  {
+    name: 'Champlin Group',
+    address: 'Allée Louise et Rose Faurite, Lyon'
+  },
+  {
+    name: 'Daniel Maggio',
+    address: '98, Rue Bugeaud, Lyon'
+  }
+].freeze
+
 ############ SEEDING... ############
 
 puts "Création des 'cars'..."
 cars.each_index do |i|
+  concessionnaire = CONCESSIONNAIRES.sample
+
   Car.create(
-    brand:           cars[i][:brand],
-    model:           cars[i][:model],
-    category:        cars[i][:category],
-    description:     cars[i][:description],
-    seat:            cars[i][:seat],
-    lugage:          cars[i][:lugage],
-    car_door:        cars[i][:car_door],
-    energy:          cars[i][:energy],
-    transmission:    cars[i][:transmission],
-    photo:           cars[i][:photo]
+    brand:                   cars[i][:brand],
+    model:                   cars[i][:model],
+    category:                cars[i][:category],
+    description:             cars[i][:description],
+    seat:                    cars[i][:seat],
+    lugage:                  cars[i][:lugage],
+    car_door:                cars[i][:car_door],
+    energy:                  cars[i][:energy],
+    transmission:            cars[i][:transmission],
+    monthly_price:           price_by_category(cars[i][:category]),
+    concessionnaire_name:    concessionnaire[:name],
+    concessionnaire_address: concessionnaire[:address],
+    photo:                   cars[i][:photo]
   )
 end
 

@@ -1,6 +1,6 @@
 class CarsController < ApplicationController
   skip_before_action :authenticate_user!
-
+  
   def home
     @cars = Car.all
   end
@@ -10,11 +10,10 @@ class CarsController < ApplicationController
   end
 
   def show
+    @car = Car.find(params[:id])
   end
 
-  def estimation
-  end
+  def estimation; end
 
-  def subscription
-  end
+  def subscription; end
 end
