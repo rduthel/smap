@@ -1,11 +1,11 @@
 <% url = (cl_image_path car.photo) %>
 <div class="card text-center">
   <%= link_to car_path(car), class: "card-body", style:"background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('#{url}')" do %>
-  <div class="card-category text-center">
+  <div class="card-category">
     <h3><%= car.brand %> <%= car.model %></h3>
   </div>
   <div class="card-desc">
-   <%= car.monthly_price %>
+   <%= car.monthly_price %> € / mois
   </div>
   <% end %>
     <div class="card-footer">

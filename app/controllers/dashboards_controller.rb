@@ -4,7 +4,6 @@ class DashboardsController < ApplicationController
 
   def show
     @car = @driver_profile.car
-
   end
 
   def bill

@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
+
   root to: 'pages#home'
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :cars, only: [:index, :show, :estimation, :subscription]
+  resources :additional_drivers, only: [:new, :edit, :update, :create]
 
   #Dashboard routes
   get "/dashboard", to: "dashboards#show"
