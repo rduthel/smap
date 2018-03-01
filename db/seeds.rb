@@ -3,7 +3,26 @@
 require 'open-uri'
 require 'nokogiri'
 
-puts "Destruction des 'cars' et des 'ratings'..."
+def price_by_category(category)
+  case category
+  when 'Citadine'                       then 800
+  when 'Compacte'                       then 1_200
+  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
+  end
+end
+
+def brand_and_model(array, hash)
+  if array.first == 'Alfa'
+    hash[:brand] = "#{array[0]} #{array[1]}"
+    hash[:model] = array.last
+  else
+    hash[:brand] = array.first
+    array.delete_at(0)
+    hash[:model] = array.join(' ')
+  end
+end
+
+puts 'Nettoyage de la base...'
 Rating.destroy_all
 Car.destroy_all
 
@@ -17,34 +36,25 @@ places = []
 mecha  = []
 cars   = []
 
-def price_by_category(category)
-  case category
-  when 'Citadine'                       then 800
-  when 'Compacte'                       then 1_200
-  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
-  end
-end
-
-def alfa(array, hash)
-  if array.first == 'Alfa'
-    hash[:brand] = "#{array[0]} #{array[1]}"
-    hash[:model] = array.last
-  else
-    hash[:brand] = array.first
-    array.delete_at(0)
-    hash[:model] = array.join(' ')
-  end
-end
-
 html_select.search('.content-51b').each_with_index do |element, index_car|
   car = {}
-  element.search('h2').each do |e|
-    formatted = e.text.split(':').last.strip.split(/[[:space:]]/)
-    alfa(formatted, car)
-    # car[:brand] = formatted.first
-    #
-    # formatted.delete_at(0)
-    # car[:model] = formatted.join(' ')
+  element.search('h2').each do |h2|
+    splitted        = h2.text.split(':')
+    brand_model     = splitted.last.strip.split(/[[:space:]]/)
+    brand_and_model(brand_model, car)
+
+    category_letter = splitted.first[-2]
+
+    category = nil
+    case category_letter
+    when 'A', 'B', 'I', 'J'      then category = 'Citadine'
+    when 'C', 'L'                then category = 'Compacte'
+    when 'D', 'H', 'K', 'O'      then category = 'Berline'
+    when 'E', 'F', 'G', 'M'      then category = 'SUV'
+    when 'N', 'P'                then category = 'Utilitaire'
+    end
+
+    car[:category] = category unless category.nil?
   end
 
   element.search('.changeFontSize').each do |e|
@@ -76,90 +86,83 @@ end
 Car.where(description: '').destroy_all
 Car.where(seat: 0).destroy_all
 
-p cars
+places = []
+mecha  = []
 
-# html_tourism.search('.content-51b').each do |content|
-#   car = {}
-#   content.search('.changeFontSize').each do |element_car|
-#     element_car.search('strong').each do |f|
-#       text_element = f.text
-#       text_element.gsub!('Modèle', '')
-#       text_element.gsub!('ou similaire', '')
-#
-#       tab = text_element.split(/[[:space:]]/).reject { |w| w == '' }
-#
-#       next if tab.first.nil?
-#
-#       if tab.first == 'Alfa'
-#         car[:brand] = 'Alfa Roméo'
-#         car[:model] = 'Giulia'
-#       else
-#         car[:brand] = tab.first
-#         tab.delete_at(0)
-#         car[:model] = tab.join(' ')
-#       end
-#     end
-#
-#     description = element_car.text.strip.split("\s\s")[1]
-#
-#     next if description.nil?
-#
-#     description.gsub!('Avis', 'SMAP')
-#     car[:description] = description
-#   end
-#
-#   content.search('h2').each do |h2|
-#     formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
-#     category_letter = formatted unless formatted[-1] == 's'
-#     category = nil
-#
-#     case category_letter
-#     when 'A', 'B', 'I' then category = 'Citadine'
-#     when 'C', 'J', 'L' then category = 'Compacte'
-#     when 'D', 'F', 'M' then category = 'Berline'
-#     when 'H', 'K', 'O' then category = 'Monospace'
-#     when 'E'           then category = 'SUV'
-#     when 'N'           then category = 'Utilitaire'
-#     end
-#
-#     car[:category] = category unless category.nil?
-#   end
-#
-#   content.search('tr').each_with_index do |tr, index|
-#     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
-#       r.gsub(/\A[[:space:]]+/, '') == ''
-#     end
-#
-#     index.odd? ? mecha << res : places << res
-#
-#     places_tr = places.last
-#     mecha_tr  = mecha.last
-#
-#     next if mecha_tr.nil?
-#
-#     car[:seat]         = places_tr[0].to_i
-#     car[:lugage]       = places_tr[2].to_i
-#     car[:car_door]     = places_tr[4].to_i
-#     car[:transmission] = mecha_tr[0]
-#
-#     car[:energy] = if car[:category] == 'Utilitaire'
-#                      'Diesel'
-#                    else
-#                      mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
-#                    end
-#   end
-#
-#   content.search('.responsive-image').each do |image|
-#     car[:photo] = image['data-small']
-#   end
-#
-#   cars << car
-# end
+html_tourism.search('.content-51b').each do |content|
+  car = {}
+  content.search('.changeFontSize').each do |element_car|
+    element_car.search('strong').each do |f|
+      text_element = f.text
+      text_element.gsub!('Modèle', '')
+      text_element.gsub!('ou similaire', '')
 
-# cars.delete({})
-#
+      tab = text_element.split(/[[:space:]]/).reject { |w| w == '' }
 
-#
+      next if tab.first.nil?
+
+      brand_and_model(tab, car)
+    end
+
+    description = element_car.text.strip.split("\s\s")[1]
+
+    next if description.nil?
+
+    description.gsub!('Avis', 'SMAP')
+    car[:description] = description
+  end
+
+  content.search('h2').each do |h2|
+    formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
+    category_letter = formatted unless formatted[-1] == 's'
+
+    category = nil
+    case category_letter
+    when 'A', 'B', 'I' then category = 'Citadine'
+    when 'C', 'J', 'L' then category = 'Compacte'
+    when 'D', 'F', 'M' then category = 'Berline'
+    when 'H', 'K', 'O' then category = 'Monospace'
+    when 'E'           then category = 'SUV'
+    when 'N'           then category = 'Utilitaire'
+    end
+
+    car[:category] = category unless category.nil?
+  end
+
+  content.search('tr').each_with_index do |tr, index|
+    res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
+      r.gsub(/\A[[:space:]]+/, '') == ''
+    end
+
+    index.odd? ? mecha << res : places << res
+
+    places_tr = places.last
+    mecha_tr  = mecha.last
+
+    next if mecha_tr.nil?
+
+    car[:seat]         = places_tr[0].to_i
+    car[:lugage]       = places_tr[2].to_i
+    car[:car_door]     = places_tr[4].to_i
+    car[:transmission] = mecha_tr[0]
+
+    car[:energy] = if car[:category] == 'Utilitaire'
+                     'Diesel'
+                   else
+                     mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
+                   end
+  end
+
+  content.search('.responsive-image').each do |image|
+    car[:photo] = image['data-small']
+  end
+
+  cars << car
+end
+
+cars.delete({})
+
+
 # CONCESSIONNAIRES = [
 #   {
 #     name: 'Bergnaum-Rippin',
