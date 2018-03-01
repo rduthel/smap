@@ -78,7 +78,11 @@ html_tourism.search('.content-51b').each do |content|
     car[:car_door]     = places_tr[4].to_i
     car[:transmission] = mecha_tr[0]
 
-    car[:energy] = mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
+    car[:energy] = if car[:category] == 'Utilitaire'
+                     'Diesel'
+                   else
+                     mecha_tr[1] == 'Mixte*' ? 'Essence' : mecha_tr[1]
+                   end
   end
 
   content.search('.responsive-image').each do |image|
