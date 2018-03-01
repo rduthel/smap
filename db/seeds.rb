@@ -11,21 +11,40 @@ page_avis_tourism = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-lo
 page_avis_select  = open('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/select-series/france').read
 
 html_tourism = Nokogiri::HTML(page_avis_tourism)
-html_select = Nokogiri::HTML(page_avis_select)
-
+html_select  = Nokogiri::HTML(page_avis_select)
 
 places = []
 mecha  = []
 cars   = []
 
+def price_by_category(category)
+  case category
+  when 'Citadine'                       then 800
+  when 'Compacte'                       then 1_200
+  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
+  end
+end
+
+def alfa(array, hash)
+  if array.first == 'Alfa'
+    hash[:brand] = "#{array[0]} #{array[1]}"
+    hash[:model] = array.last
+  else
+    hash[:brand] = array.first
+    array.delete_at(0)
+    hash[:model] = array.join(' ')
+  end
+end
+
 html_select.search('.content-51b').each_with_index do |element, index_car|
   car = {}
   element.search('h2').each do |e|
     formatted = e.text.split(':').last.strip.split(/[[:space:]]/)
-    car[:brand] = formatted.first
-
-    formatted.delete_at(0)
-    car[:model] = formatted.join(' ')
+    alfa(formatted, car)
+    # car[:brand] = formatted.first
+    #
+    # formatted.delete_at(0)
+    # car[:model] = formatted.join(' ')
   end
 
   element.search('.changeFontSize').each do |e|
@@ -41,8 +60,8 @@ html_select.search('.content-51b').each_with_index do |element, index_car|
 
     next if mecha[index_car].nil?
 
-    places_e    = places[index_car]
-    mecha_e = mecha[index_car]
+    places_e = places[index_car]
+    mecha_e  = mecha[index_car]
 
     car[:seat]         = places_e[0][0].to_i
     car[:lugage]       = places_e[1][0].to_i
@@ -54,14 +73,12 @@ html_select.search('.content-51b').each_with_index do |element, index_car|
   cars << car
 end
 
-# 2.times do
-#   cars.delete_at(-1)
-# end
+Car.where(description: '').destroy_all
+Car.where(seat: 0).destroy_all
 
-puts cars
+p cars
 
-
-# html_select.search('.content-51b').each do |content|
+# html_tourism.search('.content-51b').each do |content|
 #   car = {}
 #   content.search('.changeFontSize').each do |element_car|
 #     element_car.search('strong').each do |f|
@@ -141,13 +158,7 @@ puts cars
 
 # cars.delete({})
 #
-# def price_by_category(category)
-#   case category
-#   when 'Citadine'                       then 800
-#   when 'Compacte'                       then 1_200
-#   when 'Monospace', 'SUV', 'Utilitaire' then 1_800
-#   end
-# end
+
 #
 # CONCESSIONNAIRES = [
 #   {
