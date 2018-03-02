@@ -19,9 +19,17 @@
     <h3>Mes adresses :</h3>
     <% @driver_profile.addresses.each do |address| %>
       <p> <%= address.name %> : <%= address.address %> <%= address.zip_code %> <%= address.city %></p>
+       <%= link_to "Modifier cette adresse", edit_address_path(address) %>
+       <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
     <% end %>
 
-    <%= link_to "Ajouter une adresse pour mes disponibilités", new_address_path %>
+    <%= link_to "Ajouter une adresse", new_address_path %>
+
+
+    <hr>
+
+    <h3>Mes disponibilités :</h3>
+    <%= link_to "Ajouter une disponibilité", new_slot_path %>
   </div>
 </div>
 
