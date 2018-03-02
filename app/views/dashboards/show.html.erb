@@ -16,70 +16,74 @@
     </a>
   </div>
   <div class="dash">
-    <h4> <%= @car.brand %>  <%= @car.model %>
-        <% a = [] %>
-        <% @car.ratings.each do |rate| %>
-          <% a << rate.rate %>
-        <% end %>
-        <% note = a.instance_eval { reduce(:+) / size.to_f } %>
-        <% if note == 5 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-        <% elsif note >= 4.5 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star-half', class: 'smap-color') %>
-        <% elsif note >= 4 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-        <% elsif note >= 3.5 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star-half', class: 'smap-color') %>
-        <% elsif note >= 3 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-        <% elsif note >= 2.5 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star-half', class: 'smap-color') %>
-        <% elsif note >= 2 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-        <% elsif note >= 1.5 %>
-          <%= icon('fas', 'star', class: 'smap-color') %>
-          <%= icon('fas', 'star-half', class: 'smap-color') %>
-        <% elsif note >= 1 %>
-           <%= icon('fas', 'star', class: 'smap-color') %>
-        <% else %>
-          <%= icon('fas', 'star-half', class: 'smap-color') %>
-        <% end %>
-      </h4>
-    <div class="car-dash">
-      <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
-      <div class="icon-list">
-        <div class="icon-card">
-          <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
-          <h4 class="icons-li"><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i> &nbsp; <%= @car.energy %></h4>
-        </div>
-        <div class="icon-card">
-          <h4 class="icons-li"><i class="fas fa-cogs smap-color"></i> &nbsp; <%= @car.transmission %></h4>
-          <h4 class="icons-li"><i class="fas fa-car smap-color"></i> &nbsp; <%= @car.car_door %> Portes</h4>
-        </div>
-        <div class="icon-card">
-          <h4 class="icons-li"><i class="fas fa-suitcase smap-color"></i></i> &nbsp; <%= @car.lugage %> Bagages</h4>
+    <% if @car == nil %>
+      <%= link_to "Choisissez votre voiture SMAP !", cars_path %>
+    <% else %>
+      <h4> <%= @car.brand %>  <%= @car.model %>
+          <% a = [] %>
+          <% @car.ratings.each do |rate| %>
+            <% a << rate.rate %>
+          <% end %>
+          <% note = a.instance_eval { reduce(:+) / size.to_f } %>
+          <% if note == 5 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+          <% elsif note >= 4.5 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star-half', class: 'smap-color') %>
+          <% elsif note >= 4 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+          <% elsif note >= 3.5 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star-half', class: 'smap-color') %>
+          <% elsif note >= 3 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+          <% elsif note >= 2.5 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star-half', class: 'smap-color') %>
+          <% elsif note >= 2 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+          <% elsif note >= 1.5 %>
+            <%= icon('fas', 'star', class: 'smap-color') %>
+            <%= icon('fas', 'star-half', class: 'smap-color') %>
+          <% elsif note >= 1 %>
+             <%= icon('fas', 'star', class: 'smap-color') %>
+          <% else %>
+            <%= icon('fas', 'star-half', class: 'smap-color') %>
+          <% end %>
+        </h4>
+      <div class="car-dash">
+        <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+        <div class="icon-list">
+          <div class="icon-card">
+            <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
+            <h4 class="icons-li"><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i> &nbsp; <%= @car.energy %></h4>
+          </div>
+          <div class="icon-card">
+            <h4 class="icons-li"><i class="fas fa-cogs smap-color"></i> &nbsp; <%= @car.transmission %></h4>
+            <h4 class="icons-li"><i class="fas fa-car smap-color"></i> &nbsp; <%= @car.car_door %> Portes</h4>
+          </div>
+          <div class="icon-card">
+            <h4 class="icons-li"><i class="fas fa-suitcase smap-color"></i></i> &nbsp; <%= @car.lugage %> Bagages</h4>
+          </div>
         </div>
       </div>
-    </div>
+    <% end %>
     <hr>
     <h4>Les conducteurs : </h4>
     <div class="conducteurs">
@@ -90,15 +94,17 @@
           <p>(Conducteur principal)</p>
        </div>
      </div>
-     <div class="flex" >
-        <%= cl_image_tag @driver_profile.photo, class: "avatar" %> &nbsp;
+     <% @driver_profile.additional_drivers.each do |ad| %>
+      <div class="flex" >
+        <%= cl_image_tag ad.photo, width: 100, height: 100, class: "avatar" %> &nbsp;
         <div class="secondaire">
-          <h6> <%= @driver_profile.first_name %>  <%= @driver_profile.last_name %> </h6>
-          <p>(Conducteur secondaire)</p>
+          <h6> <%= link_to " #{ad.first_name} #{ad.last_name} ", edit_additional_driver_path(ad) %> </h6>
+          <p>(Conducteur secondaire) <%= link_to "Supprimer", additional_driver_path(ad), data: { confirm: "Are you sure?" }, method: :delete %></p>
        </div>
      </div>
+     <% end %>
      <div class="flex" >
-        <a href="#" class="add-driver" ><i class="fas fa-plus-circle smap-color"></i></a> &nbsp;
+        <a href="<%= new_additional_driver_path %>" class="add-driver" ><i class="fas fa-plus-circle smap-color"></i></a> &nbsp;
         <div class="principal">
           <h6> Ajouter un conducteur secondaire </h6>
        </div>
