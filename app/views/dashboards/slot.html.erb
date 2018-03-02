@@ -26,6 +26,15 @@
     <%= link_to "Ajouter une adresse", new_address_path %>
     <hr>
     <h3>Mes disponibilités :</h3>
+    <p> <% @driver_profile.addresses.each do |address| %>
+      Pour l'adresse <%= address.name %> :
+      <% address.slots.each do |slot| %>
+      <%= slot.from %> // <%= slot.to %>
+      <% end %>
+      <br>
+    <% end %>
+    </p>
+
     <%= link_to "Ajouter une disponibilité", new_slot_path %>
   </div>
 </div>
