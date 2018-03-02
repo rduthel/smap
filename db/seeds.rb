@@ -103,7 +103,8 @@ end
 def description_select(element, hash)
   element.search('.changeFontSize').each do |e|
     description = e.text.strip.split("\s\s").first
-    description.gsub!('Avis', 'SMAP')
+
+    description.nil? || description.gsub!('Avis', 'SMAP')
     hash[:description] = description
   end
 end
@@ -111,7 +112,7 @@ end
 def description_tourism(element, hash)
   description = element.text.strip.split("\s\s")[1]
 
-  description.gsub!('Avis', 'SMAP')
+  description.nil? || description.gsub!('Avis', 'SMAP')
   hash[:description] = description
 end
 
@@ -196,12 +197,7 @@ html_tourism.search('.content-51b').each do |content|
   content.search('.changeFontSize').each do |element_car|
     brand_and_model_from_html_tourism(element_car, car)
 
-    description = element_car.text.strip.split("\s\s")[1]
-
-    next if description.nil?
-
-    description.gsub!('Avis', 'SMAP')
-    car[:description] = description
+    description_tourism(element_car, car)
   end
 
   content.search('h2').each do |h2|
@@ -217,7 +213,7 @@ html_tourism.search('.content-51b').each do |content|
       r.gsub(/\A[[:space:]]+/, '') == ''
     end
 
-    index.odd? ? mecha << res : places << res
+    index.even? ? places << res : mecha << res
 
     places_tr = places.last
     mecha_tr  = mecha.last
@@ -262,7 +258,7 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  # next if car[:description] == '' || car[:seat].zero?
+  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero?
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
