@@ -34,7 +34,7 @@ def brand_and_model_from_html_select(content, hash)
     brand_and_model(brand_model, hash)
 
     category_letter = splitted.first[-2]
-    category        = get_category_for_select(category_letter)
+    category        = category_for_select(category_letter)
     hash[:category] = category unless category.nil?
   end
 end
@@ -53,7 +53,7 @@ def brand_and_model_from_html_tourism(content, hash)
   end
 end
 
-def get_category(category_letter)
+def category(category_letter)
   case category_letter
   when 'A', 'B', 'I' then 'Citadine'
   when 'C', 'L'      then 'Compacte'
@@ -63,22 +63,22 @@ def get_category(category_letter)
   end
 end
 
-def get_category_for_select(category_letter)
+def category_for_select(category_letter)
   case category_letter
   when 'J'                then 'Citadine'
   when 'D', 'H', 'K', 'O' then 'Berline'
   when 'F', 'G', 'M'      then 'SUV'
   when 'P'                then 'Utilitaire'
-  else get_category(category_letter)
+  else category(category_letter)
   end
 end
 
-def get_category_for_tourism(category_letter)
+def category_for_tourism(category_letter)
   case category_letter
   when 'J'           then 'Compacte'
   when 'F', 'M'      then 'Berline'
   when 'H', 'K', 'O' then 'Monospace'
-  else get_category(category_letter)
+  else category(category_letter)
   end
 end
 
@@ -90,7 +90,7 @@ def price_by_category(category)
   end
 end
 
-def get_energy(array, hash)
+def energy(array, hash)
   hash[:energy] = if array[1].include?('Mixte') || hash[:energy] == 'Diesel'
                     'Essence'
                   elsif hash[:category] == 'Utilitaire'
@@ -100,22 +100,37 @@ def get_energy(array, hash)
                   end
 end
 
+def description_select(element, hash)
+  element.search('.changeFontSize').each do |e|
+    description = e.text.strip.split("\s\s").first
+    description.gsub!('Avis', 'SMAP')
+    hash[:description] = description
+  end
+end
+
+def description_tourism(element, hash)
+  description = element.text.strip.split("\s\s")[1]
+
+  description.gsub!('Avis', 'SMAP')
+  hash[:description] = description
+end
+
 # category_letter = splitted.first[-2]
-# category        = get_category_for_select(category_letter)
+# category        = category_for_select(category_letter)
 # car[:category]  = category unless category.nil?
 
 # category_letter = formatted unless formatted[-1] == 's'
-# category        = get_category_for_tourism(category_letter)
+# category        = category_for_tourism(category_letter)
 # car[:category]  = category unless category.nil?
 
 # def create_car_from_html(html, type)
-#   p send(get_category_method, 'J')
+#   p send(category_method, 'J')
 #
-#   get_category = :"get_category_#{type}"
+#   category = :"category_#{type}"
 #   brand_and_model_html = :"brand_and_model_html_#{type}"
-#   p get_category
+#   p category
 #   p brand_and_model_html
-#   p get_category_method
+#   p category_method
 #   p brand_and_model_html
 #   p type
 #
@@ -129,7 +144,7 @@ end
 #
 #       category_letter = splitted.first[-2]
 #
-#       car[:category] = send(get_category_method, category_letter)
+#       car[:category] = send(category_method, category_letter)
 #     end
 #   end
 # end
@@ -144,9 +159,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
   car = {}
   brand_and_model_from_html_select(content, car)
 
-  content.search('.changeFontSize').each do |e|
-    car[:description] = e.text.split("\s\s").first.strip
-  end
+  description_select(content, car)
 
   content.search('tr').each_with_index do |tr, index|
     res = tr.text.gsub(/\A[[:space:]]+/, '').split(' ').reject do |r|
@@ -165,7 +178,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:car_door]     = places_tr[2][0].to_i
     car[:transmission] = mecha_tr[0]
 
-    get_energy(mecha_tr, car)
+    energy(mecha_tr, car)
   end
 
   content.search('.responsive-image').each do |image|
@@ -195,7 +208,7 @@ html_tourism.search('.content-51b').each do |content|
     formatted       = h2.text.strip.gsub(/\W/, '-').split('-').last
 
     category_letter = formatted unless formatted[-1] == 's'
-    category        = get_category_for_tourism(category_letter)
+    category        = category_for_tourism(category_letter)
     car[:category]  = category unless category.nil?
   end
 
@@ -216,7 +229,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:car_door]     = places_tr[4].to_i
     car[:transmission] = mecha_tr[0]
 
-    get_energy(mecha_tr, car)
+    energy(mecha_tr, car)
   end
 
   content.search('.responsive-image').each do |image|
