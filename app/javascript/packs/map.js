@@ -1,6 +1,7 @@
 import L from "leaflet";
 import 'leaflet/dist/leaflet.css';
 
+const name = document.getElementById("concessionnaire_name");
 const address = document.getElementById("concessionnaire_address");
 
 let map = null;
@@ -18,5 +19,5 @@ fetch(`https://nominatim.openstreetmap.org/search?q=${address.innerText}&format=
   ]);
 
   L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"}).addTo(map);
-  L.marker([latPlace, lonPlace]).addTo(map).bindPopup(data.display_name).openPopup();
+  L.marker([latPlace, lonPlace]).addTo(map).bindPopup(name.innerText).openPopup();
 });
