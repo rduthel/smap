@@ -39,9 +39,17 @@ def brand_and_model_from_html_select(content, hash)
   end
 end
 
-def brand_and_model_from_html_tourism(content)
-  content.search('.changeFontSize strong').each do |h2|
-    p h2.text
+def brand_and_model_from_html_tourism(content, hash)
+  content.search('strong').each do |f|
+    text_element = f.text
+    text_element.gsub!('Modèle', '')
+    text_element.gsub!('ou similaire', '')
+
+    tab = text_element.split(/[[:space:]]/).reject { |w| w == '' }
+
+    next if tab.first.nil?
+
+    brand_and_model(tab, hash)
   end
 end
 
@@ -146,10 +154,13 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:lugage]       = places_tr[1][0].to_i
     car[:car_door]     = places_tr[2][0].to_i
     car[:transmission] = mecha_tr[0]
-    if mecha_tr[1].include?('Mixte') || car[:energy] == 'Diesel'
+
+    if mecha_tr[1].downcase.include?('mixte') || car[:energy] == 'Diesel'
       car[:energy] = 'Essence'
     elsif car[:category] == 'Utilitaire'
       car[:energy] = 'Diesel'
+    else
+      car[:energy] = mecha_tr[1]
     end
   end
 
@@ -215,6 +226,8 @@ html_tourism.search('.content-51b').each do |content|
       car[:energy] = 'Essence'
     elsif car[:category] == 'Utilitaire'
       car[:energy] = 'Diesel'
+    else
+      car[:energy] = mecha_tr[1]
     end
   end
 
