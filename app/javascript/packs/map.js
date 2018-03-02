@@ -16,5 +16,10 @@ fetch(`https://nominatim.openstreetmap.org/search?q=${address.innerText}&format=
   map = L.map("map").setView([latPlace, lonPlace], 16);
 
   L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"}).addTo(map);
-  L.marker([latPlace, lonPlace]).addTo(map).bindPopup(name.innerText).openPopup();
+  L.marker([latPlace, lonPlace]).addTo(map).bindPopup(`
+                                                      ${name.innerText}
+                                                      <br>
+                                                      ${address.innerText}
+                                                      `)
+                                           .openPopup();
 });
