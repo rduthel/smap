@@ -27,7 +27,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-smap-item navbar-smap-link" %>
+      <%= render 'shared/modal_sign_in' %>
     <% end %>
   </div>
   <!-- Dropdown list appearing on mobile only -->
