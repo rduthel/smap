@@ -16,14 +16,6 @@ def get_html(url)
   Nokogiri::HTML(page_avis)
 end
 
-def price_by_category(category)
-  case category
-  when 'Citadine'                       then 800
-  when 'Compacte'                       then 1_200
-  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
-  end
-end
-
 def brand_and_model(array, hash)
   if array.first == 'Alfa'
     hash[:brand] = "#{array[0]} #{array[1]}"
@@ -32,6 +24,24 @@ def brand_and_model(array, hash)
     hash[:brand] = array.first
     array.delete_at(0)
     hash[:model] = array.join(' ')
+  end
+end
+
+def brand_and_model_from_html_select(content, hash)
+  content.search('h2').each do |h2|
+    splitted        = h2.text.split(':')
+    brand_model     = splitted.last.strip.split(/[[:space:]]/)
+    brand_and_model(brand_model, hash)
+
+    category_letter = splitted.first[-2]
+    category        = get_category_for_select(category_letter)
+    hash[:category] = category unless category.nil?
+  end
+end
+
+def brand_and_model_from_html_tourism(content)
+  content.search('.changeFontSize strong').each do |h2|
+    p h2.text
   end
 end
 
@@ -64,64 +74,57 @@ def get_category_for_tourism(category_letter)
   end
 end
 
-def brand_and_model_html_select(content)
-  content.search('h2').each do |h2|
-    p h2.text
+def price_by_category(category)
+  case category
+  when 'Citadine'                       then 800
+  when 'Compacte'                       then 1_200
+  when 'Monospace', 'SUV', 'Utilitaire' then 1_800
   end
 end
 
-def brand_and_model_html_tourism(content)
-  content.search('.changeFontSize strong').each do |h2|
-    p h2.text
-  end
-end
+# category_letter = splitted.first[-2]
+# category        = get_category_for_select(category_letter)
+# car[:category]  = category unless category.nil?
 
+# category_letter = formatted unless formatted[-1] == 's'
+# category        = get_category_for_tourism(category_letter)
+# car[:category]  = category unless category.nil?
 
-def create_car_from_html(html, type)
-  # p send(get_category_method, 'J')
-
-  get_category = :"get_category_#{type}"
-  brand_and_model_html = :"brand_and_model_html_#{type}"
-  # p get_category
-  # p brand_and_model_html
-  # p get_category_method
-  # p brand_and_model_html
-  # p type
-
-  # return
-  html.search('.content-51b').each_with_index do |content, _index_car|
-    car = {}
-    content.search('h2').each do |h2|
-      splitted        = h2.text.split(':')
-      brand_model     = splitted.last.strip.split(/[[:space:]]/)
-      brand_and_model(brand_model, car)
-
-      category_letter = splitted.first[-2]
-
-      # car[:category] = send(get_category_method, category_letter)
-    end
-  end
-end
+# def create_car_from_html(html, type)
+#   p send(get_category_method, 'J')
+#
+#   get_category = :"get_category_#{type}"
+#   brand_and_model_html = :"brand_and_model_html_#{type}"
+#   p get_category
+#   p brand_and_model_html
+#   p get_category_method
+#   p brand_and_model_html
+#   p type
+#
+#   return
+#   html.search('.content-51b').each_with_index do |content, _index_car|
+#     car = {}
+#     content.search('h2').each do |h2|
+#       splitted        = h2.text.split(':')
+#       brand_model     = splitted.last.strip.split(/[[:space:]]/)
+#       brand_and_model(brand_model, car)
+#
+#       category_letter = splitted.first[-2]
+#
+#       car[:category] = send(get_category_method, category_letter)
+#     end
+#   end
+# end
 
 html_select  = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/select-series/france')
 html_tourism = get_html('https://www.avis.fr/services-avis/v%C3%A9hicules-de-location/vehicules-de-tourisme')
 
-create_car_from_html(html_tourism, :tourism)
-create_car_from_html(html_select, :select)
-
-# exit
+# create_car_from_html(html_tourism, :tourism)
+# create_car_from_html(html_select, :select)
 
 html_select.search('.content-51b').each_with_index do |content, index_car|
   car = {}
-  content.search('h2').each do |h2|
-    splitted        = h2.text.split(':')
-    brand_model     = splitted.last.strip.split(/[[:space:]]/)
-    brand_and_model(brand_model, car)
-
-    category_letter = splitted.first[-2]
-    category        = get_category_for_select(category_letter)
-    car[:category]  = category unless category.nil?
-  end
+  brand_and_model_from_html_select(content, car)
 
   content.search('.changeFontSize').each do |e|
     car[:description] = e.text.split("\s\s").first.strip
@@ -245,7 +248,7 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if car[:description] == '' || car[:seat].zero?
+  # next if car[:description] == '' || car[:seat].zero?
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
