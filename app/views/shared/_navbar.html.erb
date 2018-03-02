@@ -7,9 +7,9 @@
   <div class="navbar-smap-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
       <!-- Links when logged in -->
-      <%= link_to "Host", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Trips", "#", class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to "Messages", "#", class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to " Voitures ",  cars_path , class: "navbar-wagon-item navbar-wagon-link" %>&nbsp;
+      <%= link_to " Profil ",  profil_path , class: "navbar-wagon-item navbar-wagon-link" %>&nbsp;
+      <%= link_to " Dashboard ",  dashboard_path , class: "navbar-wagon-item navbar-wagon-link" %>
       <!-- Avatar with dropdown menu -->
       <div class="navbar-smap-item">
         <div class="dropdown">
@@ -27,6 +27,7 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
+      <%= link_to "Voitures", cars_path, class: "navbar-wagon-item navbar-wagon-link" %>
       <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-smap-item navbar-smap-link" %>
     <% end %>
   </div>
