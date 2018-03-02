@@ -27,8 +27,9 @@
       </div>
     <% else %>
       <!-- Login link (when logged out) -->
-      <%= link_to "Voitures", cars_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= link_to t(".sign_in", default: "Login"), new_user_session_path, class: "navbar-smap-item navbar-smap-link" %>
+
+      <%= link_to "Nos véhicules", cars_path, class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= render 'shared/modal_sign_in' %>
     <% end %>
   </div>
   <!-- Dropdown list appearing on mobile only -->
