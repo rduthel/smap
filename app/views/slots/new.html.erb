@@ -1,2 +1,9 @@
-<h1>Slots#new</h1>
-<p>Find me in app/views/slots/new.html.erb</p>
+<%= simple_form_for(@slot) do |f| %>
+<%  %>
+  <%= f.input :from %>
+  <%= f.input :to %>
+  <%= f.input :address_id, collection: @addresses, include_blank: false %>
+  <%= f.submit "Ajouter dispo" %>
+
+<% end %>
+

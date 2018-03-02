@@ -22,12 +22,9 @@
        <%= link_to "Modifier cette adresse", edit_address_path(address) %>
        <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
     <% end %>
-
+    <br>
     <%= link_to "Ajouter une adresse", new_address_path %>
-
-
     <hr>
-
     <h3>Mes disponibilités :</h3>
     <%= link_to "Ajouter une disponibilité", new_slot_path %>
   </div>
