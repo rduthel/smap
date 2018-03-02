@@ -1,6 +1,6 @@
 class AdditionalDriversController < ApplicationController
 
-  before_action :set_user, only: [:edit, :update]
+  before_action :set_user, only: [:edit, :update, :destroy]
 
   def new
     @additional_driver = AdditionalDriver.new
@@ -22,6 +22,11 @@ class AdditionalDriversController < ApplicationController
 
   def update
     @additional_driver.update(additional_driver_params)
+    redirect_to dashboard_path
+  end
+
+  def destroy
+    @additional_driver.delete
     redirect_to dashboard_path
   end
 

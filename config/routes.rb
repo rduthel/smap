@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
 
   resources :cars, only: [:index, :show, :estimation, :subscription]
-  resources :additional_drivers, only: [:new, :edit, :update, :create]
+  resources :additional_drivers, only: [:new, :edit, :update, :create, :destroy]
 
   #Dashboard routes
   get "/dashboard", to: "dashboards#show"
