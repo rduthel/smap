@@ -8,6 +8,8 @@ class AdditionalDriversController < ApplicationController
 
   def create
     @additional_driver = AdditionalDriver.new(additional_driver_params)
+    @driver_profile = DriverProfile.find_by user: current_user
+    @additional_driver.driver_profile = @driver_profile
     if @additional_driver.save
       redirect_to dashboard_path
     else
