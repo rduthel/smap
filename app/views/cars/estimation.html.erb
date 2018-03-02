@@ -1,2 +1,22 @@
-<h1>Cars#estimation</h1>
-<p>Find me in app/views/cars/estimation.html.erb</p>
+<div class="container">
+  <h1 class="text-center" >Estimer ma facture mensuelle avec SMAP</h1>
+  <div class="flex-estim">
+    <div class="contrat">
+      <h1><%= @car.brand %> <%= @car.model %></h1>
+      <h3>Le contrat SMAP comprend:</h3>
+      <ul>
+        <li>L'essence</li>
+        <li>L'assurance</li>
+        <li>L'entretien</li>
+      </ul>
+      <h4>Pour seulement <%= @car.monthly_price %> € par mois</h4>
+      <div class="car-card">
+        <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+      </div>
+    </div>
+    <div class="estimer text-center">
+      <%= image_tag "dispo.png", style: "width: 400px" %>
+      <%= link_to "Souscrire à SMAP ! ", souscription_path(@car) %>
+    </div>
+  </div>
+</div>
