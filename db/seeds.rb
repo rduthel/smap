@@ -90,6 +90,16 @@ def price_by_category(category)
   end
 end
 
+def get_energy(array, hash)
+  hash[:energy] = if array[1].include?('Mixte') || hash[:energy] == 'Diesel'
+                    'Essence'
+                  elsif hash[:category] == 'Utilitaire'
+                    'Diesel'
+                  else
+                    array[1]
+                  end
+end
+
 # category_letter = splitted.first[-2]
 # category        = get_category_for_select(category_letter)
 # car[:category]  = category unless category.nil?
@@ -155,13 +165,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:car_door]     = places_tr[2][0].to_i
     car[:transmission] = mecha_tr[0]
 
-    if mecha_tr[1].downcase.include?('mixte') || car[:energy] == 'Diesel'
-      car[:energy] = 'Essence'
-    elsif car[:category] == 'Utilitaire'
-      car[:energy] = 'Diesel'
-    else
-      car[:energy] = mecha_tr[1]
-    end
+    get_energy(mecha_tr, car)
   end
 
   content.search('.responsive-image').each do |image|
@@ -222,13 +226,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:car_door]     = places_tr[4].to_i
     car[:transmission] = mecha_tr[0]
 
-    if mecha_tr[1].include?('Mixte') || car[:energy] == 'Diesel'
-      car[:energy] = 'Essence'
-    elsif car[:category] == 'Utilitaire'
-      car[:energy] = 'Diesel'
-    else
-      car[:energy] = mecha_tr[1]
-    end
+    get_energy(mecha_tr, car)
   end
 
   content.search('.responsive-image').each do |image|
