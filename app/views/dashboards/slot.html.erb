@@ -16,6 +16,11 @@
     </a>
   </div>
   <div class="dash">
+    <h3>Mes adresses :</h3>
+    <% @driver_profile.addresses.each do |address| %>
+      <p> <%= address.name %> : <%= address.address %> <%= address.zip_code %> <%= address.city %></p>
+    <% end %>
+
     <%= link_to "Ajouter une adresse pour mes disponibilités", new_address_path %>
   </div>
 </div>
