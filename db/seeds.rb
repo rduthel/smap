@@ -84,7 +84,7 @@ end
 
 def price_by_category(category)
   case category
-  when 'Citadine'                       then 800
+  when 'Citadine', 'Berline'            then 800
   when 'Compacte'                       then 1_200
   when 'Monospace', 'SUV', 'Utilitaire' then 1_800
   end
