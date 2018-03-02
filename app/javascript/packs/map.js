@@ -1,5 +1,5 @@
 import L from "leaflet";
-import 'flatpickr/dist/flatpickr.css'
+import 'leaflet/dist/leaflet.css'
 
 const flexElt = document.getElementsByClassName("flexbox")[0];
 const formElt = document.forms.geocoder;
