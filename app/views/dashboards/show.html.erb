@@ -94,13 +94,15 @@
           <p>(Conducteur principal)</p>
        </div>
      </div>
-     <div class="flex" >
-        <%= cl_image_tag @driver_profile.photo, class: "avatar" %> &nbsp;
+     <% @driver_profile.additional_drivers.each do |ad| %>
+      <div class="flex" >
+        <%= cl_image_tag ad.photo, width: 100, height: 100, class: "avatar" %> &nbsp;
         <div class="secondaire">
-          <h6> <%= @driver_profile.first_name %>  <%= @driver_profile.last_name %> </h6>
+          <h6> <%= ad.first_name %>  <%= ad.last_name %> <%= link_to "Edit", edit_additional_driver_path(ad) %> </h6>
           <p>(Conducteur secondaire)</p>
        </div>
      </div>
+     <% end %>
      <div class="flex" >
         <a href="<%= new_additional_driver_path %>" class="add-driver" ><i class="fas fa-plus-circle smap-color"></i></a> &nbsp;
         <div class="principal">

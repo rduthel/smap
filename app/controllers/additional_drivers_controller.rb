@@ -33,6 +33,6 @@ class AdditionalDriversController < ApplicationController
   end
 
   def additional_driver_params
-    params.require(:additional_driver).permit(:title, :first_name, :last_name, :birthdate, :telephone_number, :address, :zip_code, :city, :driving_license, :identity_card)
+    params.require(:additional_driver).permit(:photo, :title, :first_name, :last_name, :birthdate, :telephone_number, :address, :zip_code, :city, :driving_license, :identity_card)
   end
 end
