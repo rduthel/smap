@@ -16,9 +16,20 @@ class SlotsController < ApplicationController
   end
 
   def edit
+    set_driver_addresses
+    @slot = Slot.find(params[:id])
   end
 
   def update
+    @slot = Slot.find(params[:id])
+    @slot.update(slot_params)
+    redirect_to dashboard_slot_path
+  end
+
+  def destroy
+    @slot = Slot.find(params[:id])
+    @slot.delete
+    redirect_to dashboard_slot_path
   end
 
   private

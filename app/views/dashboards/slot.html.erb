@@ -28,9 +28,13 @@
     <h3>Mes disponibilités :</h3>
     <p> <% @driver_profile.addresses.each do |address| %>
       Pour l'adresse <%= address.name %> :
+      <ul>
       <% address.slots.each do |slot| %>
-      <%= slot.from %> // <%= slot.to %>
+      <li> <%= slot.from %> // <%= slot.to %>
+        <%= link_to "Modifier cette dispo", edit_slot_path(slot) %> -
+      <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
       <% end %>
+      </ul>
       <br>
     <% end %>
     </p>
