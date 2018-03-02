@@ -181,17 +181,7 @@ mecha  = []
 html_tourism.search('.content-51b').each do |content|
   car = {}
   content.search('.changeFontSize').each do |element_car|
-    element_car.search('strong').each do |f|
-      text_element = f.text
-      text_element.gsub!('Modèle', '')
-      text_element.gsub!('ou similaire', '')
-
-      tab = text_element.split(/[[:space:]]/).reject { |w| w == '' }
-
-      next if tab.first.nil?
-
-      brand_and_model(tab, car)
-    end
+    brand_and_model_from_html_tourism(element_car, car)
 
     description = element_car.text.strip.split("\s\s")[1]
 
