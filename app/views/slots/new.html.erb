@@ -1,0 +1,9 @@
+<%= simple_form_for(@slot) do |f| %>
+<%  %>
+  <%= f.input :from %>
+  <%= f.input :to %>
+  <%= f.input :address_id, collection: @addresses, include_blank: false %>
+  <%= f.submit "Ajouter dispo" %>
+
+<% end %>
+
