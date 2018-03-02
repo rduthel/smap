@@ -1,5 +1,5 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add leaflet
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add eslint --dev
 
 PATH: 
   /home/romain/.rbenv/versions/2.4.3/bin:/home/romain/.rbenv/libexec:/home/romain/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/romain/.rbenv/shims:/home/romain/.rbenv/bin:/var/lib/gems/1.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/sbin
@@ -20,7 +20,8 @@ npm manifest:
     "dependencies": {
       "@rails/webpacker": "^3.2.2",
       "bootstrap": "3",
-      "jquery": "^3.3.1"
+      "jquery": "^3.3.1",
+      "leaflet": "^1.3.1"
     },
     "devDependencies": {
       "webpack-dev-server": "^3.0.0"
@@ -3233,6 +3234,10 @@ Lockfile:
     dependencies:
       invert-kv "^1.0.0"
   
+  leaflet@^1.3.1:
+    version "1.3.1"
+    resolved "https://registry.yarnpkg.com/leaflet/-/leaflet-1.3.1.tgz#86f336d2fb0e2d0ff446677049a5dc34cf0ea60e"
+  
   load-json-file@^1.0.0:
     version "1.1.0"
     resolved "https://registry.yarnpkg.com/load-json-file/-/load-json-file-1.1.0.tgz#956905708d58b4bab4c2261b04f59f31c99374c0"
@@ -6129,4 +6134,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: EACCES: permission denied, lstat '/home/romain/code/rduthel/smap/node_modules/acorn-dynamic-import/node_modules/acorn'
+  Error: EACCES: permission denied, mkdir '/home/romain/code/rduthel/smap/node_modules/babel-code-frame/node_modules'
