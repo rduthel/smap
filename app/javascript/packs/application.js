@@ -1,2 +1,2 @@
-import './signup';
+import './form';
 import './map';
