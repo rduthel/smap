@@ -5,6 +5,7 @@ require 'nokogiri'
 
 puts 'Cleaning DB...'
 AdditionalDriver.destroy_all
+Address.destroy_all
 DriverProfile.destroy_all
 Rating.destroy_all
 Car.destroy_all
