@@ -1,8 +1,8 @@
 Arguments: 
-  /usr/bin/node /usr/share/yarn/bin/yarn.js add --dev webpack-dev-server
+  /usr/bin/node /usr/share/yarn/bin/yarn.js add leaflet
 
 PATH: 
-  /home/romain/.rbenv/versions/2.4.3/lib/ruby/gems/2.4.0/bin:/home/romain/.rbenv/versions/2.4.3/bin:/home/romain/.rbenv/libexec:/home/romain/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/romain/.rbenv/shims:/home/romain/.rbenv/bin:/var/lib/gems/1.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
+  /home/romain/.rbenv/versions/2.4.3/bin:/home/romain/.rbenv/libexec:/home/romain/.rbenv/plugins/ruby-build/bin:./bin:./node_modules/.bin:/home/romain/.rbenv/shims:/home/romain/.rbenv/bin:/var/lib/gems/1.8/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/sbin
 
 Yarn version: 
   1.5.1
@@ -6129,4 +6129,4 @@ Lockfile:
       window-size "0.1.0"
 
 Trace: 
-  Error: EACCES: permission denied, mkdir '/home/romain/code/rduthel/smap/node_modules/anymatch/node_modules'
+  Error: EACCES: permission denied, lstat '/home/romain/code/rduthel/smap/node_modules/acorn-dynamic-import/node_modules/acorn'
