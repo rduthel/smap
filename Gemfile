@@ -12,6 +12,7 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'omniauth-facebook'
 gem 'awesome_print'
+gem 'algoliasearch-rails'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'

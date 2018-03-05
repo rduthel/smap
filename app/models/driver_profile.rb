@@ -2,7 +2,7 @@ class DriverProfile < ApplicationRecord
   belongs_to :car, optional: true
   belongs_to :user
   has_many :additional_drivers
-  has_many :addresses
+  has_many :addresses, dependent: :destroy
   mount_uploader :photo, PhotoUploader
   mount_uploader :driving_license, PhotoUploader
   mount_uploader :identity_card, PhotoUploader
