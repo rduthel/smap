@@ -26,15 +26,15 @@
     <%= link_to "Ajouter une adresse", new_address_path %>
     <hr>
     <h3>Mes disponibilités :</h3>
-    <div id="calendar"></div>
     <p> <% @driver_profile.addresses.each do |address| %>
       Pour l'adresse <%= address.name %> :
       <ul>
       <% address.slots.each do |slot| %>
-      <li> <%= slot.from %> // <%= slot.to %>
+      <li> <span class="slot-from"><%= slot.from %></span> // <span class="slot-to"><%= slot.to %> </span>
         <%= link_to "Modifier cette dispo", edit_slot_path(slot) %> -
       <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
       <% end %>
+      <div id="calendar"></div>
       </ul>
       <br>
     <% end %>
@@ -42,6 +42,6 @@
 
     <%= render 'shared/modal_new_slot' %>
 
-    <button data-toggle="modal" data-target="#modalNewSlot">Ajouter une disponibilité</button>
+    <!-- <button id="button_new_slot" data-toggle="modal" data-target="#modalNewSlot">Ajouter une disponibilité</button> -->
   </div>
 </div>
