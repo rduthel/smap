@@ -1,5 +1,6 @@
 import $ from 'jquery';
 import 'fullcalendar';
+import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
@@ -12,5 +13,6 @@ $(() => {
         titleFormat: 'YYYY, MM, DD',
       },
     },
+    locale: 'fr',
   });
 });
