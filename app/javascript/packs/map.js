@@ -13,7 +13,7 @@ if (page.length !== 0) {
 
     const latPlace = data.lat;
     const lonPlace = data.lon;
-    const boundingBox = data.boundingbox;
+    // const boundingBox = data.boundingbox;
 
     map = L.map('map').setView([
       latPlace, lonPlace,
