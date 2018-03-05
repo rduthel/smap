@@ -5,7 +5,11 @@ class Car < ApplicationRecord
   include AlgoliaSearch
 
   algoliasearch do
-    # all attributes will be sent
+    attribute :category, :brand, :model, :energy, :monthly_price, :seat, :lugage, :transmission, :car_door
+    searchableAttributes ['category', 'brand', 'energy', 'monthly_price', 'seat', 'lugage', 'transmission', 'car_door', 'model']
+    attributesForFaceting [:category, :brand, :energy, :monthly_price, :seat, :lugage, :transmission, :car_door]
+    tags ['trusted']
   end
+
 end
 

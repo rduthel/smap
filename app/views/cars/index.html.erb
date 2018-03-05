@@ -1,12 +1,21 @@
 <div class="container">
   <h1 class="text-center">Les voitures SMAP</h1>
+  <div id="search-box">
+  </div>
+
+  <div id="brand">
+  </div>
+
+  <div id="current-refined-values">
+
+  </div>
+
+  <div id="monthly_price"></div>
+
+  <div id="clear-all">
+
+  </div>
   <div class="row">
-    <div class="card-container">
-      <% @cars.each do |car| %>
-        <div class="col-xs-12 col-md-6 ">
-          <%= render 'shared/card', car: car %>
-        </div>
-      <% end %>
-    </div>
+    <div id="hits"></div>
   </div>
 </div>
