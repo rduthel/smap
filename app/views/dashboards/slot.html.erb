@@ -40,6 +40,8 @@
     <% end %>
     </p>
 
-    <%= link_to "Ajouter une disponibilité", new_slot_path %>
+    <%= render 'shared/modal_new_slot' %>
+
+    <button data-toggle="modal" data-target="#modalNewSlot">Ajouter une disponibilité</button>
   </div>
 </div>
