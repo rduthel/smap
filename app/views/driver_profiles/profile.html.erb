@@ -1,7 +1,7 @@
-<h1>Driver Profile | <%= link_to "Edit your profile", profil_edit_path  %></h1>
+<h1>Mon profil | <%= link_to "Modifier mon profil", profil_edit_path  %></h1>
 
 
-<h4><%= @driver_profile.title %> <%= @driver_profile.first_name %> <%= @driver_profile.last_name %></h4>
+<h4><%= @driver_profile.first_name %> <%= @driver_profile.last_name %></h4>
 <%= cl_image_tag @driver_profile.photo, height: 100, width: 100, crop: :fit %>
 
 <h5>E-mail : <%= @driver_profile.email %></h5>
