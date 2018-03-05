@@ -4,6 +4,10 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
+  const slots = [];
+  $.each($('slot-from'), (i, val) => {
+    slots.push(val);
+  });
   $('#calendar').fullCalendar({
     header: {
       left: 'month,agendaWeek,agendaDay',
@@ -24,7 +28,7 @@ $(() => {
     locale: 'fr',
     nowIndicator: true,
     navLinks: true,
-    dayClick(date, jsEvent, view) {
+    dayClick(date) {
       console.log(`Clicked on: ${date.format()}`);
     },
   });
