@@ -11,9 +11,6 @@ class User < ApplicationRecord
   after_create :add_driver_profile
 
   def self.find_for_facebook_oauth(auth)
-    ap auth.info
-    ap auth.extra
-
     user_params = auth.slice(:provider, :uid)
     user_params.merge! auth.info.slice(:email)
     user_params[:token] = auth.credentials.token
