@@ -6,13 +6,19 @@ import 'fullcalendar/dist/fullcalendar.css';
 $(() => {
   $('#calendar').fullCalendar({
     header: {
-      center: 'month,agendaWeek',
+      left: 'agendaWeek,agendaDay',
+      center: 'title',
+      right: 'today prev,next',
     },
     views: {
+      agendaWeek: {
+        titleFormat: 'D MMMM',
+      },
       month: {
-        titleFormat: 'D MMMM YYYY',
+        titleFormat: 'MMMM YYYY',
       },
     },
     locale: 'fr',
+    nowIndicator: true,
   });
 });
