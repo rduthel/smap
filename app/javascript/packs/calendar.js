@@ -6,7 +6,7 @@ import 'fullcalendar/dist/fullcalendar.css';
 $(() => {
   $('#calendar').fullCalendar({
     header: {
-      left: 'agendaWeek,agendaDay',
+      left: 'month,agendaWeek,agendaDay',
       center: 'title',
       right: 'today prev,next',
     },
@@ -20,5 +20,6 @@ $(() => {
     },
     locale: 'fr',
     nowIndicator: true,
+    defaultView: 'agendaWeek',
   });
 });
