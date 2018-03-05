@@ -10,7 +10,7 @@ $(() => {
     },
     views: {
       month: {
-        titleFormat: 'YYYY, MM, DD',
+        titleFormat: 'D MMMM YYYY',
       },
     },
     locale: 'fr',
