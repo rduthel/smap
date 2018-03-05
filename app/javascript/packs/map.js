@@ -1,8 +1,8 @@
-import L from "leaflet";
+import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const name = document.getElementById("concessionnaire_name");
-const address = document.getElementById("concessionnaire_address");
+const name = document.getElementById('concessionnaire_name');
+const address = document.getElementById('concessionnaire_address');
 
 let map = null;
 
@@ -13,11 +13,11 @@ fetch(`https://nominatim.openstreetmap.org/search?q=${address.innerText}&format=
   const lonPlace = data.lon;
   const boundingBox = data.boundingbox;
 
-  map = L.map("map").setView([
-    latPlace, lonPlace
+  map = L.map('map').setView([
+    latPlace, lonPlace,
   ], 16);
 
-  L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"}).addTo(map);
+  L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', { attribution: "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors" }).addTo(map);
   L.marker([latPlace, lonPlace]).addTo(map).bindPopup(`
                                                       ${name.innerText}
                                                       <br>
