@@ -26,6 +26,7 @@
     <%= link_to "Ajouter une adresse", new_address_path %>
     <hr>
     <h3>Mes disponibilités :</h3>
+    <div id="calendar"></div>
     <p> <% @driver_profile.addresses.each do |address| %>
       Pour l'adresse <%= address.name %> :
       <ul>
@@ -42,4 +43,3 @@
     <%= link_to "Ajouter une disponibilité", new_slot_path %>
   </div>
 </div>
-
