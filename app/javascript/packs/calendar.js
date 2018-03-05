@@ -18,8 +18,14 @@ $(() => {
         titleFormat: 'MMMM YYYY',
       },
     },
+    aspectRatio: 2,
+    themeSystem: 'bootstrap3',
+    defaultView: 'agendaWeek',
     locale: 'fr',
     nowIndicator: true,
-    defaultView: 'agendaWeek',
+    navLinks: true,
+    dayClick(date, jsEvent, view) {
+      console.log(`Clicked on: ${date.format()}`);
+    },
   });
 });
