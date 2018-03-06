@@ -1,7 +1,7 @@
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
-const page = document.getElementsByClassName('.cars .show');
+const page = document.getElementsByClassName('cars show');
 const name = document.getElementById('concessionnaire_name');
 const address = document.getElementById('concessionnaire_address');
 
