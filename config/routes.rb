@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :addresses, only: [:new, :edit, :update, :create, :destroy]
 
   # resources :slots, only: [:new, :edit, :update, :create, :destroy]
-  post 'dashboard/slot', to: 'slots_json#test'
+  post 'dashboard/slot', to: 'slots_json#test', as: :dashboard_slot_json
 
   #Estimation et souscription
 
