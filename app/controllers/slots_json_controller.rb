@@ -1,5 +1,6 @@
 class SlotsJsonController < ApplicationController
   def test
-    p 'redirection OK'
+    p params
+    p '--------------------- Coucou je suis dans slotsJSON ---------------------'
   end
 end
