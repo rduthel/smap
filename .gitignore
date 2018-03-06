@@ -16,7 +16,7 @@ node_modules
 /node_modules
 yarn-debug.log*
 .yarn-integrity
-*.log
+yarn-error.log
 
 # Ignore application configuration
 /config/application.yml
