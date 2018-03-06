@@ -1,0 +1,3 @@
+class SlotsJsonController < ApplicationController
+
+end
