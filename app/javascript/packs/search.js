@@ -14,7 +14,7 @@ search.addWidget(
           console.log(data);
           return `<div class="col-xs-12 col-md-6">
             <div class="card text-center">
-              <a href = "/cars/${data.id}" >
+              <a href = "/cars/${data.objectID}" >
                 <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('${data.photo}')">
                   <div class="card-category">
                     <h3>${data.brand} ${data.model}</h3>
