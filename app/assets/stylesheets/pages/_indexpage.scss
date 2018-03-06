@@ -1,0 +1,76 @@
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  position: sticky;
+  top: 0;
+}
+
+.flex-grow {
+  flex-grow: 1;
+}
+
+.filter-container {
+  padding-left: 10px;
+}
+
+.searchbar {
+  padding-top: 10px;
+  margin: auto auto;
+  position: relative;
+  width: 380px;
+}
+
+.ais-search-box {
+  max-width: 470px !important;
+}
+
+.ais-search-box--input {
+  font-size: 20px;
+  padding-left: 40px;
+}
+
+.algoli-logo {
+  height: 17px;
+  position: absolute;
+  z-index: 1;
+  left: 5px;
+  top: 33px;
+  border-radius: 4px;
+}
+
+.ais-refinement-list--label {
+  color: black;
+  font-weight: 500;
+  &:hover {
+    color: $yellowsmap;
+  }
+}
+
+.ais-refinement-list--count {
+  background: rgba(229, 181, 25, 0.2);
+  color: black;
+}
+
+.ais-clear-all--link {
+  background-color: $yellowsmap;
+  opacity: 0.9;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  &:hover {
+    background-color: $yellowsmap;
+    opacity: 1;
+  }
+}
+
+.ais-clear-all--link-disabled {
+  color: black;
+  opacity: 0.6;
+  a {
+    color:black;
+    &:focus {
+      color:black;
+    }
+  }
+}
+
+
