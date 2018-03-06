@@ -140,20 +140,24 @@ color: #616668;
 
 q {
   text-align: center !important;
+  width: 100%;
+  display: block;
 }
 
 q::before {
-  content: "-------";
+  content: "--------------";
   color: white;
 }
 
 q::after {
-  content: "-------";
+  content: "-------------";
   color: white;
 }
 
 
-.titre2 {
+.titre1 {
+  width: 100%;
+  display: block;
   color: white;
 
 }
@@ -164,6 +168,8 @@ q::after {
   border-color: white;
   bottom: 0px;
   left: 0px;
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 .modal-footer {
