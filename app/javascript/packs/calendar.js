@@ -13,7 +13,7 @@ $(() => {
     slotsObject.start = new Date(e.innerText);
   });
   $.each($('.slot-to'), (i, e) => {
-    slotsObject.stop = new Date(e.innerText);
+    slotsObject.end = new Date(e.innerText);
   });
   slots.push(slotsObject);
   console.log(slots);
