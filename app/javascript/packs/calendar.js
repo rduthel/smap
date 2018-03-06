@@ -47,6 +47,7 @@ $(() => {
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
         }
         $('#calendar').fullCalendar('unselect');
+        console.log(`Ajouté : ${title}, de ${start} à ${end}.`);
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
