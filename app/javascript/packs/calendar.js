@@ -23,15 +23,15 @@ $(() => {
       header: {
         left: 'month,agendaWeek,agendaDay',
         center: 'title',
-        right: 'today prev,next'
+        right: 'today prev,next',
       },
       views: {
         agendaWeek: {
-          titleFormat: 'D MMMM'
+          titleFormat: 'D MMMM',
         },
         month: {
-          titleFormat: 'MMMM YYYY'
-        }
+          titleFormat: 'MMMM YYYY',
+        },
       },
       selectable: true,
       selectHelper: true,
@@ -42,16 +42,22 @@ $(() => {
           eventData = {
             title,
             start,
-            end
+            end,
           };
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
         }
         $('#calendar').fullCalendar('unselect');
         console.log(`Ajouté : ${title}, de ${start} à ${end}.`);
-        fetch('/dashboard/slot', {
-          method: 'POST',
-          body: title
+        $.ajax({
+          url: '/dashboard/slot',
+          type: 'POST',
+          beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
+          data: title,
         });
+        // fetch('/dashboard/slot', {
+        //   method: 'POST',
+        //   body: title
+        // });
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
@@ -61,12 +67,12 @@ $(() => {
       navLinks: true,
       eventSources: [
         {
-          events: slots
-        }
+          events: slots,
+        },
       ],
       dayClick(date) {
         console.log(`Clicked on: ${date.format()}`);
-      }
+      },
     });
   };
 
