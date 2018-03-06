@@ -1,5 +1,5 @@
 class SlotsJsonController < ApplicationController
-  def test
+  def create
     p params
     p '--------------------- Coucou je suis dans slotsJSON ---------------------'
   end
