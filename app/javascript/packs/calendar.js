@@ -22,15 +22,15 @@ $(() => {
     header: {
       left: 'month,agendaWeek,agendaDay',
       center: 'title',
-      right: 'today prev,next'
+      right: 'today prev,next',
     },
     views: {
       agendaWeek: {
-        titleFormat: 'D MMMM'
+        titleFormat: 'D MMMM',
       },
       month: {
-        titleFormat: 'MMMM YYYY'
-      }
+        titleFormat: 'MMMM YYYY',
+      },
     },
     aspectRatio: 2,
     themeSystem: 'bootstrap3',
@@ -38,9 +38,13 @@ $(() => {
     locale: 'fr',
     nowIndicator: true,
     navLinks: true,
-    events: slots,
+    eventSources: [
+      {
+        events: slots,
+      },
+    ],
     dayClick(date) {
       console.log(`Clicked on: ${date.format()}`);
-    }
+    },
   });
 });
