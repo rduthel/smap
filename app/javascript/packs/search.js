@@ -14,14 +14,16 @@ search.addWidget(
           console.log(data);
           return `<div class="col-xs-12 col-md-6">
             <div class="card text-center">
-              <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('${data.photo}')">
-                <div class="card-category">
-                  <h3>${data.brand} ${data.model}</h3>
+              <a href = "/cars/${data.id}" >
+                <div class="card-body" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('${data.photo}')">
+                  <div class="card-category">
+                    <h3>${data.brand} ${data.model}</h3>
+                  </div>
+                  <div class="card-desc">
+                   ${data.monthly_price} € / mois
+                  </div>
                 </div>
-                <div class="card-desc">
-                 ${data.monthly_price} € / mois
-                </div>
-              </div>
+              </a>
                 <div class="card-footer">
                     <p>${data.category}</p>
                   <div class="card-icon-list">
