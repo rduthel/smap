@@ -23,4 +23,36 @@
   </div>
 </div>
 
+<div class="dash">
+    <% if @car == nil %>
+      <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
+    <% else %>
+    <h3>Mes adresses :</h3>
+    <% @driver_profile.addresses.each do |address| %>
+      <p> <%= address.name %> : <%= address.address %> <%= address.zip_code %> <%= address.city %></p>
+       <%= link_to "Modifier cette adresse", edit_address_path(address) %>
+       <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
+    <% end %>
+    <% end %>
+    <br>
+    <%= link_to "Ajouter une adresse", new_address_path %>
+    <hr>
+    <h3>Mes disponibilités :</h3>
+    <p> <% @driver_profile.addresses.each do |address| %>
+      Pour l'adresse <%= address.name %> :
+      <ul>
+      <% address.slots.each do |slot| %>
+      <li> <%= slot.from %> // <%= slot.to %>
+        <%= link_to "Modifier cette dispo", edit_slot_path(slot) %> -
+      <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
+      <% end %>
+      </ul>
+      <br>
+    <% end %>
+    </p>
+
+    <%= link_to "Ajouter une disponibilité", new_slot_path %>
+  </div>
+</div>
+
 
