@@ -34,7 +34,7 @@
       Pour l'adresse <%= address.name %> :
       <ul>
       <% address.slots.each do |slot| %>
-      <li> <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span> // <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
+      <li class="slots"><span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span> // <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
         <%= link_to "Modifier cette dispo", edit_slot_path(slot) %> -
       <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
       <% end %>

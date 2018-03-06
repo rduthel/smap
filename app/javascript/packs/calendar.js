@@ -6,17 +6,23 @@ import 'fullcalendar/dist/fullcalendar.css';
 $(() => {
   const myCalendar = () => {
     const slots = [];
-    const slotsObject = {};
-    $.each($('.address_name'), (i, e) => {
-      slotsObject.title = e.innerText;
-    });
+    const slotsStart = [];
+    const slotsEnd = [];
+
     $.each($('.slot-from'), (i, e) => {
-      slotsObject.start = new Date(e.innerText);
+      slotsStart.push(new Date(e.innerText));
     });
+
     $.each($('.slot-to'), (i, e) => {
-      slotsObject.end = new Date(e.innerText);
+      slotsEnd.push(new Date(e.innerText));
     });
-    slots.push(slotsObject);
+
+    $.each($('.slots'), (index) => {
+      const slotsObject = {};
+      slotsObject.start = slotsStart[index];
+      slotsObject.end = slotsEnd[index];
+      slots.push(slotsObject);
+    });
 
     $('#calendar').fullCalendar({
       header: {
@@ -39,7 +45,6 @@ $(() => {
         let eventData;
         if (title) {
           eventData = {
-            title,
             start,
             end,
           };
