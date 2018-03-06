@@ -3,8 +3,14 @@ class SlotsJsonController < ApplicationController
     Slot.create!(
       address_id: Address.first.id,
       car_id: Car.first.id,
-      from: Time.at(params['start'].to_i / 1000).to_datetime,
-      to: Time.at(params['end'].to_i / 1000).to_datetime
+      from: time_to_readable_date(params['start']),
+      to: time_to_readable_date(params['end'])
     )
+  end
+
+  private
+
+  def time_to_readable_date(time)
+    Time.at(time.to_i / 1000).to_datetime
   end
 end
