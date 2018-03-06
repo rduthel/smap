@@ -12,6 +12,10 @@ class DashboardsController < ApplicationController
   def slot
   end
 
+  def profile
+    @driver_profile = DriverProfile.find_by user: current_user
+  end
+
   private
 
   def set_user

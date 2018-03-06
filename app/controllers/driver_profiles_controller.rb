@@ -2,9 +2,7 @@ class DriverProfilesController < ApplicationController
 
   before_action :set_user, only: [:profile, :edit, :update]
 
-  def profile
 
-  end
 
   def edit
 
