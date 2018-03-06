@@ -24,11 +24,12 @@
         </div>
       </div>
     <% else %>
-<!-- Login link (when logged out) -->
 
-<%= link_to "Nos véhicules", cars_path, class: "navbar-smap-item navbar-smap-link" %>
-<%= render 'shared/modal_sign_in' %>
-<% end %>
-</div>
-<!-- Dropdown list appearing on mobile only -->
+
+      <!-- Login link (when logged out) -->
+
+      <%= link_to "Nos véhicules", cars_path, class: "navbar-smap-item navbar-smap-link" %>
+      <%= render 'shared/modal_sign_in', class: "navbar-smap-item navbar-smap-link" %>
+    <% end %>
+  </div>
 </div>
