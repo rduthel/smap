@@ -4,47 +4,53 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
-  const slots = [];
-  const slotsObject = {};
-  $.each($('.address_name'), (i, e) => {
-    slotsObject.title = e.innerText;
-  });
-  $.each($('.slot-from'), (i, e) => {
-    slotsObject.start = new Date(e.innerText);
-  });
-  $.each($('.slot-to'), (i, e) => {
-    slotsObject.end = new Date(e.innerText);
-  });
-  slots.push(slotsObject);
-  console.log(slots);
+  const myCalendar = () => {
+    const slots = [];
+    const slotsObject = {};
+    $.each($('.address_name'), (i, e) => {
+      slotsObject.title = e.innerText;
+    });
+    $.each($('.slot-from'), (i, e) => {
+      slotsObject.start = new Date(e.innerText);
+    });
+    $.each($('.slot-to'), (i, e) => {
+      slotsObject.end = new Date(e.innerText);
+    });
+    slots.push(slotsObject);
+    console.log(slots);
 
-  $('#calendar').fullCalendar({
-    header: {
-      left: 'month,agendaWeek,agendaDay',
-      center: 'title',
-      right: 'today prev,next',
-    },
-    views: {
-      agendaWeek: {
-        titleFormat: 'D MMMM',
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'month,agendaWeek,agendaDay',
+        center: 'title',
+        right: 'today prev,next',
       },
-      month: {
-        titleFormat: 'MMMM YYYY',
+      views: {
+        agendaWeek: {
+          titleFormat: 'D MMMM',
+        },
+        month: {
+          titleFormat: 'MMMM YYYY',
+        },
       },
-    },
-    aspectRatio: 2,
-    themeSystem: 'bootstrap3',
-    defaultView: 'agendaWeek',
-    locale: 'fr',
-    nowIndicator: true,
-    navLinks: true,
-    eventSources: [
-      {
-        events: slots,
+      aspectRatio: 2,
+      themeSystem: 'bootstrap3',
+      defaultView: 'agendaWeek',
+      locale: 'fr',
+      nowIndicator: true,
+      navLinks: true,
+      eventSources: [
+        {
+          events: slots,
+        },
+      ],
+      dayClick(date) {
+        console.log(`Clicked on: ${date.format()}`);
       },
-    ],
-    dayClick(date) {
-      console.log(`Clicked on: ${date.format()}`);
-    },
-  });
+    });
+  }
+
+  if ($('.slot-from').length !== 0) {
+    myCalendar();
+  }
 });
