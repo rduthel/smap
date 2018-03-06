@@ -21,7 +21,7 @@
   </div>
   <div class="dash">
     <% if @car == nil %>
-      <%= link_to "Choisissez votre voiture SMAP !", cars_path %>
+      <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
     <% else %>
       <h4> <%= @car.brand %>  <%= @car.model %>
           <% a = [] %>
