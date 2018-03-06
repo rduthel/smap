@@ -49,33 +49,75 @@ search.addWidget(
   search.addWidget(
     instantsearch.widgets.searchBox({
       container: '#search-box',
-      placeholder: 'Search for products'
+      placeholder:'Cherchez votre voiture SMAP'
     })
   );
 
 search.addWidget(
   instantsearch.widgets.refinementList({
     container: '#brand',
-    attributeName: 'brand'
+    attributeName: 'brand',
+    templates: {
+      header: 'Marques'
+    }
   })
 );
 
- // initialize currentRefinedValues
-  search.addWidget(
-    instantsearch.widgets.currentRefinedValues({
-      container: '#current-refined-values',
-      // This widget can also contain a clear all link to remove all filters,
-      // we disable it in this example since we use `clearAll` widget on its own.
-      clearAll: false
-    })
-  );
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#category',
+    attributeName: 'category',
+    templates: {
+      header: 'Categories'
+    }
+  })
+);
 
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#energy',
+    attributeName: 'energy',
+    templates: {
+      header: 'Moteur'
+    }
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#transmission',
+    attributeName: 'transmission',
+    templates: {
+      header: 'Boite de vitesse'
+    }
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#portes',
+    attributeName: 'car_door',
+    templates: {
+      header: 'Portes'
+    }
+  })
+);
+
+search.addWidget(
+  instantsearch.widgets.refinementList({
+    container: '#places',
+    attributeName: 'seat',
+    templates: {
+      header: 'Places'
+    }
+  })
+);
   // initialize clearAll
   search.addWidget(
     instantsearch.widgets.clearAll({
       container: '#clear-all',
       templates: {
-        link: 'Reset everything'
+        link: 'Supprimer les filtres'
       },
       autoHideContainer: false
     })
