@@ -17,7 +17,6 @@ $(() => {
       slotsObject.end = new Date(e.innerText);
     });
     slots.push(slotsObject);
-    console.log(slots);
 
     $('#calendar').fullCalendar({
       header: {
@@ -45,7 +44,6 @@ $(() => {
             end,
           };
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-          console.log(`Ajouté : ${eventData}.`);
           $.ajax({
             url: '/dashboard/slot',
             type: 'POST',
