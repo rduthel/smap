@@ -48,9 +48,13 @@ $(() => {
         console.log(`Clicked on: ${date.format()}`);
       },
     });
-  }
+  };
 
   if ($('.slot-from').length !== 0) {
     myCalendar();
   }
+
+  $('#button_new_slot').on('click', () => {
+    myCalendar();
+  });
 });
