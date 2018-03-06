@@ -45,15 +45,15 @@ $(() => {
             end,
           };
           $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+          console.log(`Ajouté : ${eventData}.`);
+          $.ajax({
+            url: '/dashboard/slot',
+            type: 'POST',
+            beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
+            data: `title=${eventData.title}&start=${eventData.start}&end=${eventData.end}`,
+          });
         }
         $('#calendar').fullCalendar('unselect');
-        console.log(`Ajouté : ${title}, de ${start} à ${end}.`);
-        $.ajax({
-          url: '/dashboard/slot',
-          type: 'POST',
-          beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
-          data: title,
-        });
         // fetch('/dashboard/slot', {
         //   method: 'POST',
         //   body: title
