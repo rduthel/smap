@@ -1,7 +1,7 @@
 <div class="navbar-smap">
   <!-- Logo -->
   <%= link_to root_path, class: "navbar-smap-brand" do %>
-    <%= image_tag "logo.png", height: 50 %>
+    <%= image_tag "logoblanc.png", height: 50 %>
   <% end %>
   <!-- Right Navigation -->
   <div class="navbar-smap-right hidden-xs hidden-sm">
@@ -24,6 +24,8 @@
         </div>
       </div>
     <% else %>
+
+
       <!-- Login link (when logged out) -->
 
       <%= link_to "Nos véhicules", cars_path, class: "navbar-smap-item navbar-smap-link" %>

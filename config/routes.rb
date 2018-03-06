@@ -17,12 +17,12 @@ Rails.application.routes.draw do
   get "/cars/:id/souscription", to: "cars#souscription", as: "souscription"
 
   #Dashboard routes
-  get "/dashboard", to: "dashboards#show"
-  get "/dashboard/bill", to: "dashboards#bill"
-  get "/dashboard/slot", to: "dashboards#slot"
+  get "/dashboard", to: "dashboards#show", as: :dashboard
+  get "/dashboard/bill", to: "dashboards#bill", as: :dashboard_bill
+  get "/dashboard/slot", to: "dashboards#slot", as: :dashboard_slot
+  get "/profil", to: "dashboards#profile", as: :dashboard_profile
 
   #Profil routes
-  get "/profil", to: "driver_profiles#profile"
   get "/profil/edit", to: "driver_profiles#edit"
   patch "/profil", to: "driver_profiles#update"
 end

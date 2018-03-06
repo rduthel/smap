@@ -19,9 +19,9 @@
               <% resource_name = :user %>
               <%= simple_form_for(user, as: resource_name, url: session_path(resource_name)) do |f| %>
                 <div class="form-inputs">
-                  <%= f.input :email, required: false, autofocus: true, placeholder: "bob@gmail.com" %>
-                  <%= f.input :password, required: false, placeholder: "••••••" %>
-                  <%= f.input :remember_me, as: :boolean if Devise.mappings[resource_name].rememberable? %>
+                  <%= f.input :email, label: 'Email', required: false, autofocus: true, placeholder: "bob@gmail.com" %>
+                  <%= f.input :password, label:'Mot de passe', required: false, placeholder: "••••••" %>
+                  <%= f.input :remember_me, label:'Se souvenir de moi', as: :boolean if Devise.mappings[resource_name].rememberable? %>
                 </div>
                 <div class="form-actions">
 
