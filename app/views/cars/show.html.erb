@@ -1,15 +1,41 @@
-<div class="container">
-  <h1><%= @car.brand %> <%= @car.model %></h1>
-  <img src="<%= @car.photo %>" alt="">
-  <p><%= @car.description %></p>
+<div class="container-car">
+  <div class="car-container">
+    <%= cl_image_tag @car.photo, width: 630%>
+    <div>
+      <h1><%= @car.brand %> <%= @car.model %></h1>
+      <div class="icon-list show-list">
+        <div class="icon-card show-card">
+          <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
+          <h4 class="icons-li"><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i> &nbsp; <%= @car.energy %></h4>
+          <h4 class="icons-li"><i class="fas fa-cogs smap-color"></i> &nbsp; <%= @car.transmission %></h4>
+        </div>
+        <div class="icon-card show-card">
+          <h4 class="icons-li"><i class="fas fa-car smap-color"></i> &nbsp; <%= @car.car_door %> Portes</h4>
+          <h4 class="icons-li"><i class="fas fa-suitcase smap-color"></i></i> &nbsp; <%= @car.lugage %> Bagages</h4>
+        </div>
+      </div>
+    </div>
+  </div>
 
-  <p><%= @car.energy %></p>
-  <p><%= @car.seat %> places</p>
-  <p><%= @car.lugage %> bagages</p>
-  <p><%= @car.transmission %></p>
-  <p><%= @car.car_door %> portes</p>
-  <p>Concessionnaire : <span id="concessionnaire_name"><%= @car.concessionnaire_name %></span>, situé <span id="concessionnaire_address"><%= @car.concessionnaire_address %></span></p>
-  <div id="map"></div>
-
-  <%= link_to "Estimer ma facture !", estimation_path(@car) %>
+  <div class="info-container">
+    <div class="description">
+      <p><%= @car.description %></p>
+      <hr>
+      <div class="contract">
+        <div class="contract-text">
+          <h2>Le contrat SMAP, engagement 24 mois :</h2>
+          <p><ul>
+            <li>Le carburant</li>
+            <li>L'entretien</li>
+            <li>L'assurance</li>
+          </ul></p>
+        </div>
+        <%= link_to "Estimer ma facture avec ce vehicule", estimation_path(@car), class:"btn-smap" %>
+      </div>
+    </div>
+    <div class="contract-container">
+      <p><strong>Concessionnaire :</strong> <span id="concessionnaire_name"><%= @car.concessionnaire_name %></span><span id="concessionnaire_address"><%= @car.concessionnaire_address %></span></p>
+      <div id="map"></div>
+    </div>
+  </div>
 </div>
