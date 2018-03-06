@@ -7,9 +7,7 @@
   <div class="navbar-smap-right hidden-xs hidden-sm">
     <% if user_signed_in? %>
       <!-- Links when logged in -->
-      <%= link_to " Voitures ",  cars_path , class: "navbar-wagon-item navbar-wagon-link" %>&nbsp;
-      <%= link_to " Profil ",  profil_path , class: "navbar-wagon-item navbar-wagon-link" %>&nbsp;
-      <%= link_to " Dashboard ",  dashboard_path , class: "navbar-wagon-item navbar-wagon-link" %>
+      <%= link_to " Nos véhicules ",  cars_path , class: "navbar-smap-item navbar-smap-link" %>&nbsp;
       <!-- Avatar with dropdown menu -->
       <div class="navbar-smap-item">
         <div class="dropdown">
@@ -19,8 +17,8 @@
             <%= image_tag ("profil.png"), class:"avatar dropdown-toggle", id:"navbar-smap-menu", data: { toggle: 'dropdown' } %>
             <% end %>
           <ul class="dropdown-menu dropdown-menu-right navbar-smap-dropdown-menu">
-            <li><%= link_to "Profil"%></a></li>
-            <li><a href="#">Tableau de bord</a></li>
+            <li><%= link_to "Profil", profil_path %></a></li>
+            <li><%= link_to "Tableau de bord", dashboard_path %></a></li>
             <li><%= link_to "Déconnexion", destroy_user_session_path, method: :delete %></a></li>
           </ul>
         </div>
@@ -28,11 +26,8 @@
     <% else %>
       <!-- Login link (when logged out) -->
 
-      <%= link_to "Nos véhicules", cars_path, class: "navbar-wagon-item navbar-wagon-link" %>
-      <%= render 'shared/modal_sign_in' %>
+      <%= link_to "Nos véhicules", cars_path, class: "navbar-smap-item navbar-smap-link" %>
+      <%= render 'shared/modal_sign_in', class: "navbar-smap-item navbar-smap-link" %>
     <% end %>
   </div>
 </div>
-
-
-
