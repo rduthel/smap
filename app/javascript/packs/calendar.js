@@ -33,6 +33,21 @@ $(() => {
           titleFormat: 'MMMM YYYY',
         },
       },
+      selectable: true,
+      selectHelper: true,
+      select(start, end) {
+        const title = prompt('Event Title:');
+        let eventData;
+        if (title) {
+          eventData = {
+            title,
+            start,
+            end,
+          };
+          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+        }
+        $('#calendar').fullCalendar('unselect');
+      },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
       defaultView: 'agendaWeek',
