@@ -18,7 +18,7 @@
   <div class="dash">
     <h3>Mes adresses :</h3>
     <% @driver_profile.addresses.each do |address| %>
-      <p> <%= address.name %> : <%= address.address %> <%= address.zip_code %> <%= address.city %></p>
+      <p> <span class="address_name"><%= address.name %></span> : <%= address.address %> <%= address.zip_code %> <%= address.city %></p>
        <%= link_to "Modifier cette adresse", edit_address_path(address) %>
        <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
     <% end %>
