@@ -5,22 +5,28 @@ import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
   const slots = [];
-  $.each($('slot-from'), (i, val) => {
-    slots.push(val);
+  const slotsObject = {};
+  $.each($('.slot-from'), (i, e) => {
+    slotsObject.start = e.innerText;
   });
+  $.each($('.slot-to'), (i, e) => {
+    slotsObject.stop = e.innerText;
+  });
+  slots.push(slotsObject);
+
   $('#calendar').fullCalendar({
     header: {
       left: 'month,agendaWeek,agendaDay',
       center: 'title',
-      right: 'today prev,next',
+      right: 'today prev,next'
     },
     views: {
       agendaWeek: {
-        titleFormat: 'D MMMM',
+        titleFormat: 'D MMMM'
       },
       month: {
-        titleFormat: 'MMMM YYYY',
-      },
+        titleFormat: 'MMMM YYYY'
+      }
     },
     aspectRatio: 2,
     themeSystem: 'bootstrap3',
@@ -28,8 +34,9 @@ $(() => {
     locale: 'fr',
     nowIndicator: true,
     navLinks: true,
+    events: slots,
     dayClick(date) {
       console.log(`Clicked on: ${date.format()}`);
-    },
+    }
   });
 });
