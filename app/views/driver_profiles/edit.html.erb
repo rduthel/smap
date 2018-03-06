@@ -1,16 +1,16 @@
 <%= simple_form_for @driver_profile, url:profil_path do |f| %>
   <%= f.input :title, label: 'Civilité' %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year] %>
-  <%= f.input :photo %> <%= cl_image_tag @driver_profile.photo, height: 50, width: 50, crop: :fit %>
-  <%= f.input :city %>
-  <%= f.input :address %>
-  <%= f.input :zip_code %>
-  <%= f.input :telephone_number %>
-  <%= f.input :driving_license %>
-  <%= f.input :identity_card %>
-  <%= f.button :submit %>
+  <%= f.input :first_name, label: 'Prénom' %>
+  <%= f.input :last_name , label: 'Nom'%>
+  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year], label:'Date de naissance' %>
+  <%= f.input :photo %> <%= cl_image_tag @driver_profile.photo, height: 50, width: 50, crop: :fit, label: 'Photo' %>
+  <%= f.input :city, label: 'Ville' %>
+  <%= f.input :address, label:'Adresse' %>
+  <%= f.input :zip_code, label: 'Code postal' %>
+  <%= f.input :telephone_number, label:'Numéro de téléphone' %>
+  <%= f.input :driving_license, label: 'Permis de conduire' %>
+  <%= f.input :identity_card, label: 'Carte d\'identité'%>
+  <%= f.button :submit, label:'Inscription' %>
 
-  <%= link_to "Change your email/password",  edit_user_registration_path  %>
+  <%= link_to "Changez votre email/mot de passe",  edit_user_registration_path  %>
 <% end %>

@@ -1,6 +1,6 @@
 .smap-color {
-  font-color: #F3CD2B;
-  color: #F3CD2B;
+  font-color: #F9D459;
+  color: #F9D459;
 }
 
 .tabs {
@@ -12,7 +12,7 @@
   border-bottom: none;
 }
 .tabs a {
-  color: #F3CD2B;
+  color: #F9D459;
 }
 .tabs a:hover {
   cursor: pointer;
@@ -20,8 +20,7 @@
   opacity: 0.8;
 }
 .tabs h3 {
-  font-size: 25px;
-  font-weight: bold;
+  font-size: 15px;
   margin: 0;
 }
 .tabs h2 {
@@ -46,7 +45,7 @@
 }
 .tab.active {
   background: white;
-  color: black;
+  color: #616668;
   border: 1px solid #eaeaea;
   border-bottom: 4px solid #F3CD2B;
 }
@@ -121,6 +120,10 @@
     text-decoration: none;
     background-color: #eaeaea;
   }
+}
+
+h1 {
+  color: #616668;
 }
 
 .flex {
