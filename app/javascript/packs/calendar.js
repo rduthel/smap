@@ -75,9 +75,6 @@ $(() => {
           events: slots,
         },
       ],
-      dayClick(date) {
-        console.log(`Clicked on: ${date.format()}`);
-      },
     });
   };
 
