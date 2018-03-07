@@ -16,9 +16,9 @@
         </div>
       </div>
       <div class="estimer text-center">
-        <input id="semaine" type="range" min="0" max="120" step="1" />
+        <input id="semaine" class="slider" type="range" min="0" max="120" step="1" />
         <input type="text" id="sval" value="">
-        <input id="weekend" type="range" min="0" max="48" step="1" />
+        <input id="weekend" class="slider" type="range" min="0" max="48" step="1" />
         <input type="text" id="wval" value="">
         <span id="tarif"><%= @car.monthly_price %></span>
         <span id="estimation"><%= @car.monthly_price %></span>
