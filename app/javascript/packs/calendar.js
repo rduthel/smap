@@ -14,12 +14,12 @@ $(() => {
       parents.push(e);
     });
 
-    $.each($('.slot-from'), (i, e) => {
-      slotsStart.push(new Date(e.innerText));
+    $.each($(calendar).parent().find('.slot-from'), (ind, el) => {
+      slotsStart.push(new Date(el.innerText));
     });
 
-    $.each($('.slot-to'), (i, e) => {
-      slotsEnd.push(new Date(e.innerText));
+    $.each($(calendar).parent().find('.slot-to'), (ind, el) => {
+      slotsEnd.push(new Date(el.innerText));
     });
 
     $.each($('.slots'), (index) => {
@@ -54,15 +54,15 @@ $(() => {
             start,
             end,
           };
-          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+          calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
           $.ajax({
             url: '/dashboard/slot',
             type: 'POST',
             beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
-            data: `title=${eventData.title}&start=${eventData.start}&end=${eventData.end}`,
+            data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
           });
         }
-        $('#calendar').fullCalendar('unselect');
+        calendar.fullCalendar('unselect');
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
