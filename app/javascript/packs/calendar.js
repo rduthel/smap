@@ -4,22 +4,32 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
-  const myCalendar = () => {
+  const myCalendar = (calendar, indice) => {
     const slots = [];
-    const slotsObject = {};
-    $.each($('.address_name'), (i, e) => {
-      slotsObject.title = e.innerText;
-    });
-    $.each($('.slot-from'), (i, e) => {
-      slotsObject.start = new Date(e.innerText);
-    });
-    $.each($('.slot-to'), (i, e) => {
-      slotsObject.end = new Date(e.innerText);
-    });
-    slots.push(slotsObject);
-    console.log(slots);
+    const slotsStart = [];
+    const slotsEnd = [];
+    const parents = [];
 
-    $('#calendar').fullCalendar({
+    $.each($(calendar).parent().parent().find('.address-name'), (i, e) => {
+      parents.push(e);
+    });
+
+    $.each($(calendar).parent().find('.slot-from'), (ind, el) => {
+      slotsStart.push(new Date(el.innerText));
+    });
+
+    $.each($(calendar).parent().find('.slot-to'), (ind, el) => {
+      slotsEnd.push(new Date(el.innerText));
+    });
+
+    $.each($('.slots'), (index) => {
+      const slotsObject = {};
+      slotsObject.start = slotsStart[index];
+      slotsObject.end = slotsEnd[index];
+      slots.push(slotsObject);
+    });
+
+    calendar.fullCalendar({
       header: {
         left: 'month,agendaWeek,agendaDay',
         center: 'title',
@@ -36,7 +46,7 @@ $(() => {
       selectable: true,
       selectHelper: true,
       select(start, end) {
-        const title = prompt('Event Title:');
+        const title = $(parents[indice]).text();
         let eventData;
         if (title) {
           eventData = {
@@ -44,20 +54,15 @@ $(() => {
             start,
             end,
           };
-          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+          calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
+          $.ajax({
+            url: '/dashboard/slot',
+            type: 'POST',
+            beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
+            data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
+          });
         }
-        $('#calendar').fullCalendar('unselect');
-        console.log(`Ajouté : ${title}, de ${start} à ${end}.`);
-        $.ajax({
-          url: '/dashboard/slot',
-          type: 'POST',
-          beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
-          data: title,
-        });
-        // fetch('/dashboard/slot', {
-        //   method: 'POST',
-        //   body: title
-        // });
+        calendar.fullCalendar('unselect');
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
@@ -76,11 +81,7 @@ $(() => {
     });
   };
 
-  if ($('.slot-from').length !== 0) {
-    myCalendar();
-  }
-
-  $('#button_new_slot').on('click', () => {
-    myCalendar();
+  $.each($('.calendar'), (i, e) => {
+    myCalendar($(e), i);
   });
 });
