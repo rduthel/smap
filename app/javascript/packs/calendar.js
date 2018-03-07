@@ -54,7 +54,7 @@ $(() => {
             start,
             end,
           };
-          $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
+          calendar.fullCalendar('renderEvent', eventData, true); // stick? = true
           $.ajax({
             url: '/dashboard/slot',
             type: 'POST',
@@ -62,7 +62,7 @@ $(() => {
             data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
           });
         }
-        $('#calendar').fullCalendar('unselect');
+        calendar.fullCalendar('unselect');
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
