@@ -45,9 +45,7 @@
     <h3>Mes disponibilités :</h3>
     <p>
       <% @driver_profile.addresses.each do |address| %>
-        Pour l'adresse
-        <%= address.name %>
-        :
+        Pour l'adresse <span class="address-name"><%= address.name %></span> :
         <ul>
           <% address.slots.each do |slot| %>
             <li class="slots" style="display: none;">
@@ -58,15 +56,11 @@
               -
               <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
           <% end %>
-          <div id="calendar"></div>
+          <div class="calendar"></div>
         </ul>
         <br>
       <% end %>
     </p>
-
     <%= render 'shared/modal_new_slot' %>
-
-    <button id="button_new_slot">Ajouter une disponibilité</button>
-    <!-- <button id="button_new_slot" data-toggle="modal" data-target="#modalNewSlot">Ajouter une disponibilité</button> -->
   </div>
 </div>

@@ -4,7 +4,7 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
-  const myCalendar = () => {
+  const myCalendar = (calendar) => {
     const slots = [];
     const slotsStart = [];
     const slotsEnd = [];
@@ -24,7 +24,7 @@ $(() => {
       slots.push(slotsObject);
     });
 
-    $('#calendar').fullCalendar({
+    calendar.fullCalendar({
       header: {
         left: 'month,agendaWeek,agendaDay',
         center: 'title',
@@ -57,10 +57,6 @@ $(() => {
           });
         }
         $('#calendar').fullCalendar('unselect');
-        // fetch('/dashboard/slot', {
-        //   method: 'POST',
-        //   body: title
-        // });
       },
       aspectRatio: 2,
       themeSystem: 'bootstrap3',
@@ -79,11 +75,7 @@ $(() => {
     });
   };
 
-  if ($('.slot-from').length !== 0) {
-    myCalendar();
-  }
-
-  $('#button_new_slot').on('click', () => {
-    myCalendar();
+  $.each($('.calendar'), (i, e) => {
+    myCalendar($(e));
   });
 });
