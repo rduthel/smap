@@ -1,7 +1,6 @@
 function initProfile(){
 
   $(document).ready(function() {
-    console.log("je suis pret");
       var $btnSets = $('#responsive'),
       $btnLinks = $btnSets.find('a');
 
