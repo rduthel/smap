@@ -59,7 +59,7 @@ $(() => {
             url: '/dashboard/slot',
             type: 'POST',
             beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
-            data: `title=${eventData.title}&start=${eventData.start}&end=${eventData.end}`,
+            data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
           });
         }
         $('#calendar').fullCalendar('unselect');
