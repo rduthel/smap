@@ -4,3 +4,6 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+select	/home/romain/code/rduthel/smap/app/javascript/packs/calendar.js	/^      select(start, end) {$/;"	function	line:43
+beforeSend	/home/romain/code/rduthel/smap/app/javascript/packs/calendar.js	/^            beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },$/;"	function	line:55
+dayClick	/home/romain/code/rduthel/smap/app/javascript/packs/calendar.js	/^      dayClick(date) {$/;"	function	line:76
