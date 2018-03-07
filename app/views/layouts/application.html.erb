@@ -39,19 +39,9 @@
 
   <body class="<%= params[:controller] %> <%= params[:action] %>">
     <%= render 'shared/navbar' %>
-
-
-
-
-    <%=
-      yield
-    %>
-
-
-
-
-
+    <%= yield %>
     <%= render 'shared/footer' %>
+
     <script src="https://cdn.jsdelivr.net/autocomplete.js/0/autocomplete.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/instantsearch.js@2.5.2"></script>
     <%= javascript_include_tag 'application' %>

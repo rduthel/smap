@@ -1,9 +1,11 @@
 .aa-input-container {
   display: inline-block;
   position: relative;
-  padding: 20px 50px;}
+  padding: 10px 10px;}
+
 .aa-input-search {
-  width: 300px;
+  width: 270px;
+  height: 15px;
   border: 1px solid rgba(228, 228, 228, 0.6);
   padding: 12px 28px 12px 12px;
   box-sizing: border-box;
@@ -11,11 +13,15 @@
   -moz-appearance: none;
   appearance: none;
   font-family: 'Raleway';
+  color: $black;
   font-style: italic;
-  font-size: extra-light;
+  font-size: 15px;
+  font-style:light;
 }
-  .aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button, .aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
+
+.aa-input-search::-webkit-search-decoration, .aa-input-search::-webkit-search-cancel-button, .aa-input-search::-webkit-search-results-button, .aa-input-search::-webkit-search-results-decoration {
     display: none; }
+
 .aa-input-icon {
   height: 16px;
   width: 16px;
@@ -40,3 +46,57 @@
 }
   .aa-suggestion:hover, .aa-suggestion.aa-cursor {
     background-color: rgba(241, 241, 241, 0.35); }
+
+  ._1pxt92ph {
+    cursor: pointer !important;
+    -webkit-transition: background 0.3s, border-color 0.3s !important;
+    -moz-transition: background 0.3s, border-color 0.3s !important;
+    transition: background 0.3s, border-color 0.3s !important;
+    position: relative !important;
+    display: inline-block !important;
+    text-align: center !important;
+    text-decoration: none !important;
+    border-radius: 4px !important;
+    width: auto !important;
+    font-family: 'raleway' !important;
+    font-size: 19px !important;
+    line-height: 22px !important;
+    letter-spacing: undefined !important;
+    padding-top: 12px !important;
+    padding-bottom: 12px !important;
+    color: #484848 !important;
+    font-weight: 700 !important;
+    border: 2px solid transparent !important;
+    padding-right: 24px !important;
+    padding-left: 24px !important;
+    min-width: 77.66563145999496px !important;
+    background: #ffffff !important;
+}
+
+._vjhf3r6 {
+    -webkit-transition: color 0.3s !important;
+    -moz-transition: color 0.3s !important;
+    transition: color 0.3s !important;
+    font-family: 'raleway' !important;
+    font-size: 19px !important;
+    line-height: 22px !important;
+    letter-spacing: undefined !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    color: #484848 !important;
+}
+
+._1ho874em {
+    margin: 0px !important;
+    word-wrap: break-word !important;
+    font-family: 'raleway' !important;
+    font-size: 15px !important;
+    line-height: 18px !important;
+    letter-spacing: 0.2px !important;
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+    color: #484848 !important;
+    font-weight: 700 !important;
+}
+
+
