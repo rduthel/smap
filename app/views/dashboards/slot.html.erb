@@ -1,70 +1,72 @@
-<div class="container">
-  <h1 class="text-center"></h1>
-  <div class="tabs">
-    <a class="tab" href="<%= dashboard_profile_path %>">
-      <h3>Mon profil</h3>
-      <h2>
-        <i class="fas fa-address-card"></i>
-      </h2>
-    </a>
-    <a class="tab" href="<%= dashboard_path %>">
-      <h3>Ma voiture SMAP</h3>
-      <h2>
-        <i class="fas fa-car"></i>
-      </h2>
-    </a>
-    <a class="tab active" href="<%= dashboard_slot_path %>">
-      <h3>Mes disponibilités</h3>
-      <h3>et adresses</h3>
-      <h2>
-        <i class="far fa-calendar-alt"></i>
-      </h2>
-    </a>
-    <a class="tab" href="<%= dashboard_bill_path %>">
-      <h3>Ma facture</h3>
-      <h2>
-        <i class="far fa-money-bill-alt"></i>
-      </h2>
-    </a>
-  </div>
-  <div class="dash">
-    <% if @car == nil %>
-      <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
-    <% else %>
-    <h3>Mes adresses :</h3>
-    <% @driver_profile.addresses.each do |address| %>
-      <p>
-        <span class="address_name"><%= address.name %></span>
-        :
-        <%= address.address %>
-        <%= address.zip_code %>
-        <%= address.city %></p>
-      <%= link_to "Modifier cette adresse", edit_address_path(address) %>
-      <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
-    <% end %>
-    <% end %>
-    <br>
-    <%= link_to "Ajouter une adresse", new_address_path %>
-    <hr>
-    <h3>Mes disponibilités :</h3>
-    <p>
+<div class="body-wrap">
+  <div class="container">
+    <h1 class="text-center"></h1>
+    <div class="tabs">
+      <a class="tab" href="<%= dashboard_profile_path %>">
+        <h3>Mon profil</h3>
+        <h2>
+          <i class="fas fa-address-card"></i>
+        </h2>
+      </a>
+      <a class="tab" href="<%= dashboard_path %>">
+        <h3>Ma voiture SMAP</h3>
+        <h2>
+          <i class="fas fa-car"></i>
+        </h2>
+      </a>
+      <a class="tab active" href="<%= dashboard_slot_path %>">
+        <h3>Mes disponibilités</h3>
+        <h3>et adresses</h3>
+        <h2>
+          <i class="far fa-calendar-alt"></i>
+        </h2>
+      </a>
+      <a class="tab" href="<%= dashboard_bill_path %>">
+        <h3>Ma facture</h3>
+        <h2>
+          <i class="far fa-money-bill-alt"></i>
+        </h2>
+      </a>
+    </div>
+    <div class="dash">
+      <% if @car == nil %>
+        <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
+      <% else %>
+      <h3>Mes adresses :</h3>
       <% @driver_profile.addresses.each do |address| %>
-        Pour l'adresse <span class="address-name"><%= address.name %></span> :
-        <ul>
-          <% address.slots.each do |slot| %>
-            <li class="slots" style="display: none;">
-              <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span>
-              //
-              <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
-              <%= link_to "Modifier cette dispo", edit_slot_path(slot) %>
-              -
-              <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
-          <% end %>
-          <div class="calendar"></div>
-        </ul>
-        <br>
+        <p>
+          <span class="address_name"><%= address.name %></span>
+          :
+          <%= address.address %>
+          <%= address.zip_code %>
+          <%= address.city %></p>
+        <%= link_to "Modifier cette adresse", edit_address_path(address) %>
+        <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
       <% end %>
-    </p>
-    <%= render 'shared/modal_new_slot' %>
+      <% end %>
+      <br>
+      <%= link_to "Ajouter une adresse", new_address_path %>
+      <hr>
+      <h3>Mes disponibilités :</h3>
+      <p>
+        <% @driver_profile.addresses.each do |address| %>
+          Pour l'adresse <span class="address-name"><%= address.name %></span> :
+          <ul>
+            <% address.slots.each do |slot| %>
+              <li class="slots" style="display: none;">
+                <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span>
+                //
+                <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
+                <%= link_to "Modifier cette dispo", edit_slot_path(slot) %>
+                -
+                <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
+            <% end %>
+            <div class="calendar"></div>
+          </ul>
+          <br>
+        <% end %>
+      </p>
+      <%= render 'shared/modal_new_slot' %>
+    </div>
   </div>
 </div>
