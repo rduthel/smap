@@ -63,11 +63,11 @@ if (page.length !== 0) {
   };
 
   const updateSval = function(event) {
-    document.getElementById('sval').value = this.value;
+    document.getElementById('sval').innerText = this.value;
   };
 
  const updateWval = function(event) {
-    document.getElementById('wval').value = this.value;
+    document.getElementById('wval').innerText = this.value;
   };
 
   semaine.addEventListener('input', semaineChange);

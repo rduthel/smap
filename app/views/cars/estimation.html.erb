@@ -16,15 +16,21 @@
         </div>
       </div>
       <div class="estimer text-center">
+        <h4>Du lundi au vendredi, ma voiture sera disponible :</h4><h2><span id="sval" >60</span> heures</h2>
+        <br>
         <input id="semaine" class="slider" type="range" min="0" max="120" step="1" />
-        <input type="text" id="sval" value="">
+        <br>
+        <h4>Le week-end, elle sera disponible :</h4> <h2><span id="wval">24</span> heures </h2>
+        <br>
         <input id="weekend" class="slider" type="range" min="0" max="48" step="1" />
-        <input type="text" id="wval" value="">
-        <span id="tarif"><%= @car.monthly_price %></span>
-        <span id="estimation"><%= @car.monthly_price %></span>
+        <hr>
+        <h2>Mon estimation : </h2>
+        <h4><span id="tarif"><%= @car.monthly_price %></span> € / mois ---->
+       <span id="estimation"><%= @car.monthly_price %></span>€ / mois</h4>
 
+      <hr>
 
-        <%= link_to "Souscrire à SMAP ! ", souscription_path(@car) %>
+        <%= link_to "Souscrire à SMAP ! ", souscription_path(@car), class: "btn-smap" %>
       </div>
     </div>
   </div>
