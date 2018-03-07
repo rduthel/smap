@@ -77,5 +77,10 @@ $(() => {
 
   $.each($('.calendar'), (i, e) => {
     myCalendar($(e));
+    const parents = [];
+    $.each($(e).parent().parent().find('.address-name'), (ind, el) => {
+      parents.push(el);
+    });
+    console.log(`indice ${i} : ${$(parents[i]).text()}`);
   });
 });
