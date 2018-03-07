@@ -1,8 +1,7 @@
 class SlotsJsonController < ApplicationController
   def create
-    puts "----------------- #{params['title']} ------------------------"
     Slot.create!(
-      address_id: Address.first.id,
+      address_id: Address.where(name: params['title']).first.id,
       car_id: Car.first.id,
       from: time_to_readable_date(params['start']),
       to: time_to_readable_date(params['end'])
