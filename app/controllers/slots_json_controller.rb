@@ -1,5 +1,6 @@
 class SlotsJsonController < ApplicationController
   def create
+    puts "----------------- #{params['title']} ------------------------"
     Slot.create!(
       address_id: Address.first.id,
       car_id: Car.first.id,

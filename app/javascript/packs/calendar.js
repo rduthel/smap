@@ -4,10 +4,15 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
-  const myCalendar = (calendar) => {
+  const myCalendar = (calendar, indice) => {
     const slots = [];
     const slotsStart = [];
     const slotsEnd = [];
+    const parents = [];
+
+    $.each($(calendar).parent().parent().find('.address-name'), (i, e) => {
+      parents.push(e);
+    });
 
     $.each($('.slot-from'), (i, e) => {
       slotsStart.push(new Date(e.innerText));
@@ -41,10 +46,11 @@ $(() => {
       selectable: true,
       selectHelper: true,
       select(start, end) {
-        const title = prompt('Event Title:');
+        const title = $(parents[indice]).text();
         let eventData;
         if (title) {
           eventData = {
+            title,
             start,
             end,
           };
@@ -76,11 +82,11 @@ $(() => {
   };
 
   $.each($('.calendar'), (i, e) => {
-    myCalendar($(e));
-    const parents = [];
-    $.each($(e).parent().parent().find('.address-name'), (ind, el) => {
-      parents.push(el);
-    });
-    console.log(`indice ${i} : ${$(parents[i]).text()}`);
+    myCalendar($(e), i);
+    // const parents = [];
+    // $.each($(e).parent().parent().find('.address-name'), (ind, el) => {
+    //   parents.push(el);
+    // });
+    // console.log(`indice ${i} : ${$(parents[i]).text()}`);
   });
 });
