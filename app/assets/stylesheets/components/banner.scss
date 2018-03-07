@@ -1,33 +1,41 @@
 .banner {
   color: black;
-  text-align: center;
   height: calc(100vh - 310px);
-  padding: 50px;
+  padding: 20px;
   /* if you have a 70px navbar => height: calc(100vh - 70px); */
   background-size: cover !important;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
   margin-bottom: 20px;
 
-}
-.banner-content {
- h1 {
-  font-size: 30px;
-  color: black;
-  font-weight: bold;
-  text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
-  opacity: 0.6;
-  font-family: 'Raleway';
-  text-align: right;
+  .tagline-first-line {
+    padding-left: 40px;
+    padding-top: 50px;
+    margin-bottom: 0px;
+    font-size: 35px;
+    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+  }
+  .tagline-second-line {
+    padding-left: 100px;
+    padding-top: 0px;
+    font-size: 35px;
+    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+  }
 }
 
+.banner-content {
+  h7 {
+    font-size: 35px;
+    color: black;
+    font-weight: normal;
+    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+    font-family: 'Raleway';
+  }
+
  p {
-  font-size: 25px;
-  font-weight: lighter;
-  font-family: 'Open sans';
-  color: black;
-  margin-bottom: 30px;
-}
+    font-size: 35px;
+    font-weight: normal;
+    font-family: 'Raleway';
+    color: black;
+    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+  }
 }
 

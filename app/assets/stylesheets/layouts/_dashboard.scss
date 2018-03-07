@@ -1,6 +1,6 @@
 .smap-color {
-  font-color: #F9D459;
-  color: #F9D459;
+  font-color: #F7D534;
+  color: #F7D534;
 }
 
 .tabs {
@@ -12,7 +12,7 @@
   border-bottom: none;
 }
 .tabs a {
-  color: #F9D459;
+  color: #F7D534;
 }
 .tabs a:hover {
   cursor: pointer;
@@ -47,7 +47,7 @@
   background: white;
   color: #333333;
   border: 1px solid #eaeaea;
-  border-bottom: 4px solid #F3CD2B;
+  border-bottom: 4px solid #F7D534;
 }
 
 .dash {
@@ -79,7 +79,7 @@
 
 .avatar-main {
   border-radius: 50%;
-  border: 3px solid #F3CD2B;
+  border: 3px solid #F7D534;
 }
 
 .avatar {
@@ -96,6 +96,11 @@
   }
 }
 
+a {
+  font-size: 12px;
+  margin: 3px;
+}
+
 .secondaire p {
     font-size: 12px;
     text-decoration: none;
@@ -110,7 +115,7 @@
   height: 106px;
   width: 106px;
   border-radius: 50%;
-  border: 3px solid #F3CD2B;
+  border: 3px solid #F7D534;
   display: flex;
   align-items: center;
   font-size: 30px;
@@ -122,11 +127,20 @@
   }
 }
 
-h1 {
+.fas.fa-check {
+  color: #00FF80;
+}
+
+h1, h5, h6 {
   color: #616668;
+  font-size: 14px !important;
 }
 
 .flex {
   display: flex;
   align-items: center;
+}
+
+.profil {
+  margin-top: 10px;
 }
