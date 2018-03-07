@@ -1,6 +1,6 @@
 <% content_for :meta_title, "#{@car.brand} #{@car.model} est sur #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_description, @car.description %>
-<% content_for :meta_image, cl_image_path(@car.photo.path) %>
+<% content_for :meta_image, cl_image_path(@car.photo) %>
 
 <div class="body-wrap">
   <div class="container-car">
