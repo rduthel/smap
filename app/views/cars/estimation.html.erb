@@ -1,3 +1,7 @@
+<% content_for :meta_title, "Estimez votre tarif réduit pour #{@car.brand} #{@car.model} sur #{DEFAULT_META["meta_product_name"]}" %>
+<% content_for :meta_description, @car.description %>
+<% content_for :meta_image, cl_image_path(@car.photo.path) %>
+
 <div class="body-wrap">
   <div class="container">
     <h1 class="text-center" >Estimer ma facture mensuelle avec SMAP</h1>
