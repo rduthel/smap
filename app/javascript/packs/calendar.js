@@ -14,12 +14,12 @@ $(() => {
       parents.push(e);
     });
 
-    $.each($('.slot-from'), (i, e) => {
-      slotsStart.push(new Date(e.innerText));
+    $.each($(calendar).parent().find('.slot-from'), (ind, el) => {
+      slotsStart.push(new Date(el.innerText));
     });
 
-    $.each($('.slot-to'), (i, e) => {
-      slotsEnd.push(new Date(e.innerText));
+    $.each($(calendar).parent().find('.slot-to'), (ind, el) => {
+      slotsEnd.push(new Date(el.innerText));
     });
 
     $.each($('.slots'), (index) => {
