@@ -20,15 +20,14 @@ $(() => {
     const parents = [];
 
     $.each($('.address-name'), (i, e) => {
-      console.log('Coucou');
       parents.push(e);
     });
 
-    $.each($(calendar).parent().find('.slot-from'), (ind, el) => {
+    $.each($(`.slot-from-${indice}`), (ind, el) => {
       slotsStart.push(new Date(el.innerText));
     });
 
-    $.each($(calendar).parent().find('.slot-to'), (ind, el) => {
+    $.each($(`.slot-to-${indice}`), (ind, el) => {
       slotsEnd.push(new Date(el.innerText));
     });
 

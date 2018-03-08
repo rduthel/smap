@@ -33,9 +33,10 @@
       <% @driver_profile.addresses.each_with_index do |address, index| %>
         <div class="panel panel-default">
           <div class="panel-heading">
-              <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
-                <h4 class="panel-title">
-                <span class="address-name"><%= address.name %></span> :
+            <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
+              <h4 class="panel-title">
+                <span class="address-name"><%= address.name %></span>
+                :
                 <%= address.address %>
                 <%= address.zip_code %>
                 <%= address.city %>
@@ -46,13 +47,13 @@
             <div class="panel-body">
               <ul>
                 <% address.slots.each do |slot| %>
-                <li class="slots" style="display: none;">
-                  <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span>
-                  //
-                  <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
+                  <li class="slots" style="">
+                    <span class="slot-from-<%= index %>"><%= slot.from.strftime("%FT%T%:z") %></span>
+                    //
+                    <span class="slot-to-<%= index %>"><%= slot.to.strftime("%FT%T%:z") %></span>
                   <% end %>
-                  <div class="calendar"></div>
-                </ul>
+              </ul>
+              <div class="calendar"></div>
             </div>
           </div>
         </div>
