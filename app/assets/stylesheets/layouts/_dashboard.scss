@@ -3,6 +3,14 @@
   color: #F7D534;
 }
 
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top:  15px;
+}
+
 .tabs {
   // background: #53443F;
   display: flex;
@@ -12,7 +20,7 @@
   border-bottom: none;
 }
 .tabs a {
-  color: #F7D534;
+  color: #666666;
 }
 .tabs a:hover {
   cursor: pointer;
@@ -45,18 +53,19 @@
 }
 .tab.active {
   background: white;
-  color: #333333;
+  color: $black;
   border: 1px solid #eaeaea;
-  border-bottom: 4px solid #F7D534;
+  border-bottom: 2px solid #F7D534;
 }
 
 .dash {
   border: 1px solid #eaeaea;
-  padding: 0 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
 }
 
 .icon-list{
   display:flex;
+  margin: 0;
   justify-content: space-around;
   align-content: flex-start;
   width: 100%;
@@ -86,6 +95,12 @@
   border-radius: 50%;
 }
 
+.avatar-courte {
+  border-radius: 50%;
+  border: 2px solid #F7D534;
+}
+
+
 .principal {
   h6 {
   text-decoration: underline;
@@ -96,6 +111,9 @@
   }
   a {
     font-size: 12px;
+    margin: 3px;
+  }
+  i {
     margin: 3px;
   }
 }
@@ -143,3 +161,51 @@ h1, h5, h6 {
 .profil {
   margin-top: 10px;
 }
+
+caption {
+  font-family: 'open sans';
+  font-style: lighter;
+  font-size: 18px;
+  color: black;
+  margin: 10px;
+}
+
+table
+{
+    border-collapse: collapse;
+    border-radius: 10px 10px 0 0;
+    vertical-align:middle;
+    width:80%;
+    margin: auto;
+    padding: 15px;
+}
+tbody
+{
+border-radius: 10px 10px 0 0;
+}
+
+td
+{
+    border: 0.5px outset #eaeaea;
+    border-bottom-style: none;
+    border-top-style: none;
+    font-family: 'Open sans';
+    font-weight: light;
+    font-size: 16px;
+    padding:5px;
+}
+
+th
+{
+    border: 0.5px outset #eaeaea;
+    font-family: 'Raleway';
+    font-weight: bold;
+    padding:5px;
+    border-top-style: none;
+}
+
+p{
+  font-size:14px;
+}
+
+

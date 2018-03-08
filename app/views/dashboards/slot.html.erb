@@ -29,7 +29,7 @@
       </a>
     </div>
     <div class="dash">
-      <% if @car == nil %>
+      <% if @car.blank? %>
         <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
       <% else %>
       <h3>Mes adresses :</h3>
