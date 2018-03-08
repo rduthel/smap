@@ -36,7 +36,10 @@
           <div class="panel-heading">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
-                Un titre
+                <span class="address_name"><%= address.name %></span> :
+                <%= address.address %>
+                <%= address.zip_code %>
+                <%= address.city %>
               </a>
             </h4>
           </div>
