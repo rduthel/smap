@@ -11,7 +11,7 @@
     font-size: 15px;
     color: #616668 ;
     &:hover {
-      color: $secondary-color;
+
       text-decoration: none;
     }
   }
@@ -19,6 +19,9 @@
 
 .value a {
   font-style: italic;
+  &:hover {
+    color: $secondary-color;
+  }
 }
 
 
