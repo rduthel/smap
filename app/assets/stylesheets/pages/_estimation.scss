@@ -58,6 +58,10 @@
   }
 }
 
+#sval, #wval {
+  font-family: $body-font;
+}
+
 .tarif {
   border: solid 1px $black;
   padding: 10px;
