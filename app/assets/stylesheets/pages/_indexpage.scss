@@ -1,3 +1,7 @@
+.cars-container {
+  padding: 2em 1em 1em 1em;
+}
+
 .flex-container {
   display: flex;
   justify-content: space-around;
@@ -8,18 +12,23 @@
 }
 
 .filter-container {
-  padding-left: 10px;
+  flex-basis: 250px;
+  background: #cccccc17;
+  padding: 2em 1em 1em 1em;
+  border-right: 1px solid #efefef;
 }
 
 .searchbar {
-  padding-top: 10px;
-  margin: auto auto;
   position: relative;
-  width: 380px;
+}
+
+#hits {
+  margin-top: 1em;
 }
 
 .ais-search-box {
-  max-width: 470px !important;
+  width: 100% !important;
+  max-width: none;
 }
 
 .ais-search-box--input {
@@ -28,22 +37,41 @@
 }
 
 .algoli-logo {
-  height: 17px;
   position: absolute;
   z-index: 1;
-  left: 5px;
-  top: 33px;
-  border-radius: 4px;
+  right: 10px;
+  font-size: 1.6em;
+  top: 10px;
+  color: #0000005c;
+}
+
+.ais-search-box--magnifier {
+  top: 16px;
+  left: 14px;
+  transform: scale(1.2);
+
+  svg {
+    fill: #0000006b;
+  }
 }
 
 .ais-refinement-list--label {
+  input {
+    display: none;
+  }
+
   color: black;
   font-weight: 500;
   display: flex;
   justify-content: space-between;
+
   &:hover {
     color: $yellowsmap;
   }
+}
+
+.ais-refinement-list--item__active {
+
 }
 
 .ais-refinement-list--count {
@@ -52,12 +80,15 @@
 }
 
 .ais-clear-all--link {
-  background-color: $yellowsmap;
+  background-color: #bcbcbc;
   opacity: 0.9;
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-bottom: 1em;
+  display: block;
+  text-align: center;
+  font-size: 0.9em;
+
   &:hover {
-    background-color: $yellowsmap;
+    background-color: darken(#bcbcbc, 10%);
     opacity: 1;
   }
 }

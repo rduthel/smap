@@ -1,41 +1,20 @@
 .banner {
-  color: black;
-  height: calc(100vh - 310px);
-  padding: 20px;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 200px);
+  background-size: cover;
+  text-align: center;
+  background-position: 50% 14%;
 
   .tagline-first-line {
-    padding-left: 40px;
-    padding-top: 50px;
-    margin-bottom: 0px;
-    font-size: 35px;
-    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+    font-size: 3em;
+    color: #efefef;
+    font-weight: 400;
   }
-  .tagline-second-line {
-    padding-left: 100px;
-    padding-top: 0px;
-    font-size: 35px;
-    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
+
+  .btn-smap {
+    padding: 1.5em 2em;
+    margin-top: 1em;
   }
 }
-
-.banner-content {
-  h7 {
-    font-size: 35px;
-    color: black;
-    font-weight: normal;
-    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
-    font-family: 'Raleway';
-  }
-
- p {
-    font-size: 35px;
-    font-weight: normal;
-    font-family: 'Raleway';
-    color: black;
-    text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
-  }
-}
-

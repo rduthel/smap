@@ -3,11 +3,46 @@
 <% content_for :meta_image, cl_image_path(@car.photo) %>
 
 <div class="body-wrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1><%= @car.brand %> <%= @car.model %></h1>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <ul class="metrics-container">
+          <li>
+            <i></i>
+            <i></i>
+          </li>
+          <li>
+            <i></i>
+            <i></i>
+          </li>
+          <li>
+            <i></i>
+            <i></i>
+          </li>
+          <li>
+            <i></i>
+            <i></i>
+          </li>
+          <li>
+            <i></i>
+            <i></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
   <div class="container-car">
     <div class="car-container">
       <%= cl_image_tag @car.photo, width: 630, class: "car-picture"%>
       <div>
-        <h1><%= @car.brand %> <%= @car.model %></h1>
+
         <div class="icon-list show-list">
           <div class="icon-card show-card">
             <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
