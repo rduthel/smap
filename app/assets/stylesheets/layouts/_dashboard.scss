@@ -4,6 +4,8 @@
   .body-wrap {
     margin: 1em 0;
   }
+
+
 }
 
 .driver-profile {
@@ -218,6 +220,7 @@
 
 
 .principal {
+  flex-basis: 205.41px;
   h6 {
   text-decoration: underline;
   font-size: 26px;
@@ -248,6 +251,10 @@
   display: flex;
   align-items:center;
   justify-content: flex-start;
+  a:hover {
+    text-decoration: none;
+    color: $secondary-color;
+  }
 }
 
 .add-driver {
@@ -359,6 +366,10 @@ p{
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  a:hover {
+    text-decoration: none;
+    color: $secondary-color;
+  }
 }
 
 .credential {
@@ -375,12 +386,19 @@ p{
   background-color: #F9F9F9;
   border: solid 1px #cccccc78;
   margin-top: -2px;
+  transition: all 0.15s ease;
   &:hover {
     background-color: darken(#F9F9F9, 2%);
     text-decoration: none;
+    color: $secondary-color;
   }
 }
 
+.fa-times {
+  color: red;
+}
+
 .ico {
+  margin-top: 7px;
   font-size: 30px;
 }
