@@ -1,25 +1,7 @@
 <div class="body-wrap">
   <div class="container">
-    <h1 class="text-center" ></h1>
-    <div class="tabs">
-      <a class="tab" href="<%= dashboard_profile_path %>">
-        <h3>Mon profil</h3>
-        <h2><i class="fas fa-address-card"></i></h2>
-      </a>
-      <a class="tab" href="<%= dashboard_path %>">
-        <h3>Ma voiture SMAP</h3>
-        <h2><i class="fas fa-car"></i></h2>
-      </a>
-      <a class="tab" href="<%= dashboard_slot_path %>">
-        <h3>Mes disponibilités</h3>
-        <h3>et adresses</h3>
-        <h2><i class="far fa-calendar-alt"></i></h2>
-      </a>
-      <a class="tab active" href="<%= dashboard_bill_path %>">
-        <h3>Ma facture</h3>
-        <h2><i class="far fa-money-bill-alt"></i></h2>
-      </a>
-    </div>
+    <%= render 'subnav' %>
+
     <div class="dash">
     <p> Prix de mon contrat de location Longue Durée Smap: 395€ par mois</p>
     <p> Durée : 3 Février 2018 - 2 février 2020 </p>
@@ -36,21 +18,21 @@
    <tr>
        <td> 10/02/2018 </td>
        <td> 3 heures</td>
-       <td> Jean Jacques Michu <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
        <td> - 10 € </td>
    </tr>
 
    <tr>
        <td> 24/02/2018 </td>
        <td> 12 heures </td>
-       <td> Marie Vinot <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Marie Vinot </td>
        <td> - 30 € </td>
    </tr>
 
     <tr>
        <td> 26/02/2018 </td>
        <td> 1 jour </td>
-       <td> Djamel Sour <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Djamel Sour </td>
        <td> - 50 € </td>
    </tr>
 </table>

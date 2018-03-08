@@ -1,0 +1,22 @@
+<div class="tabs">
+  <a class="tab <%= 'active' if params[:action] == 'profile' %>" href="<%= dashboard_profile_path %>">
+    <div>
+      <i class="fas fa-address-card"></i><h3>Profil</h3>
+    </div>
+  </a>
+  <a class="tab <%= 'active' if params[:action] == 'show' %>" href="<%= dashboard_path %>">
+    <div>
+      <i class="fas fa-car"></i><h3>Conducteurs secondaires</h3>
+    </div>
+  </a>
+  <a class="tab <%= 'active' if params[:action] == 'slot' %>" href="<%= dashboard_slot_path %>">
+    <div>
+      <i class="far fa-calendar-alt"></i><h3>Disponibilités & Adresses</h3>
+    </div>
+  </a>
+  <a class="tab <%= 'active' if params[:action] == 'bill' %>" href="<%= dashboard_bill_path %>">
+    <div>
+      <i class="far fa-money-bill-alt"></i><h3>Facture</h3>
+    </div>
+  </a>
+</div>

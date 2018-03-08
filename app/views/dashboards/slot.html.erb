@@ -1,33 +1,7 @@
 <div class="body-wrap">
   <div class="container">
-    <h1 class="text-center"></h1>
-    <div class="tabs">
-      <a class="tab" href="<%= dashboard_profile_path %>">
-        <h3>Mon profil</h3>
-        <h2>
-          <i class="fas fa-address-card"></i>
-        </h2>
-      </a>
-      <a class="tab" href="<%= dashboard_path %>">
-        <h3>Ma voiture SMAP</h3>
-        <h2>
-          <i class="fas fa-car"></i>
-        </h2>
-      </a>
-      <a class="tab active" href="<%= dashboard_slot_path %>">
-        <h3>Mes disponibilités</h3>
-        <h3>et adresses</h3>
-        <h2>
-          <i class="far fa-calendar-alt"></i>
-        </h2>
-      </a>
-      <a class="tab" href="<%= dashboard_bill_path %>">
-        <h3>Ma facture</h3>
-        <h2>
-          <i class="far fa-money-bill-alt"></i>
-        </h2>
-      </a>
-    </div>
+    <%= render 'subnav' %>
+
     <div class="dash">
       <h3>Mes adresses :</h3>
       <div class="panel-group" id="addresses-accordion">

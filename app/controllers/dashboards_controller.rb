@@ -14,6 +14,7 @@ class DashboardsController < ApplicationController
 
   def profile
     @driver_profile = DriverProfile.find_by user: current_user
+    @car = @driver_profile.car
   end
 
   private
