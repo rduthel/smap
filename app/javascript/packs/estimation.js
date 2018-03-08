@@ -3,6 +3,7 @@ if (page.length !== 0) {
   const semaine = document.getElementById('semaine');
   const weekEnd = document.getElementById('weekend');
   const estimation = document.getElementById('estimation');
+  const reduc = document.getElementById('reduc');
   let category = document.getElementById('category').innerText;
   let hloc = 0;
   let jloc = 0;
@@ -53,12 +54,14 @@ if (page.length !== 0) {
   function semaineChange() {
     sdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
+    reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
     estimation.innerText = `${Math.round(tarif - estimateTarif(totdispo))}`;
   };
 
   function weekEndChange() {
     wdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
+    reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
     estimation.innerText = `${Math.round(tarif - estimateTarif(totdispo))}`;
   };
 
