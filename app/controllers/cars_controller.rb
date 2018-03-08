@@ -28,6 +28,7 @@ class CarsController < ApplicationController
         render :estimation
       end
     else
+      @driver_profile.save
       redirect_to profil_edit_path
       flash.alert = "Vous devez renseigner votre permis et CI."
     end

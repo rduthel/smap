@@ -18,21 +18,21 @@
    <tr>
        <td> 10/02/2018 </td>
        <td> 3 heures</td>
-       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
+       <td><%= image_tag Faker::Fillmurray.image, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
        <td> - 10 € </td>
    </tr>
 
    <tr>
        <td> 24/02/2018 </td>
        <td> 12 heures </td>
-       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Marie Vinot </td>
+       <td> <%= image_tag Faker::Avatar.image, width: 35, height: 35, class: "avatar-courte" %> Marie Vinot </td>
        <td> - 30 € </td>
    </tr>
 
     <tr>
        <td> 26/02/2018 </td>
        <td> 1 jour </td>
-       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Djamel Sour </td>
+       <td> <%= image_tag Faker::Avatar.image, width: 35, height: 35, class: "avatar-courte" %> Djamel Sour </td>
        <td> - 50 € </td>
    </tr>
 </table>
