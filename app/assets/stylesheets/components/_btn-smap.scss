@@ -5,6 +5,8 @@
   opacity: 1;
   border-radius: 15px;
   transition: all 0.3s ease;
+  display: inline-block;
+
   &:hover {
     opacity: 0.8;
     text-decoration:none;
