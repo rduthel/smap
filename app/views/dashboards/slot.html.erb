@@ -31,12 +31,8 @@
     <div class="dash">
       <h3>Toutes mes disponibilités</h3>
       <div class="calendar" data-slots="<%= @driver_profile.addresses.map{|a| [a.id, a.slots]}.to_json %>"></div>
-
-
-
-
       <h3>Mes adresses :</h3>
-      <p><%= link_to 'Ajouter adresse', new_address_path  %></p>
+      <p><%= link_to 'Ajouter adresse', new_address_path %></p>
       <div class="panel-group" id="addresses-accordion">
         <% @driver_profile.addresses.each_with_index do |address, index| %>
           <div class="panel panel-default">
