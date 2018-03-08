@@ -4,6 +4,15 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i += 1) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
   const myCalendar = (calendar, indice) => {
     const slots = [];
     const slotsStart = [];
@@ -58,7 +67,9 @@ $(() => {
           $.ajax({
             url: '/dashboard/slot',
             type: 'POST',
-            beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
+            beforeSend(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+            },
             data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
           });
         }
@@ -75,6 +86,7 @@ $(() => {
           events: slots,
         },
       ],
+      eventColor: getRandomColor(),
     });
   };
 
