@@ -14,24 +14,24 @@
       <div class="col-xs-12">
         <ul class="metrics-container">
           <li>
-            <i></i>
-            <i></i>
+            <i><i class="fas fa-users smap-color"></i></i>
+            <i>&nbsp; <%= @car.seat %> Places</i>
           </li>
           <li>
-            <i></i>
-            <i></i>
+            <i><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i>
+            <i>&nbsp; <%= @car.energy %></i>
           </li>
           <li>
-            <i></i>
-            <i></i>
+            <i> <i class="fas fa-cogs smap-color"></i></i>
+            <i>&nbsp; <%= @car.transmission %></i>
           </li>
           <li>
-            <i></i>
-            <i></i>
+            <i><i class="fas fa-car smap-color"></i></i>
+            <i>&nbsp; <%= @car.car_door %> Portes</i>
           </li>
           <li>
-            <i></i>
-            <i></i>
+            <i><i class="fas fa-suitcase smap-color"></i></i>
+            <i>&nbsp; <%= @car.lugage %></i>
           </li>
         </ul>
       </div>
@@ -43,17 +43,7 @@
       <%= cl_image_tag @car.photo, width: 630, class: "car-picture"%>
       <div>
 
-        <div class="icon-list show-list">
-          <div class="icon-card show-card">
-            <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
-            <h4 class="icons-li"><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i> &nbsp; <%= @car.energy %></h4>
-            <h4 class="icons-li"><i class="fas fa-cogs smap-color"></i> &nbsp; <%= @car.transmission %></h4>
-          </div>
-          <div class="icon-card show-card">
-            <h4 class="icons-li"><i class="fas fa-car smap-color"></i> &nbsp; <%= @car.car_door %> Portes</h4>
-            <h4 class="icons-li"><i class="fas fa-suitcase smap-color"></i></i> &nbsp; <%= @car.lugage %> Bagages</h4>
-          </div>
-        </div>
+
       </div>
     </div>
 
