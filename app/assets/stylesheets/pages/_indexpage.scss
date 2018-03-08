@@ -39,13 +39,15 @@
 .ais-refinement-list--label {
   color: black;
   font-weight: 500;
+  display: flex;
+  justify-content: space-between;
   &:hover {
     color: $yellowsmap;
   }
 }
 
 .ais-refinement-list--count {
-  background: rgba(229, 181, 25, 0.2);
+  background: rgba(175, 175, 175, 0.2);
   color: black;
 }
 
