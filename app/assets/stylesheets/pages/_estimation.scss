@@ -18,28 +18,26 @@
 
 }
 
-.slider {
-  position: relative;
-  margin: 32px auto;
-  width: 250px;
-  display: block;
-  background: #565656;
-  height: 7px;
-  box-shadow: 0 1px 0px rgba(255,255,255,0.25), inset 0 0 4px rgba(0,0,0,0.9);
-  border-radius: 7px;
-  input.ui-slider-range {
-    display: block;
-    height: 7px;
-    border-radius: 7px;
-    transition-property: background-color;
-    transition-duration: 100ms;
-  }
-  &.red input.ui-slider-range {
-    background-color: rgb(230, 158, 155);
-    box-shadow: inset 0 0 4px rgba(163, 18, 0, 0.7),
-      inset 0 0 2px rgba(0, 0, 0,0.5);
-    &.hilite, &.dragging {
-      background-color: rgb(255, 160, 155);
-    }
-  }
+.tarif {
+  border: solid 1px $black;
+  padding: 10px;
+  border-radius: 2px;
+  background-color: #DEDEDE;
+}
+
+.estimation-result {
+  border: solid 1px $yellowsmap;
+  padding: 10px;
+  border-radius: 2px;
+  background-color: #DEDEDE;
+}
+
+.result-estim {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.reduction {
+  font-size: 30px;
 }
