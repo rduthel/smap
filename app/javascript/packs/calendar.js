@@ -70,9 +70,9 @@ $(() => {
         }
         calendar.fullCalendar('unselect');
       },
-      aspectRatio: 2,
       themeSystem: 'bootstrap3',
       defaultView: 'agendaWeek',
+      slotDuration: '01:00:00',
       locale: 'fr',
       nowIndicator: true,
       navLinks: true,
@@ -83,7 +83,6 @@ $(() => {
       ],
       eventColor: getRandomColor(),
     });
-    calendar.fullCalendar('rerenderEvents');
   };
 
   $.each($('.calendar'), (i, e) => {
