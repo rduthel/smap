@@ -4,9 +4,7 @@ require 'open-uri'
 require 'nokogiri'
 
 puts 'Cleaning DB...'
-AdditionalDriver.destroy_all
-Address.destroy_all
-DriverProfile.destroy_all
+User.destroy_all
 Rating.destroy_all
 Car.destroy_all
 
@@ -280,7 +278,7 @@ cars.each do |car|
   )
 end
 
-rating_number = 50
+rating_number = Car.count
 puts "Creating #{rating_number} ratings..."
 
 chars = []
@@ -288,10 +286,12 @@ chars << Faker::Seinfeld.character
 chars << Faker::SiliconValley.character
 chars << Faker::TheFreshPrinceOfBelAir.character
 
-rating_number.times do
+rating_number.times do |i|
+  id = Car.first.id + i
+  puts "#{id}"
   Rating.create(
     user:  chars.sample,
-    rate:  rand(1..5),
-    car:   Car.find(rand(Car.first.id..Car.last.id))
+    rate:  rand(3..5),
+    car:   Car.find(id)
   )
 end

@@ -2,7 +2,7 @@ function initProfile() {
 
   $(document).ready(function() {
     var $btnSets = $('#responsive'),
-      $btnLinks = $btnSets.find('a');
+    $btnLinks = $btnSets.find('a');
 
     $btnLinks.click(function(e) {
       e.preventDefault();

@@ -20,17 +20,24 @@
     </a>
   </div>
   <div class="profil">
-    <h1>Mon profil | <%= link_to "Modifier mon profil", profil_edit_path  %></h1>
-
-    <h4><%= @driver_profile.first_name %> <%= @driver_profile.last_name %></h4>
-    <%= cl_image_tag @driver_profile.photo, height: 100, width: 100, crop: :fit %>
+    <%= cl_image_tag @driver_profile.photo, width: 85, height: 75, class: "avatar-main" %> &nbsp;
+    <h4 class="icons-li"><i class="fas fa-user-circle smap-color"></i> &nbsp; <%= @driver_profile.first_name %> <%= @driver_profile.last_name %> | <%= link_to "Modifier mon profil", profil_edit_path%></h4>
 
     <h5>E-mail : <%= @driver_profile.email %></h5>
     <h5>Adresse : <%= @driver_profile.address %> <%= @driver_profile.city %> <%= @driver_profile.zip_code %></h5>
     <h5>Date de naissance : <%= @driver_profile.birthdate %></h5>
     <h5>N° de téléphone : <%= @driver_profile.telephone_number %></h5>
-    <h6>Permis de conduire :</h6> <br> <%= cl_image_tag @driver_profile.driving_license, height: 300, width: 400, crop: :fit %>
-    <h6>Carte d'identité : </h6> <br> <%= cl_image_tag @driver_profile.identity_card, height: 300, width: 400, crop: :fit %>
+    <h5>Permis de conduire :</h5>
+    <% if @driver_profile.driving_license.blank? %>
+      <p>Pas de permis de conduire</p>| <%= link_to "Téléchargez mon permis de conduire", profil_edit_path%>
+    <% else %>
+    <i class="fas fa-check"></i>
+    <% end %>
+    <h5>Carte d'identité :</h5>
+    <% if @driver_profile.identity_card.blank? %>
+      <p>Pas de carte d'identité</p>| <%= link_to "Téléchargez ma carte d'identité", profil_edit_path%>
+    <% else %>
+    <i class="fas fa-check"></i>
+    <% end %>
   </div>
 </div>
-
