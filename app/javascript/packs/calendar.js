@@ -19,7 +19,7 @@ $(() => {
     const slotsEnd = [];
     const parents = [];
 
-    $.each($(calendar).parent().parent().find('.address-name'), (i, e) => {
+    $.each($('.address-name'), (i, e) => {
       console.log('Coucou');
       parents.push(e);
     });
