@@ -14,26 +14,28 @@
 
        <div class="credential">
          <div class="driving-license">
-          <h4>Permis de conduire : </h4>
            <% if @driver_profile.driving_license.blank? %>
+            <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
            <%= link_to "Ajouter le permis de conduire", edit_additional_driver_path(ad)%>
            <% else %>
+           <h4>Permis de conduire : </h4>
             <i class="fas fa-check"></i>
            <% end %>
          </div>
          <div class="id-card">
-          <h4>Carte d'identité : </h4>
            <% if @driver_profile.identity_card.blank? %>
+            <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
            <%= link_to "Ajouter la carte d'identité", edit_additional_driver_path(ad)%>
            <% else %>
+           <h4>Carte d'identité : </h4>
             <i class="fas fa-check"></i>
            <% end %>
          </div>
        </div>
       </div>
+      <% @driver_profile.additional_drivers.each do |ad| %>
       <hr>
       <div class="conducteur-secondaire">
-       <% @driver_profile.additional_drivers.each do |ad| %>
         <div class="flex" >
           <%= cl_image_tag ad.photo, class: "avatar-main" %> &nbsp;
           <div class="secondaire">
@@ -44,31 +46,30 @@
        </div>
        <div class="credential">
          <div class="driving-license">
-          <h4>Permis de conduire : </h4>
            <% if ad.driving_license.blank? %>
+           <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
            <%= link_to "Ajouter le permis de conduire", edit_additional_driver_path(ad)%>
            <% else %>
+           <h4>Permis de conduire : </h4>
             <i class="fas fa-check"></i>
            <% end %>
          </div>
          <div class="id-card">
-          <h4>Carte d'identité : </h4>
            <% if ad.identity_card.blank? %>
+           <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
            <%= link_to "Ajouter la carte d'identité", edit_additional_driver_path(ad)%>
            <% else %>
+           <h4>Carte d'identité : </h4>
             <i class="fas fa-check"></i>
            <% end %>
          </div>
        </div>
      </div>
        <% end %>
-    </div class= "conducteur-secondaire">
+    </div>
        <a href="<%= new_additional_driver_path %>" class="flex text-center add" >
         <div>
-          <h5> Ajouter un conducteur secondaire
-          <i class="fas fa-plus-circle smap-color ico"></i></h5>
-        </div>
-
-       </a>
+          <i class="fas fa-plus-circle smap-color ico"></i> <h5> Ajouter un conducteur secondaire</h5>
+        </div></a>
   </div>
 </div>
