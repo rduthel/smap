@@ -1,5 +1,4 @@
 import $ from 'jquery';
-import 'bootstrap';
 import 'fullcalendar';
 import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
