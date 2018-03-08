@@ -1,3 +1,105 @@
+.dashboards {
+  background: $gray-body;
+
+  .body-wrap {
+    margin: 1em 0;
+  }
+}
+
+.driver-profile {
+  display: flex;
+  align-items: center;
+
+  h2 {
+    font-size: 1.5em;
+    margin: 0 0 0.5em 0;
+  }
+
+  .driver-contact {
+    flex-grow: 1;
+    margin-left: 1em;
+    font-size: 0.8em;
+    font-weight: normal;
+
+    p {
+      margin-bottom: 0.2em;
+    }
+
+    i {
+      font-size: 1.2em;
+      color: #ccc;
+      margin-right: 0.5em;
+    }
+  }
+}
+
+.complementary-informations {
+  display: flex;
+
+  .title, .value {
+    font-weight: 400;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex-grow: 1;
+  }
+
+  li {
+    display: flex;
+  }
+
+  .title {
+    flex-basis: 150px;
+    color: #999;
+  }
+}
+
+.car-main-infos {
+  display: flex;
+
+  img {
+    margin-right: 1em;
+  }
+
+  h4 {
+    font-size: 1.3em;
+  }
+
+  .fa-star {
+    color: #aaa;
+
+    &.smap-color {
+      color: $yellowsmap;
+    }
+  }
+}
+
+.car-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1.5em 0 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    text-align: center;
+  }
+
+  i {
+    color: $secondary-color;
+    font-size: 1.8em;
+  }
+
+  .value {
+    font-weight: normal;
+    font-size: 1.2em;
+  }
+}
+
 .smap-color {
   font-color: #F7D534;
   color: #F7D534;
@@ -41,21 +143,38 @@
   margin-bottom: 0;
 }
 .tab {
-  background-color: #eaeaea;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f9f9f9;
   flex-grow: 1;
+  padding: 0.5em 0.8em;
+  flex-basis: 25%;
+
+  h3 {
+    display: inline-block;
+    padding: 15px 0;
+  }
+
+  i {
+    margin-right: 0.5em;
+    color: $secondary-color;
+  }
 }
 
 .tab.active {
   background: white;
   color: $black;
   border: 1px solid #eaeaea;
-  border-bottom: 2px solid #F7D534;
+  border-top: 2px solid $yellowsmap;
+  border-bottom: none;
+  margin-bottom: -1px;
 }
 
 .dash {
   border: 1px solid #eaeaea;
-  padding: 10px 20px 20px 20px;
+  background: white;
+  padding: 1em;
 }
 
 .icon-list{
@@ -165,7 +284,6 @@ caption {
   font-style: lighter;
   font-size: 18px;
   color: black;
-  margin: 10px;
 }
 
 table
@@ -173,33 +291,26 @@ table
     border-collapse: collapse;
     border-radius: 10px 10px 0 0;
     vertical-align:middle;
-    width:80%;
-    margin: auto;
+    width: 100%;
     padding: 15px;
 }
-tbody
-{
-border-radius: 10px 10px 0 0;
+tbody {
+  border-radius: 10px 10px 0 0;
 }
 
-td
-{
-    border: 0.5px outset #eaeaea;
-    border-bottom-style: none;
-    border-top-style: none;
-    font-family: 'Open sans';
-    font-weight: light;
-    font-size: 16px;
-    padding:5px;
+td {
+  font-family: 'Open sans';
+  font-weight: light;
+  font-size: 16px;
+  padding: 1em 0;
+  border-bottom: 1px solid #f1f1f1;
 }
 
-th
-{
-    border: 0.5px outset #eaeaea;
-    font-family: 'Raleway';
-    font-weight: bold;
-    padding:5px;
-    border-top-style: none;
+th {
+  border-bottom: 1px solid #e1e1e1;
+  font-family: 'Raleway';
+  font-weight: bold;
+  padding: 1em 0;
 }
 
 p{

@@ -11,5 +11,8 @@ class Car < ApplicationRecord
     tags ['trusted']
   end
 
+  def note
+    ratings.sum(:rate) / ratings.count
+  end
 end
 

@@ -2,26 +2,109 @@
   <div class="container">
     <%= render 'subnav' %>
 
-  <div class="dash">
-    <%= cl_image_tag @driver_profile.photo, width: 85, height: 75, class: "avatar-main" %> &nbsp;
-    <h4 class="icons-li"><i class="fas fa-user-circle smap-color"></i> &nbsp; <%= @driver_profile.first_name %> <%= @driver_profile.last_name %> | <%= link_to "Modifier mon profil", profil_edit_path%></h4>
+    <div class="dash">
+      <div class="driver-profile">
+        <%= cl_image_tag @driver_profile.photo, class: "avatar-large" %> &nbsp;
+        <div class="driver-contact">
+          <h2><%= @driver_profile.first_name %> <%= @driver_profile.last_name %></h2>
+          <p class="driver-email"><i class="fas fa-envelope"></i> <%= @driver_profile.email %></p>
+          <p class="driver-phone"><i class="fas fa-phone-square"></i> <%= @driver_profile.telephone_number %></p>
+        </div>
+        <%= link_to 'Modifier mon profil', profil_edit_path, class: 'btn-smap-secondary' %>
+      </div>
 
-    <h5>E-mail : <%= @driver_profile.email %></h5>
-    <h5>Adresse : <%= @driver_profile.address %> <%= @driver_profile.city %> <%= @driver_profile.zip_code %></h5>
-    <h5>Date de naissance : <%= @driver_profile.birthdate %></h5>
-    <h5>N° de téléphone : <%= @driver_profile.telephone_number %></h5>
-    <h5>Permis de conduire :</h5>
-    <% if @driver_profile.driving_license.blank? %>
-      <p>Pas de permis de conduire</p>| <%= link_to "Téléchargez mon permis de conduire", profil_edit_path%>
-    <% else %>
-    <i class="fas fa-check"></i>
-    <% end %>
-    <h5>Carte d'identité :</h5>
-    <% if @driver_profile.identity_card.blank? %>
-      <p>Pas de carte d'identité</p>| <%= link_to "Téléchargez ma carte d'identité", profil_edit_path%>
-    <% else %>
-    <i class="fas fa-check"></i>
-    <% end %>
+      <hr>
+
+      <div class="complementary-informations">
+        <ul>
+          <li>
+            <p class="title">Adresse</p>
+            <p class="value"><%= @driver_profile.address %> <%= @driver_profile.city %> <%= @driver_profile.zip_code %></p>
+          </li>
+          <li>
+            <p class="title">Date de naissance</p>
+            <p class="value"><%= @driver_profile.birthdate %></p>
+          </li>
+          <li>
+            <p class="title">Permis de conduire</p>
+            <p class="value">
+              <% if @driver_profile.driving_license.blank? %>
+                <%= link_to "Ajouter mon permis de conduire", profil_edit_path%>
+              <% else %>
+                <i class="fas fa-check"></i>
+              <% end %>
+            </p>
+          </li>
+          <li>
+            <p class="title">Carte d'identité</p>
+            <p class="value">
+              <% if @driver_profile.identity_card.blank? %>
+                <%= link_to "Ajouter ma carte d'identité", profil_edit_path %>
+              <% else %>
+                <i class="fas fa-check"></i>
+              <% end %>
+            </p>
+          </li>
+        </ul>
+
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@driver_profile.city}&zoom=13&size=150x150&maptype=roadmap&markers=color:blue%7Clabel:S%7C40.702147,-74.015794&markers=color:green%7Clabel:G%7C40.711614,-74.012318&markers=color:red%7Clabel:C%7C40.718217,-73.998284") %>
+      </div>
+
+      <hr>
+
+      <div class="car-informations">
+        <div class="car-main-infos">
+          <% if @car.blank? %>
+            <%= link_to "Louez votre 1er véhicule", cars_path %>
+          <% else %>
+            <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+            <div>
+              <h4><%= @car.brand %>  <%= @car.model %></h4>
+              <div class="rating">
+                <% if @car.ratings.present? %>
+                  <% 5.times do |i| %>
+                    <%= icon('fas', 'star', class: "#{'smap-color' if @car.note > (i + 1)} ") %>
+                  <% end %>
+                <% else %>
+                  Cette voiture n'a pas encore de notes
+                <% end %>
+              </div>
+            </div>
+          </div>
+          <ul class="car-details">
+            <li>
+              <p class="icon">
+                <i class="fas fa-users smap-color"></i>
+              </p>
+              <p class="value"><%= @car.seat %> Places</p>
+            </li>
+            <li>
+              <p class="icon">
+                <i class="tiny material-icons smap-color">local_gas_station</i>
+              </p>
+              <p class="value"><%= @car.energy %></p>
+            </li>
+            <li>
+              <p class="icon">
+                <i class="fas fa-cogs smap-color"></i>
+              </p>
+              <p class="value"><%= @car.transmission %></p>
+            </li>
+            <li>
+              <p class="icon">
+                <i class="fas fa-car smap-color"></i>
+              </p>
+              <p class="value"><%= @car.car_door %> Portes</p>
+            </li>
+            <li>
+              <p class="icon">
+                <i class="fas fa-suitcase smap-color"></i>
+              </p>
+              <p class="value"><%= @car.lugage %> Bagages</p>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </div>
   </div>
-</div>
 </div>

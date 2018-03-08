@@ -17,3 +17,18 @@ a.btn-smap:hover {
   color: $black;
 }
 
+.btn-smap-secondary {
+  padding: 0.5em 0.8em;
+  background-color: transparent;
+  border: 1px solid #888;
+  border-radius: 4px;
+  color: #888;
+  transition: all 0.15s ease;
+
+  &:hover {
+    text-decoration: none;
+    background-color: $yellowsmap;
+    border-color: $yellowsmap;
+    color: $black;
+  }
+}
