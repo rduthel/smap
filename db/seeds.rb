@@ -4,9 +4,7 @@ require 'open-uri'
 require 'nokogiri'
 
 puts 'Cleaning DB...'
-AdditionalDriver.destroy_all
-Address.destroy_all
-DriverProfile.destroy_all
+User.destroy_all
 Rating.destroy_all
 Car.destroy_all
 
@@ -291,7 +289,7 @@ chars << Faker::TheFreshPrinceOfBelAir.character
 rating_number.times do
   Rating.create(
     user:  chars.sample,
-    rate:  rand(1..5),
+    rate:  rand(3..5),
     car:   Car.find(rand(Car.first.id..Car.last.id))
   )
 end
