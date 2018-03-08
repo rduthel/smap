@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import 'bootstrap';
 import 'fullcalendar';
 import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
@@ -88,9 +89,15 @@ $(() => {
       ],
       eventColor: getRandomColor(),
     });
+    calendar.fullCalendar('rerenderEvents');
   };
 
   $.each($('.calendar'), (i, e) => {
     myCalendar($(e), i);
+    $('a[role=button]').on('click', () => {
+      setTimeout(() => {
+        $(e).fullCalendar('rerenderEvents');
+      }, 1);
+    });
   });
 });
