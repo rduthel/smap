@@ -50,8 +50,10 @@ if (page.length !== 0) {
   };
 
 
+  reduc.innerText = `${Math.round(estimateTarif(84))}`;
 
   function semaineChange() {
+    wdispo = 24;
     sdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
     reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
@@ -59,6 +61,7 @@ if (page.length !== 0) {
   };
 
   function weekEndChange() {
+    sdispo = 60;
     wdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
     reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
@@ -72,6 +75,7 @@ if (page.length !== 0) {
  const updateWval = function(event) {
     document.getElementById('wval').innerText = this.value;
   };
+
 
   semaine.addEventListener('input', semaineChange);
   semaine.addEventListener('input', updateSval);
