@@ -47,7 +47,7 @@
             <div class="panel-body">
               <ul>
                 <% address.slots.each do |slot| %>
-                  <li class="slots" style="">
+                  <li class="slots" style="display: none">
                     <span class="slot-from-<%= index %>"><%= slot.from.strftime("%FT%T%:z") %></span>
                     //
                     <span class="slot-to-<%= index %>"><%= slot.to.strftime("%FT%T%:z") %></span>
