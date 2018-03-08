@@ -28,72 +28,26 @@
     </a>
   </div>
 
-  <div class="panel-group" id="addresses-accordion">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address1">
-            Un titre
-          </a>
-        </h4>
-      </div>
-      <div id="address1" class="panel-collapse collapse in">
-        <div class="panel-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  <div class="dash">
+    <h3>Mes adresses :</h3>
+    <div class="panel-group" id="addresses-accordion">
+      <% @driver_profile.addresses.each_with_index do |address, index| %>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
+                Un titre
+              </a>
+            </h4>
+          </div>
+          <div id="address<%= index + 1 %>" class="panel-collapse collapse">
+            <div class="panel-body">
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address2">
-            Un deuxième titre
-          </a>
-        </h4>
-      </div>
-      <div id="address2" class="panel-collapse collapse">
-        <div class="panel-body">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </div>
-      </div>
-
+      <% end %>
     </div>
   </div>
-
-  <!-- <div class="dash">
-    <h3>Mes adresses :</h3>
-    <% @driver_profile.addresses.each do |address| %>
-      <p>
-        <span class="address_name"><%= address.name %></span>
-        :
-        <%= address.address %>
-        <%= address.zip_code %>
-        <%= address.city %></p>
-      <%= link_to "Modifier cette adresse", edit_address_path(address) %>
-      <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
-    <% end %>
-    <br>
-    <%= link_to "Ajouter une adresse", new_address_path %>
-    <hr>
-    <h3>Mes disponibilités :</h3>
-    <p>
-      <% @driver_profile.addresses.each do |address| %>
-        Pour l'adresse <span class="address-name"><%= address.name %></span> :
-        <ul>
-          <% address.slots.each do |slot| %>
-            <li class="slots" style="display: none;">
-              <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span>
-              //
-              <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
-              <%= link_to "Modifier cette dispo", edit_slot_path(slot) %>
-              -
-              <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
-          <% end %>
-          <div class="calendar"></div>
-        </ul>
-        <br>
-      <% end %>
-    </p>
-    <%= render 'shared/modal_new_slot' %>
-  </div> -->
 </div>
