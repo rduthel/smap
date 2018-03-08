@@ -30,7 +30,11 @@
     </div>
     <div class="dash">
       <h3>Toutes mes disponibilités</h3>
-      <div id="general-calendar"></div>
+      <div class="calendar" data-slots="<%= @driver_profile.addresses.map{|a| [a.id, a.slots]}.to_json %>"></div>
+
+
+
+
       <h3>Mes adresses :</h3>
       <p><%= link_to 'Ajouter adresse', new_address_path  %></p>
       <div class="panel-group" id="addresses-accordion">
@@ -49,15 +53,7 @@
             </div>
             <div id="address<%= index + 1 %>" class="panel-collapse collapse">
               <div class="panel-body">
-                <ul>
-                  <% address.slots.each do |slot| %>
-                    <li class="slots" style="display: none">
-                      <span class="slot-from-<%= index %>"><%= slot.from.strftime("%FT%T%:z") %></span>
-                      //
-                      <span class="slot-to-<%= index %>"><%= slot.to.strftime("%FT%T%:z") %></span>
-                    <% end %>
-                </ul>
-                <div class="calendar"></div>
+                <div class="calendar" data-slots="<%= [[address.id, address.slots]].to_json %>"></div>
               </div>
             </div>
           </div>
