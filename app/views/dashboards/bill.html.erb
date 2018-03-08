@@ -21,23 +21,43 @@
       </a>
     </div>
     <div class="dash">
+    <p> Prix de mon contrat de location Longue Durée Smap: 395€ par mois</p>
+    <p> Durée : 3 Février 2018 - 2 février 2020 </p>
+      <table>
+  <caption> Mes Locations Courte Durée </caption>
+  <caption> Février 2018 </caption>
+  <tr>
+       <th> Date </th>
+       <th> Durée </th>
+       <th> Locataire courte durée </th>
+       <th> Prix déduit de ma facture </th>
+   </tr>
+
+   <tr>
+       <td> 10/02/2018 </td>
+       <td> 3 heures</td>
+       <td> Jean Jacques Michu <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> - 10 € </td>
+   </tr>
+
+   <tr>
+       <td> 24/02/2018 </td>
+       <td> 12 heures </td>
+       <td> Marie Vinot <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> - 30 € </td>
+   </tr>
+
+    <tr>
+       <td> 26/02/2018 </td>
+       <td> 1 jour </td>
+       <td> Djamel Sour <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %></td>
+       <td> - 50 € </td>
+   </tr>
+</table>
+<p> Prix mensuel de mon véhicule après locations Courte Durée: 305€ par mois</p>
+</div>
+
+
     </div>
   </div>
-
-
-<div class="dash">
-    <% if @car == nil %>
-      <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
-    <% else %>
-    <h3>Mes adresses :</h3>
-    <br>
-    <hr>
-    <h3>Mes disponibilités :</h3>
-
-      </ul>
-      <br>
-    <% end %>
-    </p>
-  </div>
-</div>
 
