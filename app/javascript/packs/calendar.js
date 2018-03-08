@@ -4,6 +4,8 @@ import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
+  const colors = [];
+
   const getRandomColor = () => {
     const letters = '0123456789ABCDEF';
     let color = '#';
@@ -13,11 +15,13 @@ $(() => {
     return color;
   };
 
-  const myCalendar = (calendar, indice) => {
+  const calendarByAddress = (calendar, indice) => {
     const slots = [];
     const slotsStart = [];
     const slotsEnd = [];
     const parents = [];
+    const calendarColor = getRandomColor();
+    colors.push(calendarColor);
 
     $.each($('.address-name'), (i, e) => {
       parents.push(e);
@@ -81,12 +85,63 @@ $(() => {
           events: slots,
         },
       ],
+      eventColor: calendarColor,
+    });
+  };
+
+  const generalCalendar = (calendar) => {
+    const slots = [];
+    const slotsStart = [];
+    const slotsEnd = [];
+    const parents = [];
+
+    $.each($('.address-name'), (i, e) => {
+      parents.push(e);
+    });
+
+    $.each($('[class*=slot-from-]'), (ind, el) => {
+      slotsStart.push(new Date(el.innerText));
+    });
+
+    $.each($('[class*=slot-to-]'), (ind, el) => {
+      slotsEnd.push(new Date(el.innerText));
+    });
+
+    $.each($('.slots'), (index) => {
+      const slotsObject = {};
+      slotsObject.start = slotsStart[index];
+      slotsObject.end = slotsEnd[index];
+      slots.push(slotsObject);
+    });
+
+    calendar.fullCalendar({
+      views: {
+        agendaWeek: {
+          titleFormat: 'D MMMM',
+        },
+        month: {
+          titleFormat: 'MMMM YYYY',
+        },
+      },
+      themeSystem: 'bootstrap3',
+      defaultView: 'agendaWeek',
+      slotDuration: '01:00:00',
+      locale: 'fr',
+      nowIndicator: true,
+      navLinks: true,
+      eventSources: [
+        {
+          events: slots,
+        },
+      ],
       eventColor: getRandomColor(),
     });
   };
 
+  generalCalendar($('#general-calendar'));
+
   $.each($('.calendar'), (i, e) => {
-    myCalendar($(e), i);
+    calendarByAddress($(e), i);
     $('a[role=button]').on('click', () => {
       setTimeout(() => {
         $(e).fullCalendar('rerenderEvents');
