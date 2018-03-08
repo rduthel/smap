@@ -1,25 +1,7 @@
 <div class="body-wrap">
   <div class="container">
-  <h1 class="text-center" ></h1>
-  <div class="tabs">
-    <a class="tab active" href="<%= dashboard_profile_path %>">
-      <h3>Mon profil</h3>
-      <h2><i class="fas fa-address-card"></i></h2>
-    </a>
-    <a class="tab" href="<%= dashboard_path %>">
-      <h3>Ma voiture SMAP</h3>
-      <h2><i class="fas fa-car"></i></h2>
-    </a>
-    <a class="tab" href="<%= dashboard_slot_path %>">
-      <h3>Mes disponibilités</h3>
-      <h3>et adresses</h3>
-      <h2><i class="far fa-calendar-alt"></i></h2>
-    </a>
-    <a class="tab" href="<%= dashboard_bill_path %>">
-      <h3>Ma facture</h3>
-      <h2><i class="far fa-money-bill-alt"></i></h2>
-    </a>
-  </div>
+    <%= render 'subnav' %>
+
   <div class="dash">
     <%= cl_image_tag @driver_profile.photo, width: 85, height: 75, class: "avatar-main" %> &nbsp;
     <h4 class="icons-li"><i class="fas fa-user-circle smap-color"></i> &nbsp; <%= @driver_profile.first_name %> <%= @driver_profile.last_name %> | <%= link_to "Modifier mon profil", profil_edit_path%></h4>
