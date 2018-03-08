@@ -29,44 +29,37 @@
       </a>
     </div>
     <div class="dash">
-      <% if @car.blank? %>
-        <p>Vous n'avez pas de véhicule Smap.</p><%= link_to "Parcourir les véhicules", cars_path %>
-      <% else %>
       <h3>Mes adresses :</h3>
-      <% @driver_profile.addresses.each do |address| %>
-        <p>
-          <span class="address_name"><%= address.name %></span>
-          :
-          <%= address.address %>
-          <%= address.zip_code %>
-          <%= address.city %></p>
-        <%= link_to "Modifier cette adresse", edit_address_path(address) %>
-        <%= link_to "Supprimer cette adresse", address_path(address), data: { confirm: "Are you sure?" }, method: :delete %>
-      <% end %>
-      <% end %>
-      <br>
-      <%= link_to "Ajouter une adresse", new_address_path %>
-      <hr>
-      <h3>Mes disponibilités :</h3>
-      <p>
-        <% @driver_profile.addresses.each do |address| %>
-          Pour l'adresse <span class="address-name"><%= address.name %></span> :
-          <ul>
-            <% address.slots.each do |slot| %>
-              <li class="slots" style="display: none;">
-                <span class="slot-from"><%= slot.from.strftime("%FT%T%:z") %></span>
-                //
-                <span class="slot-to"><%= slot.to.strftime("%FT%T%:z") %></span>
-                <%= link_to "Modifier cette dispo", edit_slot_path(slot) %>
-                -
-                <%= link_to "Supprimer cette dispo", slot_path(slot), data: { confirm: "Are you sure?" }, method: :delete %></li>
-            <% end %>
-            <div class="calendar"></div>
-          </ul>
-          <br>
+      <div class="panel-group" id="addresses-accordion">
+        <% @driver_profile.addresses.each_with_index do |address, index| %>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
+                <h4 class="panel-title">
+                  <span class="address-name"><%= address.name %></span>
+                  :
+                  <%= address.address %>
+                  <%= address.zip_code %>
+                  <%= address.city %>
+                </a>
+              </h4>
+            </div>
+            <div id="address<%= index + 1 %>" class="panel-collapse collapse">
+              <div class="panel-body">
+                <ul>
+                  <% address.slots.each do |slot| %>
+                    <li class="slots" style="display: none">
+                      <span class="slot-from-<%= index %>"><%= slot.from.strftime("%FT%T%:z") %></span>
+                      //
+                      <span class="slot-to-<%= index %>"><%= slot.to.strftime("%FT%T%:z") %></span>
+                    <% end %>
+                </ul>
+                <div class="calendar"></div>
+              </div>
+            </div>
+          </div>
         <% end %>
-      </p>
-      <%= render 'shared/modal_new_slot' %>
+      </div>
     </div>
   </div>
 </div>

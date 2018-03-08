@@ -27,9 +27,11 @@
 
 
       <!-- Login link (when logged out) -->
-
+      <a class="navbar-smap-item navbar-smap-link " data-toggle="modal" data-target="#myModal">
+        Connexion
+      </a>
       <%= link_to "Nos véhicules", cars_path, class: "navbar-smap-item navbar-smap-link" %>
-      <%= render 'shared/modal_sign_in', class: "navbar-smap-item navbar-smap-link" %>
+      <%= render 'shared/modal_sign_in' %>
     <% end %>
   </div>
 </div>
