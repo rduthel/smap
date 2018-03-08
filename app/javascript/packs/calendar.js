@@ -1,24 +1,34 @@
 import $ from 'jquery';
+import 'bootstrap';
 import 'fullcalendar';
 import 'fullcalendar/dist/locale/fr';
 import 'fullcalendar/dist/fullcalendar.css';
 
 $(() => {
+  const getRandomColor = () => {
+    const letters = '0123456789ABCDEF';
+    let color = '#';
+    for (let i = 0; i < 6; i += 1) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  };
+
   const myCalendar = (calendar, indice) => {
     const slots = [];
     const slotsStart = [];
     const slotsEnd = [];
     const parents = [];
 
-    $.each($(calendar).parent().parent().find('.address-name'), (i, e) => {
+    $.each($('.address-name'), (i, e) => {
       parents.push(e);
     });
 
-    $.each($(calendar).parent().find('.slot-from'), (ind, el) => {
+    $.each($(`.slot-from-${indice}`), (ind, el) => {
       slotsStart.push(new Date(el.innerText));
     });
 
-    $.each($(calendar).parent().find('.slot-to'), (ind, el) => {
+    $.each($(`.slot-to-${indice}`), (ind, el) => {
       slotsEnd.push(new Date(el.innerText));
     });
 
@@ -30,11 +40,6 @@ $(() => {
     });
 
     calendar.fullCalendar({
-      header: {
-        left: 'month,agendaWeek,agendaDay',
-        center: 'title',
-        right: 'today prev,next',
-      },
       views: {
         agendaWeek: {
           titleFormat: 'D MMMM',
@@ -58,7 +63,9 @@ $(() => {
           $.ajax({
             url: '/dashboard/slot',
             type: 'POST',
-            beforeSend(xhr) { xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content')); },
+            beforeSend(xhr) {
+              xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'));
+            },
             data: `address=${eventData.title}&from=${eventData.start}&to=${eventData.end}`,
           });
         }
@@ -75,13 +82,17 @@ $(() => {
           events: slots,
         },
       ],
-      dayClick(date) {
-        console.log(`Clicked on: ${date.format()}`);
-      },
+      eventColor: getRandomColor(),
     });
+    calendar.fullCalendar('rerenderEvents');
   };
 
   $.each($('.calendar'), (i, e) => {
     myCalendar($(e), i);
+    $('a[role=button]').on('click', () => {
+      setTimeout(() => {
+        $(e).fullCalendar('rerenderEvents');
+      }, 1);
+    });
   });
 });
