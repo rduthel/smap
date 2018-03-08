@@ -1,26 +1,32 @@
-<!-- <h1 class="text-center">Les voitures SMAP</h1> -->
-<div id="search-box" class="searchbar text-center">
-  <%= image_tag "algolia-mark-black.png", class: "algoli-logo" %>
-</div>
 <div class="flex-container">
   <div class="filter-container">
     <div id="clear-all"></div>
-    <div id="category"></div>
-    <br>
-    <div id="brand"></div>
+    <div id="monthly_price"></div>
     <br>
     <div id="energy"></div>
     <br>
     <div id="transmission"></div>
     <br>
+    <div id="category"></div>
+    <br>
+    <div id="brand"></div>
+    <br>
     <div id="portes"></div>
     <br>
     <div id="places"></div>
-    <br>
-    <div id="monthly_price"></div>
   </div>
-  <div class="row flex-grow">
-    <div id="hits"></div>
+
+  <div class="cars-container flex-grow">
+    <div class="row">
+      <div class="col-xs-12">
+        <div id="search-box" class="searchbar">
+          <i class="fab fa-algolia algoli-logo"></i>
+        </div>
+        <div class="row">
+          <div id="hits"></div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 

@@ -1,0 +1,19 @@
+.btn-smap {
+  background-color: $yellowsmap;
+  color: $black;
+  padding: 10px 20px;
+  opacity: 1;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  display: inline-block;
+
+  &:hover {
+    opacity: 0.8;
+    text-decoration:none;
+  }
+}
+
+a.btn-smap:hover {
+  color: $black;
+}
+

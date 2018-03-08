@@ -1,30 +1,20 @@
 .banner {
-  color: black;
-  text-align: center;
-  height: 40vh;
-  padding: 50px;
-  /* if you have a 70px navbar => height: calc(100vh - 70px); */
-  background-size: cover !important;
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 20px;
-  margin-top: 20px;
-}
+  height: calc(100vh - 200px);
+  background-size: cover;
+  text-align: center;
+  background-position: 50% 14%;
 
-.banner h1 {
-  font-size: 30px;
-  font-weight: bold;
-  text-shadow: 0px 1px rgba(51, 54, 68, 0.2);
-  opacity: 0.6;
-  font-family: 'Montserrat';
-  text-align: right;
-}
+  .tagline-first-line {
+    font-size: 3em;
+    color: #efefef;
+    font-weight: 400;
+  }
 
-.banner p {
-  font-size: 25px;
-  font-weight: lighter;
-  color: #333644;
-  margin-bottom: 30px;
+  .btn-smap {
+    padding: 1.5em 2em;
+    margin-top: 1em;
+  }
 }
-

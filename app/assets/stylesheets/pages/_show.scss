@@ -1,0 +1,57 @@
+.cars.show {
+  background: #cccccc08;
+}
+
+.car-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.container-car {
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.show-list {
+  height: 84%;
+}
+
+.show-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding-right: 20px;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.info-container {
+  padding-top: 20px;
+  display:flex;
+  justify-content: space-between;
+}
+
+.contract-container {
+  width: 325px;
+}
+
+.description {
+  min-width: 620px;
+  max-width: 620px;
+  p {
+    line-height: 2;
+  }
+}
+
+.contract {
+  display: flex;
+  align-items: flex-end;
+}
+
+.car-picture {
+  box-shadow: 4px 4px 15px -1px gray;
+}
