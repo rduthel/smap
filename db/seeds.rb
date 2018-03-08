@@ -3,10 +3,13 @@
 require 'open-uri'
 require 'nokogiri'
 
+
+
 puts 'Cleaning DB...'
 User.destroy_all
 Rating.destroy_all
 Car.destroy_all
+Car.algolia_reindex
 
 places = []
 mecha  = []
@@ -288,7 +291,6 @@ chars << Faker::TheFreshPrinceOfBelAir.character
 
 rating_number.times do |i|
   id = Car.first.id + i
-  puts "#{id}"
   Rating.create(
     user:  chars.sample,
     rate:  rand(3..5),

@@ -16,7 +16,7 @@
          <div class="driving-license">
            <% if @driver_profile.driving_license.blank? %>
             <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
-           <%= link_to "Ajouter le permis de conduire", edit_additional_driver_path(ad)%>
+           <%= link_to "Ajouter le permis de conduire", profil_edit_path%>
            <% else %>
            <h4>Permis de conduire : </h4>
             <i class="fas fa-check"></i>
@@ -25,7 +25,7 @@
          <div class="id-card">
            <% if @driver_profile.identity_card.blank? %>
             <h4>Permis de conduire : <i class="fas fa-times"></i></h4>
-           <%= link_to "Ajouter la carte d'identité", edit_additional_driver_path(ad)%>
+           <%= link_to "Ajouter la carte d'identité", profil_edit_path%>
            <% else %>
            <h4>Carte d'identité : </h4>
             <i class="fas fa-check"></i>
