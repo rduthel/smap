@@ -5,6 +5,7 @@
     <div class="dash">
       <% if @driver_profile.addresses.present? %>
         <% if @driver_profile.addresses.count > 1 %>
+        <p><%= link_to 'Ajouter une adresse', new_address_path, class: "btn-smap-secondary" %></p>
           <h3>Toutes mes disponibilités</h3>
           <div id="general-calendar"></div>
           <h3>Mes adresses :</h3>
@@ -71,9 +72,9 @@
             <% end %>
           </div>
         <% end %>
-        <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
+
       <% else %>
-        <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
+        <p><%= link_to 'Ajouter une adresse', new_address_path, class: "btn-smap" %></p>
       <% end %>
     </div>
   </div>

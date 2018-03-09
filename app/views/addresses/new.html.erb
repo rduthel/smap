@@ -1,10 +1,12 @@
-<div class="container-form">
-  <%= simple_form_for(@address) do |f| %>
-  <%= f.input :name, label: "Nom" %>
-  <%= f.input :address, label: "Adresse" %>
-  <%= f.input :zip_code, label: "Code Postal" %>
-  <%= f.input :city, label: "Ville" %>
-  <%= f.submit "Enregistrer", class: 'btn-smap' %>
+<div class="body-wrap">
+  <div class="container-form">
+    <%= simple_form_for(@address) do |f| %>
+    <%= f.input :name, label: "Nom" %>
+    <%= f.input :address, label: "Adresse" %>
+    <%= f.input :zip_code, label: "Code Postal" %>
+    <%= f.input :city, label: "Ville" %>
+    <%= f.submit "Enregistrer", class: 'btn-smap' %>
 
-  <% end %>
+    <% end %>
+  </div>
 </div>

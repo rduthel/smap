@@ -1,3 +1,9 @@
+.cars.estimation {
+  .body-wrap {
+    background-color:#F1F1F1;
+  }
+}
+
 .flex-estim {
   display: flex;
   justify-content: space-around;
@@ -13,6 +19,7 @@
 
 .infobull {
   display:flex;
+  background: white;
   justify-content: space-around;
   align-items: center;
   border: solid 1px $secondary-color;
@@ -39,7 +46,7 @@
 
 .estimer {
   width: 450px;
-  background-color: #F1F1F1;
+  background-color: white;
   border: solid 1px #0000000d;
   padding: 30px;
   margin-bottom: 15px;

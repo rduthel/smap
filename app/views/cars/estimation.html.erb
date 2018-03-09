@@ -4,7 +4,7 @@
 
 <div class="body-wrap">
   <div class="container">
-    <h1 class="text-center" >Estimer ma facture mensuelle avec SMAP</h1>
+    <h1 class="text-center" style="margin-bottom: 45px;" >Estimer ma facture mensuelle avec SMAP</h1>
     <div class="flex-estim">
       <div class="contrat">
         <h2><%= @car.brand %> <%= @car.model %>, <span id="category-estimation"><%= @car.category %></span></h2>
@@ -33,7 +33,7 @@
         <h4>Le week-end, elle sera disponible :</h4> <h2><span id="wval">24</span> heures </h2>
         <br>
         <input id="weekend" class="slider" type="range" min="0" max="48" step="1" />
-        <hr>
+        <br>
         <div class="result-estim">
           <div>
             <div class="tarif">
