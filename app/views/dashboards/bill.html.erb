@@ -7,8 +7,8 @@
     <p> Durée : 3 Février 2018 - 2 février 2020 </p>
       <table>
   <caption> Mes Locations Courte Durée </caption>
-  <caption> <    Février 2018     > </caption>
-  <tr>
+  <caption> <    Mars 2018     > </caption>
+   <tr>
        <th> Date </th>
        <th> Durée </th>
        <th> Locataire Courte Durée </th>
@@ -16,25 +16,33 @@
    </tr>
 
    <tr>
-       <td> 10/02/2018 </td>
-       <td> 3 heures</td>
-       <td><%= image_tag Faker::Fillmurray.image, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
-       <td> - 10 € </td>
+       <td> 03/03/2018 </td>
+       <td> 2 jours</td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
+       <td> - 40 € </td>
    </tr>
 
    <tr>
-       <td> 24/02/2018 </td>
-       <td> 12 heures </td>
-       <td> <%= image_tag Faker::Avatar.image, width: 35, height: 35, class: "avatar-courte" %> Marie Vinot </td>
-       <td> - 30 € </td>
+       <td> 07/03/2018 </td>
+       <td> 2 heures </td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Marie Vinot </td>
+       <td> - 4 € </td>
    </tr>
 
-    <tr>
-       <td> 26/02/2018 </td>
-       <td> 1 jour </td>
-       <td> <%= image_tag Faker::Avatar.image, width: 35, height: 35, class: "avatar-courte" %> Djamel Sour </td>
-       <td> - 50 € </td>
+   <tr>
+       <td> 10/03/2018 </td>
+       <td> 6 heures</td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Jean Jacques Michu</td>
+       <td> - 12 € </td>
    </tr>
+
+
+    <tr>
+       <td> 26/03/2018 </td>
+       <td> 6 heures </td>
+       <td> <%= cl_image_tag @driver_profile.photo, width: 35, height: 35, class: "avatar-courte" %> Djamel Sour </td>
+       <td> - 18 € </td>
+    </tr>
 </table>
 <p> Prix mensuel de mon véhicule après locations Courte Durée: 305€ par mois</p>
 </div>
