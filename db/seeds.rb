@@ -3,8 +3,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-
-
 puts 'Cleaning DB...'
 User.destroy_all
 Rating.destroy_all
@@ -121,6 +119,11 @@ def description_tourism(element, hash)
   hash[:description] = description
 end
 
+def transmission(array, hash)
+  transmission = array[0] == 'Auto' ? 'Automatique' : array[0]
+  hash[:transmission] = transmission
+end
+
 # category_letter = splitted.first[-2]
 # category        = category_for_select(category_letter)
 # car[:category]  = category unless category.nil?
@@ -182,7 +185,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:seat]         = places_tr[0][0].to_i
     car[:lugage]       = places_tr[1][0].to_i
     car[:car_door]     = places_tr[2][0].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -228,7 +231,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:seat]         = places_tr[0].to_i
     car[:lugage]       = places_tr[2].to_i
     car[:car_door]     = places_tr[4].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -263,7 +266,7 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero?
+  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero? || car[:brand] == 'Abarth'
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
