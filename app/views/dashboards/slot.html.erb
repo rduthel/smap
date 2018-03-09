@@ -7,6 +7,37 @@
         <% if @driver_profile.addresses.count > 1 %>
           <h3>Toutes mes disponibilités</h3>
           <div id="general-calendar"></div>
+          <h3>Mes adresses :</h3>
+          <div class="panel-group" id="addresses-accordion">
+            <% @driver_profile.addresses.each_with_index do |address, index| %>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <a role="button" data-toggle="collapse" data-parent="#addresses-accordion" href="#address<%= index + 1 %>">
+                    <h4 class="panel-title">
+                      <span class="address-name"><%= address.name %></span>
+                      :
+                      <%= address.address %>
+                      <%= address.zip_code %>
+                      <%= address.city %>
+                    </a>
+                  </h4>
+                </div>
+                <div id="address<%= index + 1 %>" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <ul>
+                      <% address.slots.each do |slot| %>
+                        <li class="slots" style="display: none">
+                          <span class="slot-from-<%= index %>"><%= slot.from.strftime("%FT%T%:z") %></span>
+                          //
+                          <span class="slot-to-<%= index %>"><%= slot.to.strftime("%FT%T%:z") %></span>
+                        <% end %>
+                    </ul>
+                    <div class="calendar"></div>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
         <% else %>
           <h3>Mes adresses :</h3>
           <div class="panel-group" id="addresses-accordion">
@@ -42,7 +73,7 @@
         <% end %>
         <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
       <% else %>
-      <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
+        <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
       <% end %>
     </div>
   </div>
