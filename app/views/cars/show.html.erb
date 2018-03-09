@@ -4,69 +4,77 @@
 
 <div class="body-wrap">
   <div class="container">
-    <div class="row">
+
+  <div class="conducteurs">
       <div class="col-xs-12">
         <h1><%= @car.brand %> <%= @car.model %></h1>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-xs-12">
-        <ul class="metrics-container">
-          <li>
-            <i><i class="fas fa-users smap-color"></i></i>
-            <i><%= @car.seat %> Places</i>
-          </li>
-          <li>
-            <i><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i>
-            <i><%= @car.energy %></i>
-          </li>
-          <li>
-            <i> <i class="fas fa-cogs smap-color"></i></i>
-            <i><%= @car.transmission %></i>
-          </li>
-          <li>
-            <i><i class="fas fa-car smap-color"></i></i>
-            <i><%= @car.car_door %> Portes</i>
-          </li>
-          <li>
-            <i><i class="fas fa-suitcase smap-color"></i></i>
-            <i><%= @car.lugage %></i>
-          </li>
-        </ul>
-      </div>
-    </div>
-
-  </div>
-  <div class="container-car">
-    <div class="car-container">
-      <%= cl_image_tag @car.photo, width: 630, class: "car-picture"%>
-      <div>
-
-
-      </div>
-    </div>
-
-    <div class="info-container">
-      <div class="description">
-        <p><%= @car.description %></p>
-        <hr>
-        <div class="contract">
-          <div class="contract-text">
-            <h2>Le contrat SMAP, engagement 24 mois :</h2>
-            <p><ul>
-              <li>Le carburant</li>
-              <li>L'entretien</li>
-              <li>L'assurance</li>
-            </ul></p>
-          </div>
-          <%= link_to "Estimer ma facture", estimation_path(@car), class:"btn-smap" %>
+  <div class="dash">
+    <div class="car-dash">
+      <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+      <div class="icon-list">
+        <div class="icon-card">
+          <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
+          <h4 class="icons-li"><i class="tiny material-icons smap-color" style="font-size: 30px" >local_gas_station</i> &nbsp; <%= @car.energy %></h4>
+        </div>
+        <div class="icon-card">
+          <h4 class="icons-li"><i class="fas fa-cogs smap-color"></i> &nbsp; <%= @car.transmission %></h4>
+          <h4 class="icons-li"><i class="fas fa-car smap-color"></i> &nbsp; <%= @car.car_door %> Portes</h4>
+        </div>
+        <div class="icon-card">
+          <h4 class="icons-li"><i class="fas fa-suitcase smap-color"></i> &nbsp; <%= @car.lugage %> Bagages</h4>
         </div>
       </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+
+    <div class="col-lg-6">
       <div class="contract-container">
         <p><strong>Concessionnaire :</strong> <span id="concessionnaire_name"><%= @car.concessionnaire_name %></span><span id="concessionnaire_address"><%= @car.concessionnaire_address %></span></p>
         <div id="map" class="car-picture"></div>
       </div>
+    </div>
+
+    <div class="col-lg-6">
+      <div class="contract">
+        <div class="contract-text">
+          <h2>Le contrat SMAP, engagement 24 mois :</h2>
+          <ul>
+            <li>Le carburant</li>
+            <li>L'entretien</li>
+            <li>L'assurance</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <%= link_to "Estimer ma facture", estimation_path(@car), class: "btn-smap" %>
+
+</div>
+
+
+
+
+  <div class="info-container">
+    <div class="description">
+      <p><%= @car.description %></p>
+      <hr>
+
+   </div>
+ </div>
+
+
+
+
+
     </div>
   </div>
 </div>
