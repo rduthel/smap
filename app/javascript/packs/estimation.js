@@ -4,7 +4,7 @@ if (page.length !== 0) {
   const weekEnd = document.getElementById('weekend');
   const estimation = document.getElementById('estimation');
   const reduc = document.getElementById('reduc');
-  let category = document.getElementById('category').innerText;
+  let category = document.getElementById('category-estimation').innerText;
   let hloc = 0;
   let jloc = 0;
   let sloc = 0;
