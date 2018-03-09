@@ -2,6 +2,20 @@
   background: #cccccc08;
 }
 
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top:  15px;
+}
+
+.dash {
+  border: 1px solid #eaeaea;
+  background: white;
+  padding: 1em;
+}
+
 .car-container {
   display: flex;
   justify-content: space-between;
