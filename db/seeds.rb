@@ -3,8 +3,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-
-
 puts 'Cleaning DB...'
 User.destroy_all
 Rating.destroy_all
@@ -263,7 +261,7 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero?
+  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero? || car[:brand] == 'Abarth'
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
@@ -280,6 +278,7 @@ cars.each do |car|
     photo:                   car[:photo]
   )
 end
+
 
 rating_number = Car.count
 puts "Creating #{rating_number} ratings..."
