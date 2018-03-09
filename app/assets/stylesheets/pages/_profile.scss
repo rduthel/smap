@@ -1,4 +1,4 @@
-.driver_profiles.profile {
+.dashboards.profile {
   font-size: 20px;
   margin: 10;
 
@@ -9,10 +9,21 @@
 
   a {
     font-size: 15px;
-    font-style: italic;
-    color: #616668 !important;
+    color: #616668 ;
+    &:hover {
+
+      text-decoration: none;
+    }
   }
 }
+
+.value a {
+  font-style: italic;
+  &:hover {
+    color: $secondary-color;
+  }
+}
+
 
 .square {
     border-radius: 0px!important;

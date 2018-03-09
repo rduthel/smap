@@ -70,6 +70,15 @@
   width: 80%; /* Could be more or less, depending on screen size */
 }
 
+.form-actions {
+  .btn-smap {
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  margin-bottom: 10px;
+  }
+}
+
 // /* Style the horizontal ruler */
 // hr {
 //   border: 1px solid #f1f1f1;
@@ -133,7 +142,6 @@ color: #616668;
 }
 
 #myModalLabel {
-  color: white !important;
   font-size: 25px;
   font-size: lighter;
 }
@@ -163,8 +171,8 @@ q::after {
 }
 
 .btn-primary {
-  color: #F9D459;
-  background-color: white;
+  color: white;
+  background-color: #007cda;
   border-color: white;
   bottom: 0px;
   left: 0px;
@@ -172,9 +180,16 @@ q::after {
   margin-bottom: 10px;
 }
 
+.flex-modal {
+  display: flex;
+  justify-content: space-around;
+}
+
 .modal-footer {
   position: centered !important;
-  color: white;
+  color: $black;
+  background-color: white;
+  border-top: solid 1px $yellowsmap;
 
 
   h2 {
@@ -187,4 +202,10 @@ q::after {
     width: 100%;
     margin-bottom: 20px
   }
+}
+
+.modal-header {
+  background-color: white;
+  color: $black;
+  border-bottom: solid 1px $yellowsmap;
 }

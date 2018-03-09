@@ -18,38 +18,41 @@ if (page.length !== 0) {
       hloc = 6;
       jloc = ( 50 / 24 );
       sloc = ( 200 / 168 );
-      tarif = 395
-
+      tarif = 280
       break;
     case 'Compacte':
-    case 'Berline':
       hloc = 8;
       jloc = ( 70 / 24 );
       sloc = ( 300 / 168 );
-      tarif = 660;
+      tarif = 450;
       break;
     case 'Monospace':
+    case 'Berline':
     case 'SUV':
       hloc = 11;
       jloc = ( 100 / 24 );
       sloc = ( 450 / 168 );
-      tarif = 770;
+      tarif = 530;
       break;
     case 'Utilitaire':
       hloc = 11;
       jloc = ( 100 / 24 );
       sloc = ( 450 / 168 );
-      tarif = 670;
+      tarif = 460;
       break;
   };
 
   const estimateTarif = function(dispo) {
     const heureLoc = dispo / 5;
-    const newTarif = (0.8 * heureLoc * hloc + 0.15 * heureLoc * jloc + 0.05 * heureLoc * sloc);
+    const newTarif = (0.8 * heureLoc * hloc + 0.15 * heureLoc * jloc + 0.05 * heureLoc * sloc)/2;
     return newTarif
   };
 
 
+  reduc.innerText = `${Math.round(estimateTarif(84))}`;
+  estimation.innerText = `${Math.round(tarif - estimateTarif(84))}`;
+  wdispo = 24;
+  sdispo = 60;
 
   function semaineChange() {
     sdispo = parseInt(this.value);
@@ -72,6 +75,7 @@ if (page.length !== 0) {
  const updateWval = function(event) {
     document.getElementById('wval').innerText = this.value;
   };
+
 
   semaine.addEventListener('input', semaineChange);
   semaine.addEventListener('input', updateSval);

@@ -7,6 +7,7 @@ puts 'Cleaning DB...'
 User.destroy_all
 Rating.destroy_all
 Car.destroy_all
+Car.algolia_reindex
 
 places = []
 mecha  = []
@@ -85,10 +86,10 @@ end
 
 def price_by_category(category)
   case category
-  when 'Citadine'                       then 395
-  when 'Compacte', 'Berline'            then 660
-  when 'Monospace', 'SUV'               then 770
-  when 'Utilitaire'                     then 670
+  when 'Citadine'                       then 280
+  when 'Compacte'                       then 450
+  when 'Monospace', 'SUV', 'Berline'    then 530
+  when 'Utilitaire'                     then 460
   end
 end
 
@@ -116,6 +117,11 @@ def description_tourism(element, hash)
 
   description.nil? || description.gsub!('Avis', 'SMAP')
   hash[:description] = description
+end
+
+def transmission(array, hash)
+  transmission = array[0] == 'Auto' ? 'Automatique' : array[0]
+  hash[:transmission] = transmission
 end
 
 # category_letter = splitted.first[-2]
@@ -179,7 +185,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:seat]         = places_tr[0][0].to_i
     car[:lugage]       = places_tr[1][0].to_i
     car[:car_door]     = places_tr[2][0].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -225,7 +231,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:seat]         = places_tr[0].to_i
     car[:lugage]       = places_tr[2].to_i
     car[:car_door]     = places_tr[4].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -237,7 +243,7 @@ html_tourism.search('.content-51b').each do |content|
   cars << car
 end
 
-cars.delete({})
+cars.reject! { |car| car[:description] == '' || car[:seat].nil? || car[:seat].zero? || car[:brand] == 'Abarth' }
 
 CONCESSIONNAIRES = [
   {
@@ -260,7 +266,6 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero?
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
@@ -288,7 +293,6 @@ chars << Faker::TheFreshPrinceOfBelAir.character
 
 rating_number.times do |i|
   id = Car.first.id + i
-  puts "#{id}"
   Rating.create(
     user:  chars.sample,
     rate:  rand(3..5),
