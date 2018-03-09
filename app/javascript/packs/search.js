@@ -135,9 +135,9 @@ if (page.length !== 0) {
       attributeName: 'monthly_price',
       options: [
         {name: 'Tout'},
-        {end: 500, name: 'moins de 500€'},
-        {start: 500, end: 700, name: 'Entre 500€ et 700€'},
-        {start: 700, name: 'Plus que 700€'}
+        {end: 300, name: 'moins de 300€'},
+        {start: 300, end: 500, name: 'Entre 300€ et 500€'},
+        {start: 500, name: 'Plus de 500€'}
       ],
       templates: {
         header: 'Tarif mensuel'
