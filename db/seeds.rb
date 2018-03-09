@@ -119,6 +119,11 @@ def description_tourism(element, hash)
   hash[:description] = description
 end
 
+def transmission(array, hash)
+  transmission = array[0] == 'Auto' ? 'Automatique' : array[0]
+  hash[:transmission] = transmission
+end
+
 # category_letter = splitted.first[-2]
 # category        = category_for_select(category_letter)
 # car[:category]  = category unless category.nil?
@@ -180,7 +185,7 @@ html_select.search('.content-51b').each_with_index do |content, index_car|
     car[:seat]         = places_tr[0][0].to_i
     car[:lugage]       = places_tr[1][0].to_i
     car[:car_door]     = places_tr[2][0].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -226,7 +231,7 @@ html_tourism.search('.content-51b').each do |content|
     car[:seat]         = places_tr[0].to_i
     car[:lugage]       = places_tr[2].to_i
     car[:car_door]     = places_tr[4].to_i
-    car[:transmission] = mecha_tr[0]
+    transmission(mecha_tr, car)
 
     energy(mecha_tr, car)
   end
@@ -278,7 +283,6 @@ cars.each do |car|
     photo:                   car[:photo]
   )
 end
-
 
 rating_number = Car.count
 puts "Creating #{rating_number} ratings..."
