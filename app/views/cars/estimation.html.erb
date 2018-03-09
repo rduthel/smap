@@ -35,16 +35,17 @@
         <input id="weekend" class="slider" type="range" min="0" max="48" step="1" />
         <hr>
         <div class="result-estim">
-          <div class="tarif">
-            <h5><strong>Tarif initial</strong></h5>
-            <p><span id="tarif"><%= @car.monthly_price %></span> € / mois</p>
-          </div>
-          <div class="reduction">
-            <strong><p>-<span id="reduc"></span>€</p><i class="fas fa-arrow-right"></i></strong>
+          <div>
+            <div class="tarif">
+              <h2><strong><span id="tarif"><%= @car.monthly_price %></span> € / mois</strong></h2>
+            </div>
+            <div class="reduction">
+              <strong><h2>-<span id="reduc"></span>€<h2></i></strong>
+            </div>
           </div>
           <div class="estimation-result">
             <h5>Tarif estimé</h5>
-            <p><span id="estimation"><%= @car.monthly_price %></span>€ / mois</p>
+            <h2><strong><span id="estimation"><%= @car.monthly_price %></span>€ / mois</strong></h2>
           </div>
         </div>
         <%= link_to "Souscrire à SMAP ! ", souscription_path(@car), class: "btn-smap" %>

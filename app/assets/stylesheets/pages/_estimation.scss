@@ -58,35 +58,33 @@
   }
 }
 
-#sval, #wval {
+#sval, #wval, #tarif, #reduc, #estimation {
   font-family: $body-font;
 }
 
 .tarif {
-  border: solid 1px $black;
-  padding: 10px;
-  border-radius: 2px;
-  background-color: #DEDEDE;
+  text-decoration: line-through;
 }
 
 .estimation-result {
-  border: solid 1px $yellowsmap;
-  padding: 10px;
-  border-radius: 2px;
-  background-color: #DEDEDE;
+  h5 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 23px;
+  }
 }
 
 .result-estim {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
 .reduction {
-  font-size: 30px;
-
-  p {
-    color: $green;
+  h2 {
+    color: $secondary-color;
+    font-size: 30px;
   }
 }
 

@@ -51,9 +51,11 @@ if (page.length !== 0) {
 
 
   reduc.innerText = `${Math.round(estimateTarif(84))}`;
+  estimation.innerText = `${Math.round(tarif - estimateTarif(84))}`;
+  wdispo = 24;
+  sdispo = 60;
 
   function semaineChange() {
-    wdispo = 24;
     sdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
     reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
@@ -61,7 +63,6 @@ if (page.length !== 0) {
   };
 
   function weekEndChange() {
-    sdispo = 60;
     wdispo = parseInt(this.value);
     totdispo = (sdispo + wdispo);
     reduc.innerText = `${Math.round(estimateTarif(totdispo))}`
