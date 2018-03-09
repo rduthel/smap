@@ -3,7 +3,7 @@
     <%= render 'subnav' %>
 
     <div class="dash">
-    <p> Prix de mon contrat de location Longue Durée Smap: 395€ par mois</p>
+    <p> Prix de mon contrat de location Longue Durée Smap: <%= @driver_profile.car.monthly_price %>€ par mois</p>
     <p> Durée : 3 Février 2018 - 2 février 2020 </p>
       <table>
   <caption> Mes Locations Courte Durée </caption>
@@ -42,4 +42,3 @@
 
     </div>
   </div>
-
