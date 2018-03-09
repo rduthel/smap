@@ -29,9 +29,9 @@
       </a>
     </div>
     <div class="dash">
-      <% if !@driver_profile.addresses.nil? %>
-      <h3>Toutes mes disponibilités</h3>
-      <div id="general-calendar"></div>
+      <% if @driver_profile.addresses.present? %>
+        <h3>Toutes mes disponibilités</h3>
+        <div id="general-calendar"></div>
         <h3>Mes adresses :</h3>
         <div class="panel-group" id="addresses-accordion">
           <% @driver_profile.addresses.each_with_index do |address, index| %>
@@ -63,8 +63,8 @@
             </div>
           <% end %>
         </div>
-        <% else %>
-          <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
+      <% else %>
+        <p><%= link_to 'Ajouter une adresse', new_address_path %></p>
       <% end %>
     </div>
   </div>
