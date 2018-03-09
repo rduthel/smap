@@ -3,7 +3,7 @@
     <%= render 'subnav' %>
 
     <div class="dash">
-    <p> Prix de mon contrat de location Longue Durée Smap: 395€ par mois</p>
+    <p> Prix de mon contrat de location Longue Durée Smap: <span id="monthly-price"><%= @driver_profile.car.monthly_price %>€ par mois</span></p>
     <p> Durée : 3 Février 2018 - 2 février 2020 </p>
       <table>
   <caption> Mes Locations Courte Durée </caption>
@@ -44,10 +44,9 @@
        <td> - 18 € </td>
     </tr>
 </table>
-<p> Prix mensuel de mon véhicule après locations Courte Durée: 305€ par mois</p>
+<p> Prix mensuel de mon véhicule après locations Courte Durée: <span id="price-after"></span>€ par mois</p>
 </div>
 
 
     </div>
   </div>
-
