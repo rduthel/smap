@@ -2,6 +2,12 @@
   background: #cccccc08;
 }
 
+.flex-show {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+}
+
 .container {
   margin-right: auto;
   margin-left: auto;
@@ -50,12 +56,11 @@
 }
 
 .contract-container {
-  width: 325px;
+  flex-grow: 1;
+  margin-right: 80px;
 }
 
 .description {
-  min-width: 620px;
-  max-width: 620px;
   p {
     line-height: 2;
   }
