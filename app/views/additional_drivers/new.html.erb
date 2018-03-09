@@ -1,14 +1,16 @@
-<%= simple_form_for @additional_driver do |f| %>
-  <%= f.input :title, label: 'Civilité' %>
-  <%= f.input :first_name %>
-  <%= f.input :last_name %>
-  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year] %>
-  <%= f.input :city %>
-  <%= f.input :address %>
-  <%= f.input :zip_code %>
-  <%= f.input :photo %>
-  <%= f.input :telephone_number %>
-  <%= f.input :driving_license %>
-  <%= f.input :identity_card %>
-  <%= f.button :submit %>
-<% end %>
+<div class="container-form">
+  <%= simple_form_for @additional_driver do |f| %>
+    <%= f.input :title, label: 'Civilité' %>
+    <%= f.input :first_name, label: 'Prénom' %>
+    <%= f.input :last_name, label: 'Nom' %>
+    <%= f.input :birthdate, label: 'Date de naissance', as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year] %>
+    <%= f.input :city, label: 'Ville' %>
+    <%= f.input :address, label: 'Adresse' %>
+    <%= f.input :zip_code, label: 'Code Postal' %>
+    <%= f.input :telephone_number, label: 'N° de téléphone' %>
+    <%= f.input :photo %>
+    <%= f.input :driving_license, label: 'Permis de conduire' %>
+    <%= f.input :identity_card, label: 'Carte d\'identité' %>
+    <%= f.button :submit, "Mettre à jour le conducteur secondaire", class: 'btn-smap'  %>
+  <% end %>
+</div>
