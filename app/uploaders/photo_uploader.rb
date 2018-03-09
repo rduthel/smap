@@ -1,5 +1,7 @@
 class PhotoUploader < CarrierWave::Uploader::Base
   include Cloudinary::CarrierWave
 
-  # Remove everything else
+  def default_url(*args)
+    ActionController::Base.helpers.asset_path("fallback/profil.png")
+  end
 end

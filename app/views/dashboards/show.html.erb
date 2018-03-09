@@ -37,7 +37,7 @@
       <hr>
       <div class="conducteur-secondaire">
         <div class="flex" >
-          <%= cl_image_tag ad.photo, class: "avatar-main" %> &nbsp;
+          <%= cl_image_tag ad.photo.url, class: "avatar-main" %> &nbsp;
           <div class="secondaire">
             <h4> <%= ad.first_name %> <%= ad.last_name %> <%= link_to icon('fas', 'pencil-alt'), edit_additional_driver_path(ad) %></h4>
             <p>(Conducteur secondaire) <%= link_to icon('fas', 'trash-alt'), additional_driver_path(ad), data: { confirm: "Are you sure?" }, method: :delete %>
