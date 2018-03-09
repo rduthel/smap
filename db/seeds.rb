@@ -243,7 +243,7 @@ html_tourism.search('.content-51b').each do |content|
   cars << car
 end
 
-cars.delete({})
+cars.reject! { |car| car[:description] == '' || car[:seat].nil? || car[:seat].zero? || car[:brand] == 'Abarth' }
 
 CONCESSIONNAIRES = [
   {
@@ -266,7 +266,6 @@ puts "Creating #{cars.length} cars..."
 cars.each do |car|
   concessionnaire = CONCESSIONNAIRES.sample
 
-  next if car[:description] == '' || car[:seat].nil? || car[:seat].zero? || car[:brand] == 'Abarth'
   Car.create(
     brand:                   car[:brand],
     model:                   car[:model],
