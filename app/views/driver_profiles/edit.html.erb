@@ -1,16 +1,18 @@
-<%= simple_form_for @driver_profile, url:profil_path do |f| %>
-  <%= f.input :title, label: 'Civilité' %>
-  <%= f.input :first_name, label: 'Prénom' %>
-  <%= f.input :last_name , label: 'Nom'%>
-  <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year], label:'Date de naissance' %>
-  <%= f.input :photo %> <%= cl_image_tag @driver_profile.photo, height: 50, width: 50, crop: :fit, label: 'Photo' %>
-  <%= f.input :city, label: 'Ville' %>
-  <%= f.input :address, label:'Adresse' %>
-  <%= f.input :zip_code, label: 'Code postal' %>
-  <%= f.input :telephone_number, label:'Numéro de téléphone' %>
-  <%= f.input :driving_license, label: 'Permis de conduire' %>
-  <%= f.input :identity_card, label: 'Carte d\'identité'%>
-  <%= f.button :submit, label:'Inscription' %>
+<div class="container-form">
+  <%= simple_form_for @driver_profile, url:profil_path do |f| %>
+    <%= f.input :title, label: 'Civilité' %>
+    <%= f.input :first_name, label: 'Prénom' %>
+    <%= f.input :last_name , label: 'Nom'%>
+    <%= f.input :birthdate, as: :date, start_year: Date.today.year - 90, end_year: Date.today.year - 12, order: [:day, :month, :year], label:'Date de naissance' %>
+    <%= f.input :photo %> <%= cl_image_tag @driver_profile.photo, height: 50, width: 50, crop: :fit, label: 'Photo' %>
+    <%= f.input :city, label: 'Ville' %>
+    <%= f.input :address, label:'Adresse' %>
+    <%= f.input :zip_code, label: 'Code postal' %>
+    <%= f.input :telephone_number, label:'Numéro de téléphone' %>
+    <%= f.input :driving_license, label: 'Permis de conduire' %>
+    <%= f.input :identity_card, label: 'Carte d\'identité'%>
+    <%= f.button :submit, "Mettre à jour mon profil", class: 'btn-smap' %>
 
-  <%= link_to "Changez votre email/mot de passe",  edit_user_registration_path  %>
-<% end %>
+    <%= link_to "Changez votre email/mot de passe",  edit_user_registration_path, class: 'btn-smap-secondary'   %>
+  <% end %>
+</div>

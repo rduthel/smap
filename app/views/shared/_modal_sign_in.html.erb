@@ -21,7 +21,7 @@
                 <div class="form-actions">
 
                   <%- if controller_name != 'sessions' %>
-                    <%= button_to "Connexion", new_session_path(:user), class: "btn btn-primary" %><br />
+                    <%= button_to "Connexion", new_session_path(:user), class: "btn-smap" %><br />
                   <% end -%>
 
                   <%- if Devise.mappings[:user].recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
@@ -44,9 +44,14 @@
         </div>
       </div>
       <div class="modal-footer">
-        <p>Vous n'avez pas de compte? <%- if Devise.mappings[:user].registerable? && controller_name != 'registrations' %>
-                    <%= link_to "Inscription", new_registration_path(:user) %><br />
-                  <% end -%></p>
+        <div class="flex-modal">
+          <p>Vous n'avez pas de compte? </p>
+          <p>
+            <%- if Devise.mappings[:user].registerable? && controller_name != 'registrations' %>
+              <%= link_to "Inscription", new_registration_path(:user), class: "btn-smap-secondary" %><br />
+            <% end -%>
+          </p>
+        </div>
       </div>
     </div>
   </div>

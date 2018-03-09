@@ -50,6 +50,10 @@ if (page.length !== 0) {
   };
 
 
+  reduc.innerText = `${Math.round(estimateTarif(84))}`;
+  estimation.innerText = `${Math.round(tarif - estimateTarif(84))}`;
+  wdispo = 24;
+  sdispo = 60;
 
   function semaineChange() {
     sdispo = parseInt(this.value);
@@ -72,6 +76,7 @@ if (page.length !== 0) {
  const updateWval = function(event) {
     document.getElementById('wval').innerText = this.value;
   };
+
 
   semaine.addEventListener('input', semaineChange);
   semaine.addEventListener('input', updateSval);

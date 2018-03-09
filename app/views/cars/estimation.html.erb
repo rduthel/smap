@@ -7,8 +7,8 @@
     <h1 class="text-center" >Estimer ma facture mensuelle avec SMAP</h1>
     <div class="flex-estim">
       <div class="contrat">
-        <h1><%= @car.brand %> <%= @car.model %>, <span id="category"><%= @car.category %></span></h1>
-        <h3>Le prix du véhicule Smap est de <%= @car.monthly_price %>€ par mois. Ce prix comprend :</h3>
+        <h2><%= @car.brand %> <%= @car.model %>, <span id="category"><%= @car.category %></span></h2>
+        <h3>Le prix du véhicule Smap est de <%= @car.monthly_price %>€ par mois. <br> Ce prix comprend :</h3>
         <ul>
           <li>Le carburant (30 000km sur 24mois)</li>
           <li>L'assurance</li>
@@ -16,14 +16,17 @@
         </ul>
         <div class="car-card">
           <p>
-              Lorsque je ne l'utilise pas, je rends ma voiture disponible à la sous-location sur le site Smap. <br>Une partie de ces sous-locations viendront réduire ma facture mensuelle. <br>
+              Lorsque je ne l'utilise pas, je rends ma voiture disponible à la sous-location sur le site Smap. Une partie de ces sous-locations viendront réduire ma facture mensuelle. <br>
               J'optimise donc simplement l'utilisation et le coût de mon véhicule!
           </p>
-          <p>Au minimum, <strong>20% des disponibiltés</strong> renseignées sur le mois seront sous-louées. L'estimation prend en compte ce paramètre.</p>
+          <div class="infobull">
+            <p>Au minimum, <strong>20% des disponibiltés</strong> renseignées sur le mois seront sous-louées. L'estimation prend en compte ce paramètre.</p>
+            <%= image_tag "https://a0.muscache.com/airbnb/static/page3/icon-uc-light-bulb-b34f4ddc543809b3144949c9e8cfcc8d.gif"%>
+          </div>
         </div>
       </div>
       <div class="estimer text-center">
-        <h4>Du lundi au vendredi, ma voiture sera disponible :</h4><h2><span id="sval" >60</span> heures</h2>
+        <h4>Du lundi au vendredi ma voiture sera disponible :</h4><h2><span id="sval" >60</span> heures</h2>
         <br>
         <input id="semaine" class="slider" type="range" min="0" max="120" step="1" />
         <br>
@@ -32,16 +35,17 @@
         <input id="weekend" class="slider" type="range" min="0" max="48" step="1" />
         <hr>
         <div class="result-estim">
-          <div class="tarif">
-            <h5><strong>Tarif initial</strong></h5>
-            <p><span id="tarif"><%= @car.monthly_price %></span> € / mois</p>
-          </div>
-          <div class="reduction">
-            <strong><p>-<span id="reduc"></span>€</p><i class="fas fa-arrow-right"></i></strong>
+          <div>
+            <div class="tarif">
+              <h5><strong><span id="tarif"><%= @car.monthly_price %></span> € / mois</strong></h5>
+            </div>
+            <div class="reduction">
+              <strong><h2>-<span id="reduc"></span>€<h2></i></strong>
+            </div>
           </div>
           <div class="estimation-result">
             <h5>Tarif estimé</h5>
-            <p><span id="estimation"><%= @car.monthly_price %></span>€ / mois</p>
+            <h2><strong><span id="estimation"><%= @car.monthly_price %></span>€ / mois</strong></h2>
           </div>
         </div>
         <%= link_to "Souscrire à SMAP ! ", souscription_path(@car), class: "btn-smap" %>
