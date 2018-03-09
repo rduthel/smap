@@ -4,10 +4,12 @@
 
 <div class="body-wrap">
   <div class="container">
-    <h1><%= @car.brand %> <%= @car.model %></h1>
     <div class="dash">
       <div class="car-dash">
-        <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+        <div>
+          <h1 style="margin-top: 0;"><%= @car.brand %> <%= @car.model %>, <em style="font-size: 17px;"> <%= @car.category %></em></h1>
+          <%= cl_image_tag @car.photo, width: 330, height: 165, class: "car-avatar" %>
+        </div>
         <div class="icon-list">
           <div class="icon-card">
             <h4 class="icons-li"><i class="fas fa-users smap-color"></i> &nbsp; <%= @car.seat %> Places</h4>
@@ -22,17 +24,13 @@
           </div>
         </div>
       </div>
-        <div class="info-container">
-          <div class="description">
-            <p><%= @car.description %></p>
-          </div>
-    </div>
+      <div class="info-container">
+        <div class="description">
+          <p><%= @car.description %></p>
+        </div>
+      </div>
     </div>
     <div class="flex-show">
-      <div class="contract-container">
-        <p><strong>Concessionnaire :</strong> <span id="concessionnaire_name"><%= @car.concessionnaire_name %></span><span id="concessionnaire_address"><%= @car.concessionnaire_address %></span></p>
-        <div id="map" class="car-picture"></div>
-      </div>
       <div class="contract">
         <div class="contract-text">
           <h2>Le contrat SMAP, engagement 24 mois :</h2>
@@ -44,7 +42,10 @@
           <%= link_to "Estimer ma facture", estimation_path(@car), class: "btn-smap" %>
         </div>
        </div>
-
+      <div class="contract-container">
+        <p><strong>Concessionnaire :</strong> <span id="concessionnaire_name"><%= @car.concessionnaire_name %></span><span id="concessionnaire_address"><%= @car.concessionnaire_address %></span></p>
+        <div id="map" class="car-picture"></div>
+      </div>
     </div>
   </div>
 </div>

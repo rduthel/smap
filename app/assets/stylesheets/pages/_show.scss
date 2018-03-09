@@ -1,11 +1,16 @@
 .cars.show {
-  background: #cccccc08;
+  background: #F1F1F1;
+  .dash {
+    background-color: white;
+    box-shadow: 0px 2px 11px -3px gray;
+  }
 }
 
 .flex-show {
   display: flex;
   justify-content: space-between;
   margin: 30px 0;
+  align-items: center;
 }
 
 .container {
@@ -57,7 +62,6 @@
 
 .contract-container {
   flex-grow: 1;
-  margin-right: 80px;
 }
 
 .description {
@@ -68,9 +72,16 @@
 
 .contract {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  flex-basis: 460px;
 }
 
 .car-picture {
   box-shadow: 4px 4px 15px -1px gray;
+}
+
+.contract-text {
+  ul {
+    margin: 30px 0;
+  }
 }
